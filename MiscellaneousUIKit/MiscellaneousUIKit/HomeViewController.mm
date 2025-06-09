@@ -8,6 +8,8 @@
 #import "HomeViewController.h"
 #import "GlassEffectViewController.h"
 #import "ButtonViewController.h"
+#import "LiquidLensViewController.h"
+#import "TabViewController.h"
 
 @interface HomeViewController ()
 @property (class, nonatomic, readonly, getter=_classes) NSArray<Class> *classes;
@@ -19,6 +21,8 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [TabViewController class],
+        [LiquidLensViewController class],
         [ButtonViewController class],
         [GlassEffectViewController class]
     ];
@@ -45,7 +49,7 @@
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [GlassEffectViewController new];
+    __kindof UIViewController *viewController = [LiquidLensViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
 }
