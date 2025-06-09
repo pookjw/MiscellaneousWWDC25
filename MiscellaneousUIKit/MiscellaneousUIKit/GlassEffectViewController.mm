@@ -9,6 +9,20 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 
+@interface MyGlassEffect : UIGlassEffect
+@end
+@implementation MyGlassEffect
+- (id)glass {
+    id glass = reinterpret_cast<id (*)(id, SEL, NSInteger)>(objc_msgSend)([objc_lookUpClass("_UIViewGlass") alloc], sel_registerName("initWithVariant:"), 2);
+//        reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(glass, sel_registerName("setTintColor:"), UIColor.clearColor);
+//        reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(glass, sel_registerName("setControlTintColor:"), UIColor.clearColor);
+//        reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(glass, sel_registerName("setContentLensing:"), NO);
+//        reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(glass, sel_registerName("setExcludingForeground:"), YES);
+//        reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(glass, sel_registerName("setExcludingPlatter:"), YES);
+    return [glass autorelease];
+}
+@end
+
 @interface GlassEffectViewController ()
 @property (retain, nonatomic, readonly, getter=_imageView) UIImageView *imageView;
 @property (retain, nonatomic, readonly, getter=_visualEffectView) UIVisualEffectView *visualEffectView;
@@ -60,16 +74,7 @@
 - (UIVisualEffectView *)_visualEffectView {
     if (auto visualEffectView = _visualEffectView) return visualEffectView;
     
-    UIGlassEffect *effect = [[UIGlassEffect alloc] init];
-    effect.interactive = YES;
-    effect.tintColor = UIColor.clearColor;
-    
-    id glass = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(effect, sel_registerName("glass"));
-    reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(glass, sel_registerName("setTintColor:"), UIColor.clearColor);
-    reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(glass, sel_registerName("setControlTintColor:"), UIColor.clearColor);
-    reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(glass, sel_registerName("setContentLensing:"), YES);
-    reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(glass, sel_registerName("setExcludingForeground:"), YES);
-    reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(glass, sel_registerName("setExcludingPlatter:"), YES);
+    MyGlassEffect *effect = [[MyGlassEffect alloc] init];
     
     UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:effect];
     [effect release];

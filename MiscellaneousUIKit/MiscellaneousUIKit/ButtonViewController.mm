@@ -62,7 +62,7 @@
 - (UIButton *)_button {
     if (auto button = _button) return button;
     
-    UIButtonConfiguration *configuration = reinterpret_cast<id (*)(Class, SEL)>(objc_msgSend)([UIButtonConfiguration class], sel_registerName("_clearGlassButtonConfiguration"));;
+    UIButtonConfiguration *configuration = reinterpret_cast<id (*)(Class, SEL)>(objc_msgSend)([UIButtonConfiguration class], sel_registerName("_clearGlassButtonConfiguration"));
     configuration.title = @"Button";
     
     UIButton *button = [UIButton new];

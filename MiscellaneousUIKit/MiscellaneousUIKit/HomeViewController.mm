@@ -45,7 +45,7 @@
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [ButtonViewController new];
+    __kindof UIViewController *viewController = [GlassEffectViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
 }
