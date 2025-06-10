@@ -12,6 +12,7 @@
 #import "TabViewController.h"
 #import "ScrollPocketViewController.h"
 #import "MiscellaneousUIKit-Swift.h"
+#import "ScrollEdgeElementContainerInteractionViewController.h"
 
 @interface HomeViewController ()
 @property (class, nonatomic, readonly, getter=_classes) NSArray<Class> *classes;
@@ -23,6 +24,7 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [ScrollEdgeElementContainerInteractionViewController class],
         [CornerMaskingViewController class],
         [ScrollPocketViewController class],
         [TabViewController class],
@@ -53,7 +55,7 @@
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [CornerMaskingViewController new];
+    __kindof UIViewController *viewController = [ScrollEdgeElementContainerInteractionViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
 }
