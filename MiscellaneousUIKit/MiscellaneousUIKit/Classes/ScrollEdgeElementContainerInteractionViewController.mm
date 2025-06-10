@@ -32,7 +32,11 @@
     self.scrollView.frame = self.view.bounds;
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-    [self.view addSubview:self.stackView];
+    // gradient
+//    [self.view addSubview:self.stackView];
+    // variable blur
+    [self.scrollView addSubview:self.stackView];
+    
     self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
         [self.stackView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor],
