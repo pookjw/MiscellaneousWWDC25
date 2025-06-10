@@ -6,8 +6,8 @@
 //
 
 #import "ButtonViewController.h"
-#import <objc/runtime.h>
-#import <objc/message.h>
+#include <objc/runtime.h>
+#include <objc/message.h>
 #include <vector>
 #include <ranges>
 
