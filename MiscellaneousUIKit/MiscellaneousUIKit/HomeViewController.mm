@@ -49,7 +49,7 @@
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [LiquidLensViewController new];
+    __kindof UIViewController *viewController = [GlassEffectViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
 }
