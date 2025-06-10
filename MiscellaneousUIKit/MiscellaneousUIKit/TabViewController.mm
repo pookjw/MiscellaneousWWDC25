@@ -13,7 +13,7 @@
 #include <vector>
 #include <ranges>
 
-@interface TabViewController ()
+@interface TabViewController () <UITabBarControllerDelegate>
 @property (retain, nonatomic, readonly, getter=_tabBarController) UITabBarController *tabBarController;
 @property (retain, nonatomic, readonly, getter=_menuBarButtonItem) UIBarButtonItem *menuBarButtonItem;
 @end
@@ -44,6 +44,8 @@
     if (auto tabBarController = _tabBarController) return tabBarController;
     
     UITabBarController *tabBarController = [UITabBarController new];
+    tabBarController.mode = UITabBarControllerModeTabSidebar;
+    tabBarController.delegate = self;
     
     {
         UIButtonConfiguration *configuration = reinterpret_cast<id (*)(Class, SEL)>(objc_msgSend)([UIButtonConfiguration class], sel_registerName("_posterSwitcherGlassButtonConfiguration"));
@@ -58,10 +60,6 @@
         
         tabBarController.bottomAccessory = bottomTabAccessory;
         [bottomTabAccessory release];
-    }
-    
-    {
-        
     }
     
     UITab *listTab = [[UITab alloc] initWithTitle:@"List" image:[UIImage systemImageNamed:@"apple.intelligence"] identifier:@"0" viewControllerProvider:^UIViewController * _Nonnull(__kindof UITab * _Nonnull) {
@@ -80,17 +78,32 @@
         return [viewController autorelease];
     }];
     
-    UITab *blueTab = [[UITab alloc] initWithTitle:@"Blue" image:[UIImage systemImageNamed:@"apple.intelligence"] identifier:@"3" viewControllerProvider:^UIViewController * _Nonnull(__kindof UITab * _Nonnull) {
+    UITab *childTab = [[UITab alloc] initWithTitle:@"Child" image:[UIImage systemImageNamed:@"apple.intelligence"] identifier:@"3" viewControllerProvider:^UIViewController * _Nonnull(__kindof UITab * _Nonnull) {
         UIViewController *viewController = [UIViewController new];
-        viewController.view.backgroundColor = UIColor.systemBlueColor;
         return [viewController autorelease];
     }];
     
-    tabBarController.tabs = @[listTab, orangeTab, greenTab, blueTab];
+    UISearchTab *searchTab = [[UISearchTab alloc] initWithTitle:@"Search" image:[UIImage systemImageNamed:@"magnifyingglass"] identifier:@"4" viewControllerProvider:^UIViewController * _Nonnull(__kindof UITab * _Nonnull) {
+        UIViewController *viewController = [UIViewController new];
+        viewController.view.backgroundColor = UIColor.systemPinkColor;
+        
+        UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+        viewController.navigationItem.searchController = searchController;
+        [searchController release];
+        
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+        [viewController release];
+        
+        return [navigationController autorelease];
+    }];
+    searchTab.automaticallyActivatesSearch = YES;
+    
+    tabBarController.tabs = @[listTab, orangeTab, greenTab, childTab, searchTab];
     [listTab release];
     [orangeTab release];
     [greenTab release];
-    [blueTab release];
+    [childTab release];
+    [searchTab release];
     
     _tabBarController = tabBarController;
     return tabBarController;
@@ -139,6 +152,63 @@
     
     UIMenu *menu = [UIMenu menuWithChildren:@[element]];
     return menu;
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    BOOL responds = [super respondsToSelector:aSelector];
+    if (!responds) {
+        NSLog(@"%s", sel_getName(aSelector));
+    }
+    return responds;
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectTab:(UITab *)selectedTab previousTab:(UITab *)previousTab {
+    if ([selectedTab.identifier isEqualToString:@"3"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIViewController *viewController = selectedTab.viewController;
+            for (UIView *subview in viewController.view.subviews) {
+                [subview removeFromSuperview];
+            }
+             
+             UIView *fullView = [UIView new];
+             fullView.backgroundColor = UIColor.systemGreenColor;
+             
+             UIView *safeAreaView = [UIView new];
+             safeAreaView.backgroundColor = UIColor.systemOrangeColor;
+             
+             UIView *tabContentView = [UIView new];
+             tabContentView.backgroundColor = UIColor.systemBlueColor;
+             
+             fullView.translatesAutoresizingMaskIntoConstraints = NO;
+             safeAreaView.translatesAutoresizingMaskIntoConstraints = NO;
+             tabContentView.translatesAutoresizingMaskIntoConstraints = NO;
+             
+             [viewController.view addSubview:fullView];
+             [viewController.view addSubview:safeAreaView];
+             [viewController.view addSubview:tabContentView];
+             
+             [NSLayoutConstraint activateConstraints:@[
+             [fullView.topAnchor constraintEqualToAnchor:viewController.view.topAnchor],
+             [fullView.leadingAnchor constraintEqualToAnchor:viewController.view.leadingAnchor],
+             [fullView.trailingAnchor constraintEqualToAnchor:viewController.view.trailingAnchor],
+             [fullView.bottomAnchor constraintEqualToAnchor:viewController.view.bottomAnchor],
+             
+             [safeAreaView.topAnchor constraintEqualToAnchor:viewController.view.safeAreaLayoutGuide.topAnchor],
+             [safeAreaView.leadingAnchor constraintEqualToAnchor:viewController.view.safeAreaLayoutGuide.leadingAnchor],
+             [safeAreaView.trailingAnchor constraintEqualToAnchor:viewController.view.safeAreaLayoutGuide.trailingAnchor],
+             [safeAreaView.bottomAnchor constraintEqualToAnchor:viewController.view.safeAreaLayoutGuide.bottomAnchor],
+             
+             [tabContentView.topAnchor constraintEqualToAnchor:tabBarController.contentLayoutGuide.topAnchor],
+             [tabContentView.leadingAnchor constraintEqualToAnchor:tabBarController.contentLayoutGuide.leadingAnchor],
+             [tabContentView.trailingAnchor constraintEqualToAnchor:tabBarController.contentLayoutGuide.trailingAnchor],
+             [tabContentView.bottomAnchor constraintEqualToAnchor:tabBarController.contentLayoutGuide.bottomAnchor]
+             ]];
+             
+             [fullView release];
+             [safeAreaView release];
+             [tabContentView release];
+        });
+    }
 }
 
 @end

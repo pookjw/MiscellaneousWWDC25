@@ -11,6 +11,7 @@
 #import "LiquidLensViewController.h"
 #import "TabViewController.h"
 #import "ScrollPocketViewController.h"
+#import "MiscellaneousUIKit-Swift.h"
 
 @interface HomeViewController ()
 @property (class, nonatomic, readonly, getter=_classes) NSArray<Class> *classes;
@@ -22,6 +23,7 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [CornerMaskingViewController class],
         [ScrollPocketViewController class],
         [TabViewController class],
         [LiquidLensViewController class],
@@ -51,7 +53,7 @@
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [TabViewController new];
+    __kindof UIViewController *viewController = [CornerMaskingViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
 }

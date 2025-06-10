@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 
 /*
- UIGlassContainerEffect
+ _UIParallaxTransitionCardView
  */
 
 int main(int argc, char * argv[]) {

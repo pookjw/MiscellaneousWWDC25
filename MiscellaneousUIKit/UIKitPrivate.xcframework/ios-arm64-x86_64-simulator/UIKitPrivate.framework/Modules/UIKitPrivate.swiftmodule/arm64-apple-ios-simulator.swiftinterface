@@ -1,0 +1,35 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.9.904 clang-1700.3.9.904)
+// swift-module-flags: -target arm64-apple-ios26.0-simulator -enable-objc-interop -autolink-force-load -enable-library-evolution -module-link-name swiftUIKit -swift-version 5 -enforce-exclusivity=checked -O -library-level api -module-abi-name UIKit -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -user-module-version 9071.1.106 -module-name UIKitPrivate
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import CoreGraphics
+import Swift
+import UIKit
+import Foundation
+@_exported import UIKitPrivate
+import _Concurrency
+
+@available(iOS 26.0, visionOS 26.0, *)
+@_originallyDefinedIn(module: "UIKit", iOS 26.0)
+@_originallyDefinedIn(module: "UIKit", visionOS 26.0)
+public struct _UICornerMaskingConfiguration {
+    public static var unspecified: UIKitPrivate._UICornerMaskingConfiguration { get }
+    public static var sqaure: UIKitPrivate._UICornerMaskingConfiguration { get }
+    public static var containerConcentric: UIKitPrivate._UICornerMaskingConfiguration { get }
+    public static func fixed(_ value: CoreGraphics.CGFloat) -> UIKitPrivate._UICornerMaskingConfiguration
+    public static func dynamic(_ value: CoreGraphics.CGFloat) -> UIKitPrivate._UICornerMaskingConfiguration
+    public static var capsule: UIKitPrivate._UICornerMaskingConfiguration { get }
+}
+
+@available(iOS 26.0, visionOS 26.0, *)
+@_originallyDefinedIn(module: "UIKit", iOS 26.0)
+@_originallyDefinedIn(module: "UIKit", visionOS 26.0)
+@_Concurrency.MainActor
+extension UIKit.UIView {
+    public var cornerMaskingConfiguration: UIKitPrivate._UICornerMaskingConfiguration? {
+        @_silgen_name("$sSo6UIViewC5UIKitE26cornerMaskingConfigurationAC09_UICornerdE0VSgvg")
+        get
+        @_silgen_name("$sSo6UIViewC5UIKitE26cornerMaskingConfigurationAC09_UICornerdE0VSgvs")
+        set
+    }
+}
