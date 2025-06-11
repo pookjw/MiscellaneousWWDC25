@@ -13,6 +13,10 @@
 #import "ScrollPocketViewController.h"
 #import "MiscellaneousUIKit-Swift.h"
 #import "ScrollEdgeElementContainerInteractionViewController.h"
+#import "BarButtonZoomTransitionViewController.h"
+#import "ActionSheetViewController.h"
+#import "ToolbarViewController.h"
+#import "SplitContentViewController.h"
 
 @interface HomeViewController ()
 @property (class, nonatomic, readonly, getter=_classes) NSArray<Class> *classes;
@@ -24,6 +28,10 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [SplitContentViewController class],
+        [ToolbarViewController class],
+        [ActionSheetViewController class],
+        [BarButtonZoomTransitionViewController class],
         [ScrollEdgeElementContainerInteractionViewController class],
         [CornerMaskingViewController class],
         [ScrollPocketViewController class],
@@ -55,7 +63,7 @@
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [ScrollEdgeElementContainerInteractionViewController new];
+    __kindof UIViewController *viewController = [SplitContentViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
 }

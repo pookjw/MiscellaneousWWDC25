@@ -38,6 +38,9 @@
     [self.tabBarController didMoveToParentViewController:self];
     
     self.navigationItem.rightBarButtonItem = self.menuBarButtonItem;
+    UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.navigationItem.searchController = searchController;
+    [searchController release];
 }
 
 - (UITabBarController *)_tabBarController {
@@ -83,6 +86,12 @@
         return [viewController autorelease];
     }];
     
+    UITab *pinkTab = [[UITab alloc] initWithTitle:@"Pink" image:[UIImage systemImageNamed:@"apple.intelligence"] identifier:@"4" viewControllerProvider:^UIViewController * _Nonnull(__kindof UITab * _Nonnull) {
+        UIViewController *viewController = [UIViewController new];
+        viewController.view.backgroundColor = UIColor.systemPinkColor;
+        return [viewController autorelease];
+    }];
+    
     UISearchTab *searchTab = [[UISearchTab alloc] initWithTitle:@"Search" image:[UIImage systemImageNamed:@"magnifyingglass"] identifier:@"4" viewControllerProvider:^UIViewController * _Nonnull(__kindof UITab * _Nonnull) {
         UIViewController *viewController = [UIViewController new];
         viewController.view.backgroundColor = UIColor.systemPinkColor;
@@ -98,12 +107,13 @@
     }];
     searchTab.automaticallyActivatesSearch = YES;
     
-    tabBarController.tabs = @[listTab, orangeTab, greenTab, childTab, searchTab];
+    tabBarController.tabs = @[listTab, orangeTab, childTab, searchTab, greenTab, pinkTab];
     [listTab release];
     [orangeTab release];
     [greenTab release];
     [childTab release];
     [searchTab release];
+    [pinkTab release];
     
     _tabBarController = tabBarController;
     return tabBarController;
