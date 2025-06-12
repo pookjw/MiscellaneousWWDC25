@@ -18,6 +18,8 @@
 #import "ToolbarViewController.h"
 #import "SplitContentViewController.h"
 #import "SearchBarPlacementViewController.h"
+#import "SliderViewController.h"
+#import "NavigationItemViewController.h"
 
 @interface HomeViewController ()
 @property (class, nonatomic, readonly, getter=_classes) NSArray<Class> *classes;
@@ -29,6 +31,8 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [NavigationItemViewController class],
+        [SliderViewController class],
         [SearchBarPlacementViewController class],
         [SplitContentViewController class],
         [ToolbarViewController class],
@@ -65,7 +69,7 @@
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [SearchBarPlacementViewController new];
+    __kindof UIViewController *viewController = [NavigationItemViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
 }
