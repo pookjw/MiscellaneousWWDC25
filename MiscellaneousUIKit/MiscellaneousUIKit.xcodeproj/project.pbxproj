@@ -8,10 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		4F725C762DF8991D00262588 /* UIKitPrivate.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F725C752DF8991D00262588 /* UIKitPrivate.xcframework */; };
+		4F84B5752DFC10E700753B04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F84B5742DFC10E700753B04 /* UIKit.framework */; };
+		4F84B5772DFC10EE00753B04 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F84B5762DFC10EE00753B04 /* UniformTypeIdentifiers.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4F725C752DF8991D00262588 /* UIKitPrivate.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = UIKitPrivate.xcframework; sourceTree = "<group>"; };
+		4F84B5742DFC10E700753B04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		4F84B5762DFC10EE00753B04 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = DEVELOPER_DIR; };
 		4FFCE2862DF775F900B23138 /* MiscellaneousUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -41,7 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F84B5772DFC10EE00753B04 /* UniformTypeIdentifiers.framework in Frameworks */,
 				4F725C762DF8991D00262588 /* UIKitPrivate.xcframework in Frameworks */,
+				4F84B5752DFC10E700753B04 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +57,8 @@
 		4F725C742DF8991D00262588 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4F84B5762DFC10EE00753B04 /* UniformTypeIdentifiers.framework */,
+				4F84B5742DFC10E700753B04 /* UIKit.framework */,
 				4F725C752DF8991D00262588 /* UIKitPrivate.xcframework */,
 			);
 			name = Frameworks;

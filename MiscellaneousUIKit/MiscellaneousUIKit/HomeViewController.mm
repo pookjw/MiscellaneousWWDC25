@@ -20,6 +20,12 @@
 #import "SearchBarPlacementViewController.h"
 #import "SliderViewController.h"
 #import "NavigationItemViewController.h"
+#import "ColorExposureViewController.h"
+#import "ColorLinearExposureViewController.h"
+#import "ColorPickerPresenterViewController.h"
+#import "ColorWellViewController.h"
+#import "PopoverViewController.h"
+#import "BackgroundExtensionViewController.h"
 
 @interface HomeViewController ()
 @property (class, nonatomic, readonly, getter=_classes) NSArray<Class> *classes;
@@ -31,6 +37,12 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [BackgroundExtensionViewController class],
+        [PopoverViewController class],
+        [ColorWellViewController class],
+        [ColorPickerPresenterViewController class],
+        [ColorLinearExposureViewController class],
+        [ColorExposureViewController class],
         [NavigationItemViewController class],
         [SliderViewController class],
         [SearchBarPlacementViewController class],
@@ -69,7 +81,7 @@
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [NavigationItemViewController new];
+    __kindof UIViewController *viewController = [BackgroundExtensionViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
 }

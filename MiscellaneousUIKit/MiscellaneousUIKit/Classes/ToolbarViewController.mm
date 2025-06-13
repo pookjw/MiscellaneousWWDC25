@@ -94,6 +94,8 @@
     if (auto barButtonItem_2 = _barButtonItem_2) return barButtonItem_2;
     
     UIBarButtonItem *barButtonItem_2 = [[UIBarButtonItem alloc] initWithTitle:@"2" image:[UIImage systemImageNamed:@"apple.intelligence"] target:nil action:nil menu:nil];
+    barButtonItem_2.style = UIBarButtonItemStyleProminent;
+    barButtonItem_2.tintColor = UIColor.systemOrangeColor;
     
     _barButtonItem_2 = barButtonItem_2;
     return barButtonItem_2;
@@ -103,6 +105,9 @@
     if (auto barButtonItem_3 = _barButtonItem_3) return barButtonItem_3;
     
     UIBarButtonItem *barButtonItem_3 = [[UIBarButtonItem alloc] initWithTitle:@"3" image:[UIImage systemImageNamed:@"apple.intelligence"] target:nil action:nil menu:nil];
+    
+    UIBarButtonItemBadge *badge = [UIBarButtonItemBadge badgeWithString:@"Badge"];
+    barButtonItem_3.badge = badge;
     
     _barButtonItem_3 = barButtonItem_3;
     return barButtonItem_3;
