@@ -26,6 +26,8 @@
 #import "ColorWellViewController.h"
 #import "PopoverViewController.h"
 #import "BackgroundExtensionViewController.h"
+#import "BarButtonItemBadgeViewController.h"
+#import "NaturalSelectionViewController.h"
 
 @interface HomeViewController ()
 @property (class, nonatomic, readonly, getter=_classes) NSArray<Class> *classes;
@@ -37,6 +39,8 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [NaturalSelectionViewController class],
+        [BarButtonItemBadgeViewController class],
         [BackgroundExtensionViewController class],
         [PopoverViewController class],
         [ColorWellViewController class],
@@ -81,7 +85,7 @@
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [BackgroundExtensionViewController new];
+    __kindof UIViewController *viewController = [NaturalSelectionViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
 }

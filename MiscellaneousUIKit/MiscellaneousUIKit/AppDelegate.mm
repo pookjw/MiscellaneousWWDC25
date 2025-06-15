@@ -1,5 +1,5 @@
 //
-//  AppDelegate.m
+//  AppDelegate.mm
 //  MiscellaneousUIKit
 //
 //  Created by Jinwoo Kim on 6/10/25.
@@ -18,6 +18,23 @@
     UISceneConfiguration *configuration = [[UISceneConfiguration alloc] initWithName:nil sessionRole:UIWindowSceneSessionRoleApplication];
     configuration.delegateClass = [SceneDelegate class];
     return [configuration autorelease];
+}
+
+- (void)buildMenuWithBuilder:(id<UIMenuBuilder>)builder {
+    [super buildMenuWithBuilder:builder];
+    
+    if ([builder.system isEqual:UIMainMenuSystem.sharedSystem]) {
+        [builder insertSiblingMenu:[self _testMenu] beforeMenuForIdentifier:UIMenuFile];
+    }
+}
+
+- (UIMenu *)_testMenu {
+    UIAction *action = [UIAction actionWithTitle:@"Rebuild" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        NSLog(@"Rebuild!");
+        [UIMainMenuSystem.sharedSystem setNeedsRebuild];
+    }];
+    
+    return [UIMenu menuWithTitle:@"Test" children:@[action]];
 }
 
 @end
