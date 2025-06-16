@@ -28,9 +28,16 @@
 #import "BackgroundExtensionViewController.h"
 #import "BarButtonItemBadgeViewController.h"
 #import "NaturalSelectionViewController.h"
+#import "WindowControlViewController.h"
+#include <objc/runtime.h>
+#include <objc/message.h>
+#import <Accessibility/Accessibility.h>
+
+OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self class] }; */
 
 @interface HomeViewController ()
 @property (class, nonatomic, readonly, getter=_classes) NSArray<Class> *classes;
+@property (nonatomic, readonly, getter=_classes) NSArray<Class> *classes;
 @property (retain, nonatomic, readonly, getter=_cellRegistration) UICollectionViewCellRegistration *cellRegistration;
 @end
 
@@ -39,6 +46,7 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [WindowControlViewController class],
         [NaturalSelectionViewController class],
         [BarButtonItemBadgeViewController class],
         [BackgroundExtensionViewController class],
@@ -64,6 +72,12 @@
     ];
 }
 
+- (NSArray<Class> *)_classes {
+    NSMutableArray<Class> *classes = [HomeViewController.classes mutableCopy];
+    
+    return [classes autorelease];
+}
+
 - (instancetype)init {
     UICollectionLayoutListConfiguration *listConfiguration = [[UICollectionLayoutListConfiguration alloc] initWithAppearance:UICollectionLayoutListAppearanceInsetGrouped];
     UICollectionViewCompositionalLayout *collectionViewLayout = [UICollectionViewCompositionalLayout layoutWithListConfiguration:listConfiguration];
@@ -85,9 +99,16 @@
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [NaturalSelectionViewController new];
+    __kindof UIViewController *viewController = [WindowControlViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
+}
+
+- (void)viewDidMoveToWindow:(UIWindow *)window shouldAppearOrDisappear:(BOOL)shouldAppearOrDisappear {
+    objc_super superInfo = { self, [self class] };
+    reinterpret_cast<void (*)(objc_super *, SEL, id, BOOL)>(objc_msgSendSuper2)(&superInfo, _cmd, window, shouldAppearOrDisappear);
+    
+    self.navigationItem.title = window.windowScene.session.role;
 }
 
 - (UICollectionViewCellRegistration *)_cellRegistration {
@@ -112,15 +133,15 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return HomeViewController.classes.count;
+    return self.classes.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return [collectionView dequeueConfiguredReusableCellWithRegistration:self.cellRegistration forIndexPath:indexPath item:HomeViewController.classes[indexPath.item]];
+    return [collectionView dequeueConfiguredReusableCellWithRegistration:self.cellRegistration forIndexPath:indexPath item:self.classes[indexPath.item]];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    __kindof UIViewController *viewController = [HomeViewController.classes[indexPath.item] new];
+    __kindof UIViewController *viewController = [self.classes[indexPath.item] new];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

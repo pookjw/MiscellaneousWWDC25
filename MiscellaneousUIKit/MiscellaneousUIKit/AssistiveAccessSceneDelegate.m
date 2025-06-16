@@ -1,20 +1,14 @@
 //
-//  SceneDelegate.m
+//  AssistiveAccessSceneDelegate.m
 //  MiscellaneousUIKit
 //
-//  Created by Jinwoo Kim on 6/10/25.
+//  Created by Jinwoo Kim on 6/16/25.
 //
 
-#import "SceneDelegate.h"
+#import "AssistiveAccessSceneDelegate.h"
 #import "HomeViewController.h"
 
-// _NSStringFromUIWindowingControlStyleType
-
-@interface SceneDelegate ()
-
-@end
-
-@implementation SceneDelegate
+@implementation AssistiveAccessSceneDelegate
 
 - (void)dealloc {
     [_window release];
@@ -34,14 +28,6 @@
     self.window = window;
     [window makeKeyAndVisible];
     [window release];
-}
-
-- (void)windowScene:(UIWindowScene *)windowScene didUpdateEffectiveGeometry:(UIWindowSceneGeometry *)previousEffectiveGeometry {
-    NSLog(@"%@", windowScene.effectiveGeometry);
-}
-
-- (UISceneWindowingControlStyle *)preferredWindowingControlStyleForScene:(UIWindowScene *)windowScene {
-    return UISceneWindowingControlStyle.unifiedStyle;
 }
 
 @end

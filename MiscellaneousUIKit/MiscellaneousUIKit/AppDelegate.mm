@@ -7,6 +7,8 @@
 
 #import "AppDelegate.h"
 #import "SceneDelegate.h"
+#import "AssistiveAccessSceneDelegate.h"
+#import <Accessibility/Accessibility.h>
 
 @implementation AppDelegate
 
@@ -15,9 +17,19 @@
 }
 
 - (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
-    UISceneConfiguration *configuration = [[UISceneConfiguration alloc] initWithName:nil sessionRole:UIWindowSceneSessionRoleApplication];
-    configuration.delegateClass = [SceneDelegate class];
-    return [configuration autorelease];
+    if ([connectingSceneSession.role isEqualToString:UIWindowSceneSessionRoleApplication]) {
+        UISceneConfiguration *configuration = [[UISceneConfiguration alloc] initWithName:nil sessionRole:UIWindowSceneSessionRoleApplication];
+        configuration.delegateClass = [SceneDelegate class];
+        return [configuration autorelease];
+    } else if ([connectingSceneSession.role isEqualToString:UIWindowSceneSessionRoleAssistiveAccessApplication]) {
+        UISceneConfiguration *configuration = [[UISceneConfiguration alloc] initWithName:nil sessionRole:UIWindowSceneSessionRoleApplication];
+        configuration.delegateClass = [AssistiveAccessSceneDelegate class];
+        return [configuration autorelease];
+    } else {
+        UISceneConfiguration *configuration = [[UISceneConfiguration alloc] initWithName:nil sessionRole:UIWindowSceneSessionRoleApplication];
+        configuration.delegateClass = [SceneDelegate class];
+        return [configuration autorelease];
+    }
 }
 
 - (void)buildMenuWithBuilder:(id<UIMenuBuilder>)builder {
