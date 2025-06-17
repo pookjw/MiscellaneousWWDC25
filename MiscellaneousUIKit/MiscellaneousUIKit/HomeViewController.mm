@@ -29,6 +29,11 @@
 #import "BarButtonItemBadgeViewController.h"
 #import "NaturalSelectionViewController.h"
 #import "WindowControlViewController.h"
+#import "SymbolContentTransitionViewController.h"
+#import "DeferredMenuElementViewController.h"
+#import "MainMenuSystemViewController.h"
+#import "KeyCommandsViewController.h"
+#import "ShortcutHUDServiceViewController.h"
 #include <objc/runtime.h>
 #include <objc/message.h>
 #import <Accessibility/Accessibility.h>
@@ -46,6 +51,11 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 
 + (NSArray<Class> *)_classes {
     return @[
+        [ShortcutHUDServiceViewController class],
+        [KeyCommandsViewController class],
+        [MainMenuSystemViewController class],
+        [DeferredMenuElementViewController class],
+        [SymbolContentTransitionViewController class],
         [WindowControlViewController class],
         [NaturalSelectionViewController class],
         [BarButtonItemBadgeViewController class],
@@ -99,7 +109,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [WindowControlViewController new];
+    __kindof UIViewController *viewController = [ShortcutHUDServiceViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
 }

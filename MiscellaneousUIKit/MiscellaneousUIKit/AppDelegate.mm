@@ -41,12 +41,14 @@
 }
 
 - (UIMenu *)_testMenu {
-    UIAction *action = [UIAction actionWithTitle:@"Rebuild" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+    UIAction *rebuildAction = [UIAction actionWithTitle:@"Rebuild" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
         NSLog(@"Rebuild!");
         [UIMainMenuSystem.sharedSystem setNeedsRebuild];
     }];
     
-    return [UIMenu menuWithTitle:@"Test" children:@[action]];
+    UIDeferredMenuElement *deferredElement = [UIDeferredMenuElement elementUsingFocusWithIdentifier:@"Deferred Element" shouldCacheItems:NO];
+    
+    return [UIMenu menuWithTitle:@"Test" children:@[rebuildAction, deferredElement]];
 }
 
 @end

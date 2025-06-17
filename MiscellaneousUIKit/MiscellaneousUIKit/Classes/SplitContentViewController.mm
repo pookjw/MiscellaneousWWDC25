@@ -9,14 +9,19 @@
 #include <objc/message.h>
 #include <objc/runtime.h>
 #import "UISplitViewControllerColumn+String.h"
+#import "SplitLayoutEnvironmentViewController.h"
+#include <vector>
+#include <ranges>
 
-@interface SplitContentViewController ()
+UIKIT_EXTERN NSString * _UISplitViewControllerColumnDescription(UISplitViewControllerColumn);
+
+@interface SplitContentViewController () <UISplitViewControllerDelegate>
 @property (retain, nonatomic, readonly, getter=_ownSplitViewController) UISplitViewController *ownSplitViewController;
-@property (retain, nonatomic, readonly, getter=_primaryViewController) UIViewController *primaryViewController;
+@property (retain, nonatomic, readonly, getter=_primaryViewController) SplitLayoutEnvironmentViewController *primaryViewController;
 @property (retain, nonatomic, readonly, getter=_secondaryViewController) UINavigationController *secondaryViewController;
-@property (retain, nonatomic, readonly, getter=_supplementaryViewController) UIViewController *supplementaryViewController;
-@property (retain, nonatomic, readonly, getter=_compactViewController) UIViewController *compactViewController;
-@property (retain, nonatomic, readonly, getter=_inspectorViewController) UIViewController *inspectorViewController;
+@property (retain, nonatomic, readonly, getter=_supplementaryViewController) SplitLayoutEnvironmentViewController *supplementaryViewController;
+@property (retain, nonatomic, readonly, getter=_compactViewController) SplitLayoutEnvironmentViewController *compactViewController;
+@property (retain, nonatomic, readonly, getter=_inspectorViewController) SplitLayoutEnvironmentViewController *inspectorViewController;
 @property (retain, nonatomic, readonly, getter=_menuBarButtonItem) UIBarButtonItem *menuBarButtonItem;
 @end
 
@@ -62,14 +67,16 @@
     [ownSplitViewController setViewController:self.compactViewController forColumn:UISplitViewControllerColumnCompact];
     [ownSplitViewController setViewController:self.inspectorViewController forColumn:UISplitViewControllerColumnInspector];
     
+    ownSplitViewController.delegate = self;
+    
     _ownSplitViewController = ownSplitViewController;
     return ownSplitViewController;
 }
 
-- (UIViewController *)_primaryViewController {
+- (SplitLayoutEnvironmentViewController *)_primaryViewController {
     if (auto primaryViewController = _primaryViewController) return primaryViewController;
-    UIViewController *primaryViewController = [UIViewController new];
-    primaryViewController.view.backgroundColor = UIColor.systemOrangeColor;
+    SplitLayoutEnvironmentViewController *primaryViewController = [SplitLayoutEnvironmentViewController new];
+//    primaryViewController.view.backgroundColor = UIColor.systemYellowColor;
     _primaryViewController = primaryViewController;
     return primaryViewController;
 }
@@ -77,7 +84,7 @@
 - (UINavigationController *)_secondaryViewController {
     if (auto secondaryViewController = _secondaryViewController) return secondaryViewController;
     
-    UIViewController *viewController = [UIViewController new];
+    SplitLayoutEnvironmentViewController *viewController = [SplitLayoutEnvironmentViewController new];
     viewController.view.backgroundColor = UIColor.systemBlueColor;
     
     UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
@@ -93,25 +100,25 @@
     return secondaryViewController;
 }
 
-- (UIViewController *)_supplementaryViewController {
+- (SplitLayoutEnvironmentViewController *)_supplementaryViewController {
     if (auto supplementaryViewController = _supplementaryViewController) return supplementaryViewController;
-    UIViewController *supplementaryViewController = [UIViewController new];
+    SplitLayoutEnvironmentViewController *supplementaryViewController = [SplitLayoutEnvironmentViewController new];
     supplementaryViewController.view.backgroundColor = UIColor.systemGreenColor;
     _supplementaryViewController = supplementaryViewController;
     return supplementaryViewController;
 }
 
-- (UIViewController *)_compactViewController {
+- (SplitLayoutEnvironmentViewController *)_compactViewController {
     if (auto compactViewController = _compactViewController) return compactViewController;
-    UIViewController *compactViewController = [UIViewController new];
+    SplitLayoutEnvironmentViewController *compactViewController = [SplitLayoutEnvironmentViewController new];
     compactViewController.view.backgroundColor = UIColor.systemYellowColor;
     _compactViewController = compactViewController;
     return compactViewController;
 }
 
-- (UIViewController *)_inspectorViewController {
+- (SplitLayoutEnvironmentViewController *)_inspectorViewController {
     if (auto inspectorViewController = _inspectorViewController) return inspectorViewController;
-    UIViewController *inspectorViewController = [UIViewController new];
+    SplitLayoutEnvironmentViewController *inspectorViewController = [SplitLayoutEnvironmentViewController new];
     inspectorViewController.view.backgroundColor = UIColor.systemPurpleColor;
     _inspectorViewController = inspectorViewController;
     return inspectorViewController;
@@ -177,11 +184,44 @@
             [results addObject:action];
         }
         
+        {
+            auto actionsVec = std::vector<UISplitViewControllerColumn> {
+                UISplitViewControllerColumnPrimary,
+                UISplitViewControllerColumnSupplementary,
+                UISplitViewControllerColumnSecondary,
+                UISplitViewControllerColumnCompact,
+                UISplitViewControllerColumnInspector
+            }
+            | std::views::transform([weakSelf](const UISplitViewControllerColumn column) -> UIAction * {
+                UIAction *action = [UIAction actionWithTitle:_UISplitViewControllerColumnDescription(column) image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+                    
+                }];
+                
+                action.attributes = UIMenuElementAttributesDisabled;
+                action.state = ([weakSelf.ownSplitViewController isShowingColumn:column]) ? UIMenuElementStateOn : UIMenuElementStateOff;
+                return action;
+            })
+            | std::ranges::to<std::vector<UIAction *>>();
+            
+            NSArray<UIAction *> *actions = [[NSArray alloc] initWithObjects:actionsVec.data() count:actionsVec.size()];
+            UIMenu *menu = [UIMenu menuWithTitle:@"isShowingColumn" children:actions];
+            [actions release];
+            [results addObject:menu];
+        }
+        
         completion(results);
         [results release];
     }];
     
     return [UIMenu menuWithChildren:@[element]];
+}
+
+- (void)splitViewController:(UISplitViewController *)svc didShowColumn:(UISplitViewControllerColumn)column {
+    NSLog(@"%s %@", sel_getName(_cmd), _UISplitViewControllerColumnDescription(column));
+}
+
+- (void)splitViewController:(UISplitViewController *)svc didHideColumn:(UISplitViewControllerColumn)column {
+    NSLog(@"%s %@", sel_getName(_cmd), _UISplitViewControllerColumnDescription(column));
 }
 
 @end
