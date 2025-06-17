@@ -32,6 +32,10 @@
     }
 }
 
+- (BOOL)applicationShouldAutomaticallyLocalizeKeyCommands:(UIApplication *)application {
+    return YES;
+}
+
 - (void)buildMenuWithBuilder:(id<UIMenuBuilder>)builder {
     [super buildMenuWithBuilder:builder];
     

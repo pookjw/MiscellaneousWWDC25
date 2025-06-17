@@ -109,7 +109,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [ShortcutHUDServiceViewController new];
+    __kindof UIViewController *viewController = [KeyCommandsViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
 }

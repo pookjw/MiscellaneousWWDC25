@@ -7,6 +7,8 @@
 
 #import "KeyCommandsViewController.h"
 
+// https://x.com/_silgen_name/status/1934959693505364105
+
 @interface KeyCommandsViewController ()
 @property (retain, nonatomic, readonly, getter=_collectionView) UICollectionView *collectionView;
 @property (retain, nonatomic, readonly, getter=_cellRegistration) UICollectionViewCellRegistration *cellRegistration;
@@ -32,21 +34,50 @@
     self.view = self.collectionView;
 }
 
-- (BOOL)canBecomeFirstResponder {
-    return YES;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = self.menuBarButtonItem;
     
     {
         UIKeyCommand *keyCommand = [UIKeyCommand commandWithTitle:@"Command 1" image:[UIImage systemImageNamed:@"apple.intelligence"] action:@selector(_command1DidTrigger:) input:@"1" modifierFlags:UIKeyModifierShift propertyList:nil alternates:@[]];
+        keyCommand.discoverabilityTitle = @"discoverabilityTitle";
         [self addKeyCommand:keyCommand];
     }
     
     {
         UIKeyCommand *keyCommand = [UIKeyCommand keyCommandWithInput:@"2" modifierFlags:UIKeyModifierShift action:@selector(_command2DidTrigger:)];
+        [self addKeyCommand:keyCommand];
+    }
+    
+    {
+        UIKeyCommand *keyCommand = [UIKeyCommand commandWithTitle:@"Command 3"
+                                                            image:nil
+                                                           action:@selector(_command3DidTrigger:)
+                                                            input:@"5"
+                                                    modifierFlags:UIKeyModifierShift
+                                                     propertyList:@"Like User Info"
+                                                       alternates:@[
+            [UICommandAlternate alternateWithTitle:@"Command 3 (Alt)" action:@selector(_command3AltDidTrigger:) modifierFlags:UIKeyModifierCommand]
+        ]];
+        [self addKeyCommand:keyCommand];
+    }
+    
+    {
+        UIKeyCommand *keyCommand = [UIKeyCommand commandWithTitle:@"Command 4" image:[UIImage systemImageNamed:@"apple.intelligence"] action:@selector(_command4DidTrigger:) input:@"4" modifierFlags:UIKeyModifierShift propertyList:nil alternates:@[]];
+        [self addKeyCommand:keyCommand];
+    }
+    
+    {
+        UIKeyCommand *keyCommand = [UIKeyCommand commandWithTitle:@"Test" image:[UIImage systemImageNamed:@"apple.intelligence"] action:@selector(_command5DidTrigger:) input:@"=" modifierFlags:UIKeyModifierCommand propertyList:nil alternates:@[]];
+        keyCommand.allowsAutomaticLocalization = YES;
+        keyCommand.allowsAutomaticMirroring = YES;
+        [self addKeyCommand:keyCommand];
+    }
+    
+    {
+        UIKeyCommand *keyCommand = [UIKeyCommand commandWithTitle:@"Test 2" image:[UIImage systemImageNamed:@"apple.intelligence"] action:@selector(_command6DidTrigger:) input:@"[" modifierFlags:UIKeyModifierCommand propertyList:nil alternates:@[]];
+        keyCommand.allowsAutomaticLocalization = YES;
+        keyCommand.allowsAutomaticMirroring = YES;
         [self addKeyCommand:keyCommand];
     }
 }
@@ -56,6 +87,28 @@
 }
 
 - (void)_command2DidTrigger:(UIKeyCommand *)sender {
+    [self _addExecutedCommand:_cmd];
+}
+
+- (void)_command3DidTrigger:(UIKeyCommand *)sender {
+    NSLog(@"%@", sender.propertyList);
+    [self _addExecutedCommand:_cmd];
+}
+
+- (void)_command3AltDidTrigger:(UIKeyCommand *)sender {
+    NSLog(@"%@", sender.propertyList);
+    [self _addExecutedCommand:_cmd];
+}
+
+- (void)_command4DidTrigger:(UIKeyCommand *)sender {
+    [self _addExecutedCommand:_cmd];
+}
+
+- (void)_command5DidTrigger:(UIKeyCommand *)sender {
+    [self _addExecutedCommand:_cmd];
+}
+
+- (void)_command6DidTrigger:(UIKeyCommand *)sender {
     [self _addExecutedCommand:_cmd];
 }
 

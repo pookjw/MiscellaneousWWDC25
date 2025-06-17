@@ -43,6 +43,26 @@ namespace muk_UIKeyShortcutHUDService {
     
 }
 
+namespace muk_TIKeyboardShortcut {
+    namespace localizedKeyboardShortcut_forKeyboardLayout_usingKeyboardType {
+        id (*original)(id self, SEL _cmd, id shortcut, NSString *layout, NSUInteger type);
+        id custom(id self, SEL _cmd, id shortcut, NSString *layout, NSUInteger type) {
+            /*
+             KANA
+             Arabic-AZERTY
+             */
+            id result = original(self, _cmd, shortcut, @"KANA", type);
+            return result;
+        }
+        void swizzle() {
+            Method method = class_getClassMethod(objc_lookUpClass("TIKeyboardShortcut"), sel_registerName("localizedKeyboardShortcut:forKeyboardLayout:usingKeyboardType:"));
+            assert(method != NULL);
+            original = reinterpret_cast<decltype(original)>(method_getImplementation(method));
+            method_setImplementation(method, reinterpret_cast<IMP>(custom));
+        }
+    }
+}
+
 @implementation UIView (Swizzle)
 
 + (void *)_UIKeyShortcutHUDConfiguration_customKey {
@@ -53,6 +73,7 @@ namespace muk_UIKeyShortcutHUDService {
 + (void)load {
     muk_UIKeyShortcutHUDService::_isHUDSupportedOnPlatform::swizzle();
     muk_UIKeyShortcutHUDService::_isHUDAllowedForConfiguration_::swizzle();
+//    muk_TIKeyboardShortcut::localizedKeyboardShortcut_forKeyboardLayout_usingKeyboardType::swizzle();
 }
 
 @end
