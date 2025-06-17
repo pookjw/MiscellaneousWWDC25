@@ -41,6 +41,13 @@
     
     if ([builder.system isEqual:UIMainMenuSystem.sharedSystem]) {
         [builder insertSiblingMenu:[self _testMenu] beforeMenuForIdentifier:UIMenuFile];
+        
+        {
+            UIMenu *menu = [UIMenu menuWithTitle:@"" image:nil identifier:nil options:UIMenuOptionsDisplayInline children:@[
+                [UICommand commandWithTitle:@"Share" image:nil action:@selector(share:) propertyList:UICommandTagShare]
+            ]];
+            [builder insertSiblingMenu:menu beforeMenuForIdentifier:UIMenuClose];
+        }
     }
 }
 
@@ -53,6 +60,10 @@
     UIDeferredMenuElement *deferredElement = [UIDeferredMenuElement elementUsingFocusWithIdentifier:@"Deferred Element" shouldCacheItems:NO];
     
     return [UIMenu menuWithTitle:@"Test" children:@[rebuildAction, deferredElement]];
+}
+
+- (void)share:(UIEvent *)sender {
+    NSLog(@"%s", sel_getName(_cmd));
 }
 
 @end

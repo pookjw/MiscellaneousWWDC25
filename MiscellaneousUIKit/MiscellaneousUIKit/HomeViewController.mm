@@ -34,6 +34,7 @@
 #import "MainMenuSystemViewController.h"
 #import "KeyCommandsViewController.h"
 #import "ShortcutHUDServiceViewController.h"
+#import "InterfaceOrientationsViewController.h"
 #include <objc/runtime.h>
 #include <objc/message.h>
 #import <Accessibility/Accessibility.h>
@@ -51,6 +52,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 
 + (NSArray<Class> *)_classes {
     return @[
+        [InterfaceOrientationsViewController class],
         [ShortcutHUDServiceViewController class],
         [KeyCommandsViewController class],
         [MainMenuSystemViewController class],
@@ -109,7 +111,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [KeyCommandsViewController new];
+    __kindof UIViewController *viewController = [InterfaceOrientationsViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     [viewController release];
 }

@@ -37,7 +37,7 @@
 }
 
 - (void)windowScene:(UIWindowScene *)windowScene didUpdateEffectiveGeometry:(UIWindowSceneGeometry *)previousEffectiveGeometry {
-    NSLog(@"%@", windowScene.effectiveGeometry);
+    NSLog(@"%@, interfaceOrientationLocked: %d", windowScene.effectiveGeometry, windowScene.effectiveGeometry.interfaceOrientationLocked);
 }
 
 - (UISceneWindowingControlStyle *)preferredWindowingControlStyleForScene:(UIWindowScene *)windowScene {

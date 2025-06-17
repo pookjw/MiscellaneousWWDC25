@@ -80,6 +80,14 @@
         keyCommand.allowsAutomaticMirroring = YES;
         [self addKeyCommand:keyCommand];
     }
+    
+    {
+        UIKeyCommand *keyCommand = [UIKeyCommand commandWithTitle:@"Up?" image:[UIImage systemImageNamed:@"apple.intelligence"] action:@selector(_command7DidTrigger:) input:UIKeyInputUpArrow modifierFlags:0 propertyList:nil alternates:@[]];
+        keyCommand.allowsAutomaticLocalization = YES;
+        keyCommand.allowsAutomaticMirroring = YES;
+        keyCommand.wantsPriorityOverSystemBehavior = YES;
+        [self addKeyCommand:keyCommand];
+    }
 }
 
 - (void)_command1DidTrigger:(UIKeyCommand *)sender {
@@ -109,6 +117,10 @@
 }
 
 - (void)_command6DidTrigger:(UIKeyCommand *)sender {
+    [self _addExecutedCommand:_cmd];
+}
+
+- (void)_command7DidTrigger:(UIKeyCommand *)sender {
     [self _addExecutedCommand:_cmd];
 }
 
