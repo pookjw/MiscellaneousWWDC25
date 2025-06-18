@@ -35,6 +35,10 @@
 #import "KeyCommandsViewController.h"
 #import "ShortcutHUDServiceViewController.h"
 #import "InterfaceOrientationsViewController.h"
+#import "FlushUpdatesViewController.h"
+#import "PropertiesViewController.h"
+#import "HDRHeadroomUsageViewController.h"
+#import "SymbolDrawEffectViewController.h"
 #include <objc/runtime.h>
 #include <objc/message.h>
 #import <Accessibility/Accessibility.h>
@@ -52,6 +56,10 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 
 + (NSArray<Class> *)_classes {
     return @[
+        [SymbolDrawEffectViewController class],
+        [HDRHeadroomUsageViewController class],
+        [PropertiesViewController class],
+        [FlushUpdatesViewController class],
         [InterfaceOrientationsViewController class],
         [ShortcutHUDServiceViewController class],
         [KeyCommandsViewController class],
@@ -111,9 +119,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     [super viewDidLoad];
     [self _cellRegistration];
     
-    __kindof UIViewController *viewController = [InterfaceOrientationsViewController new];
-    [self.navigationController pushViewController:viewController animated:YES];
-    [viewController release];
+    [self _showViewControllerForClass:[SymbolDrawEffectViewController class]];
 }
 
 - (void)viewDidMoveToWindow:(UIWindow *)window shouldAppearOrDisappear:(BOOL)shouldAppearOrDisappear {
@@ -121,6 +127,18 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     reinterpret_cast<void (*)(objc_super *, SEL, id, BOOL)>(objc_msgSendSuper2)(&superInfo, _cmd, window, shouldAppearOrDisappear);
     
     self.navigationItem.title = window.windowScene.session.role;
+}
+
+- (void)_showViewControllerForClass:(Class)viewControllerClass {
+    __kindof UIViewController *viewController = [viewControllerClass new];
+    
+    if (viewControllerClass == [InterfaceOrientationsViewController class]) {
+        viewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:viewController animated:YES completion:nil];
+    } else {
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+    [viewController release];
 }
 
 - (UICollectionViewCellRegistration *)_cellRegistration {
@@ -153,8 +171,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    __kindof UIViewController *viewController = [self.classes[indexPath.item] new];
-    [self.navigationController pushViewController:viewController animated:YES];
+    [self _showViewControllerForClass:self.classes[indexPath.item]];
 }
 
 @end

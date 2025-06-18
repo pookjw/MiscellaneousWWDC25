@@ -71,6 +71,13 @@ UIKIT_EXTERN NSString * _UIInterfaceOrientationMaskDebugDescription(UIInterfaceO
         NSMutableArray<__kindof UIMenuElement *> *results = [NSMutableArray new];
         
         {
+            UIAction *dismissAction = [UIAction actionWithTitle:@"Dismiss" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [results addObject:dismissAction];
+        }
+        
+        {
             NSUInteger count;
             const UIInterfaceOrientationMask *allMasks = allUIInterfaceOrientationMasks(&count);
             

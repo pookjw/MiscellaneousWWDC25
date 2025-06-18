@@ -46,6 +46,7 @@
     
     {
         UIKeyCommand *keyCommand = [UIKeyCommand keyCommandWithInput:@"2" modifierFlags:UIKeyModifierShift action:@selector(_command2DidTrigger:)];
+        keyCommand.repeatBehavior = UIMenuElementRepeatBehaviorNonRepeatable;
         [self addKeyCommand:keyCommand];
     }
     
