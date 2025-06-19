@@ -40,6 +40,7 @@
 #import "HDRHeadroomUsageViewController.h"
 #import "SymbolDrawEffectViewController.h"
 #import "SymbolColorRenderingViewController.h"
+#import "RequestHostingSceneObjCViewController.h"
 #include <objc/runtime.h>
 #include <objc/message.h>
 #import <Accessibility/Accessibility.h>
@@ -58,6 +59,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 
 + (NSArray<Class> *)_classes {
     return @[
+        [RequestHostingSceneObjCViewController class],
         [RequestHostingSceneViewController class],
         [ObservationDemoContentConfigurationViewController class],
         [ObservationDemoViewController class],
@@ -125,7 +127,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     [super viewDidLoad];
     [self _cellRegistration];
     
-    [self _showViewControllerForClass:[RequestHostingSceneViewController class]];
+    [self _showViewControllerForClass:[RequestHostingSceneObjCViewController class]];
 }
 
 - (void)viewDidMoveToWindow:(UIWindow *)window shouldAppearOrDisappear:(BOOL)shouldAppearOrDisappear {
