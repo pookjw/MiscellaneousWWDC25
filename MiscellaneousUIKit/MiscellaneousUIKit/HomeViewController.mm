@@ -39,9 +39,11 @@
 #import "PropertiesViewController.h"
 #import "HDRHeadroomUsageViewController.h"
 #import "SymbolDrawEffectViewController.h"
+#import "SymbolColorRenderingViewController.h"
 #include <objc/runtime.h>
 #include <objc/message.h>
 #import <Accessibility/Accessibility.h>
+#import "MiscellaneousUIKit-Swift.h"
 
 OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self class] }; */
 
@@ -56,6 +58,10 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 
 + (NSArray<Class> *)_classes {
     return @[
+        [RequestHostingSceneViewController class],
+        [ObservationDemoContentConfigurationViewController class],
+        [ObservationDemoViewController class],
+        [SymbolColorRenderingViewController class],
         [SymbolDrawEffectViewController class],
         [HDRHeadroomUsageViewController class],
         [PropertiesViewController class],
@@ -119,7 +125,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     [super viewDidLoad];
     [self _cellRegistration];
     
-    [self _showViewControllerForClass:[SymbolDrawEffectViewController class]];
+    [self _showViewControllerForClass:[RequestHostingSceneViewController class]];
 }
 
 - (void)viewDidMoveToWindow:(UIWindow *)window shouldAppearOrDisappear:(BOOL)shouldAppearOrDisappear {
