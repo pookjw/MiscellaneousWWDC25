@@ -22,12 +22,16 @@ final class HostingSceneDelegate: UIResponder, @MainActor UIHostingSceneDelegate
             Text("Hello World!")
         }
         
-        WindowGroup(id: "Custom Text", for: String.self) { text in
-            Text(text.wrappedValue ?? "(nil)")
+//        WindowGroup(id: "Custom Text", for: String.self) { text in
+//            Text(text.wrappedValue ?? "(nil)")
+//        }
+        WindowGroup(id: "Custom Text", for: MyData.self) { text in
+            Text(text.wrappedValue?.string ?? "(nil)")
         }
     }
     
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
+    struct MyData: Codable, Hashable {
+        let string: String
     }
 }
+
