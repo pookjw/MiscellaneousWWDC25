@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.9.904 clang-1700.3.9.904)
-// swift-module-flags: -target arm64-apple-ios26.0-simulator -enable-objc-interop -autolink-force-load -enable-library-evolution -module-link-name swiftUIKit -swift-version 5 -enforce-exclusivity=checked -O -library-level api -module-abi-name UIKit -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -user-module-version 9071.1.106 -module-name UIKitPrivate
+// swift-module-flags: -target arm64-apple-xros26.0-simulator -enable-objc-interop -autolink-force-load -enable-library-evolution -module-link-name swiftUIKit -swift-version 5 -enforce-exclusivity=checked -O -library-level api -module-abi-name UIKit -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -user-module-version 9071.1.504 -module-name UIKitPrivate
 // swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import CoreGraphics
 import Swift

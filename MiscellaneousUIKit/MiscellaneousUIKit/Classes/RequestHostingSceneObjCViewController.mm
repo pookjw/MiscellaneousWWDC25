@@ -50,12 +50,42 @@
     UIDeferredMenuElement *element = [UIDeferredMenuElement elementWithUncachedProvider:^(void (^ _Nonnull completion)(NSArray<UIMenuElement *> * _Nonnull)) {
         NSMutableArray<__kindof UIMenuElement *> *results = [NSMutableArray new];
         
+        UISceneSessionActivationRequest *swift_activationRequest = HostingSceneDelegate.activationRequest;
+        NSString *bridingID = static_cast<NSNumber *>(swift_activationRequest.userActivity.userInfo[@"com.apple.SwiftUI.sceneNamespace"]).stringValue;
+        
         {
             UIAction *action = [UIAction actionWithTitle:@"Request Activation" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
-                UISceneConfiguration *configuration =  reinterpret_cast<id (*)(Class, SEL, id, id, Class)>(objc_msgSend)([UISceneConfiguration class], sel_registerName("_configurationWithRole:bridgingID:sceneDelegateWrapper:"), UIWindowSceneSessionRoleApplication, @"4324271880", objc_lookUpClass("SwiftUI.AppSceneDelegate"));
+                UISceneConfiguration *configuration =  reinterpret_cast<id (*)(Class, SEL, id, id, Class)>(objc_msgSend)([UISceneConfiguration class], sel_registerName("_configurationWithRole:bridgingID:sceneDelegateWrapper:"), UIWindowSceneSessionRoleApplication, bridingID, objc_lookUpClass("SwiftUI.AppSceneDelegate"));
                 configuration.delegateClass = [HostingSceneDelegate class];
                 
                 UISceneSessionActivationRequest *request = reinterpret_cast<id (*)(Class, SEL, id)>(objc_msgSend)([UISceneSessionActivationRequest class], sel_registerName("_requestWithConfiguration:"), configuration);
+                
+                [UIApplication.sharedApplication activateSceneSessionForRequest:request errorHandler:^(NSError * _Nonnull error) {
+                    abort();
+                }];
+            }];
+            
+            [results addObject:action];
+        }
+        
+        {
+            UIAction *action = [UIAction actionWithTitle:@"Request Activation (Custom Text)" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+                UISceneConfiguration *configuration =  reinterpret_cast<id (*)(Class, SEL, id, id, Class)>(objc_msgSend)([UISceneConfiguration class], sel_registerName("_configurationWithRole:bridgingID:sceneDelegateWrapper:"), UIWindowSceneSessionRoleApplication, bridingID, objc_lookUpClass("SwiftUI.AppSceneDelegate"));
+                configuration.delegateClass = [HostingSceneDelegate class];
+                
+                UISceneSessionActivationRequest *request = reinterpret_cast<id (*)(Class, SEL, id)>(objc_msgSend)([UISceneSessionActivationRequest class], sel_registerName("_requestWithConfiguration:"), configuration);
+                
+                NSUserActivity *userActivity = request.userActivity;
+                if (userActivity == nil) {
+                    userActivity = [[[NSUserActivity alloc] initWithActivityType:@"com.pookjw.MiscellaneousUIKit.openWindowByID"] autorelease];
+                }
+                NSData *sceneValue = [@"From Objective-C!" dataUsingEncoding:NSUTF8StringEncoding];
+                [userActivity addUserInfoEntriesFromDictionary:@{
+                    @"com.apple.SwiftUI.sceneValue": sceneValue,
+                    @"com.apple.SwiftUI.sceneID": @"Custom Text",
+                    @"com.apple.SwiftUI.sceneNamespace": bridingID
+                }];
+                request.userActivity = userActivity;
                 
                 [UIApplication.sharedApplication activateSceneSessionForRequest:request errorHandler:^(NSError * _Nonnull error) {
                     abort();

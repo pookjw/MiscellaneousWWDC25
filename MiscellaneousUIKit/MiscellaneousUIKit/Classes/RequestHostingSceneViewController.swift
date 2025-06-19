@@ -39,6 +39,17 @@ final class RequestHostingSceneViewController: UIViewController {
                 results.append(action)
             }
             
+            do {
+                let action = UIAction(title: "Reqeust (Custom Text)") { _ in
+                    let request = UISceneSessionActivationRequest(hostingDelegateClass: HostingSceneDelegate.self, id: "Custom Text", value: "From Swift!")!
+                    UIApplication.shared.activateSceneSession(for: request) { error in
+                        fatalError()
+                    }
+                }
+                
+                results.append(action)
+            }
+            
             completion(results)
         }
         
