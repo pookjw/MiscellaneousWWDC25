@@ -9,12 +9,15 @@
 #include <execinfo.h>
 #include <dlfcn.h>
 #import "PassthroughTextField.h"
+#include <objc/message.h>
+#include <objc/runtime.h>
 
 @interface ResponderDemoEventView ()
 @property (retain, nonatomic, readonly, getter=_stackView) NSStackView *stackView;
 @property (retain, nonatomic, readonly, getter=_label) PassthroughTextField *label;
 @property (retain, nonatomic, readonly, getter=_becomeFirstResponderButton) NSButton *becomeFirstResponderButton;
 @property (retain, nonatomic, readonly, getter=_resignFirstResponderButton) NSButton *resignFirstResponderButton;
+@property (retain, nonatomic, readonly, getter=_tmpButton) NSButton *tmpButton;
 @end
 
 @implementation ResponderDemoEventView
@@ -22,6 +25,7 @@
 @synthesize label = _label;
 @synthesize becomeFirstResponderButton = _becomeFirstResponderButton;
 @synthesize resignFirstResponderButton = _resignFirstResponderButton;
+@synthesize tmpButton = _tmpButton;
 
 - (instancetype)initWithFrame:(NSRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -38,6 +42,7 @@
     [_label release];
     [_becomeFirstResponderButton release];
     [_resignFirstResponderButton release];
+    [_tmpButton release];
     [super dealloc];
 }
 
@@ -56,10 +61,12 @@
     [stackView addArrangedSubview:self.label];
     [stackView addArrangedSubview:self.becomeFirstResponderButton];
     [stackView addArrangedSubview:self.resignFirstResponderButton];
+    [stackView addArrangedSubview:self.tmpButton];
     
     [self.label setContentHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
     [self.becomeFirstResponderButton setContentHuggingPriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationVertical];
     [self.resignFirstResponderButton setContentHuggingPriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationVertical];
+    [self.tmpButton setContentHuggingPriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationVertical];
     
     _stackView = stackView;
     return stackView;
@@ -100,6 +107,19 @@
     return resignFirstResponderButton;
 }
 
+- (NSButton *)_tmpButton {
+    if (auto tmpButton = _tmpButton) return tmpButton;
+    
+    NSButton *tmpButton = [NSButton new];
+    tmpButton.title = @"TMP";
+    tmpButton.bezelStyle = NSBezelStyleGlass;
+    tmpButton.target = self;
+    tmpButton.action = @selector(_tmpButtonDidTrigger:);
+    
+    _tmpButton = tmpButton;
+    return tmpButton;
+}
+
 - (void)updateTrackingAreas {
     [super updateTrackingAreas];
     
@@ -126,6 +146,12 @@
 
 - (void)_resignFirstResponderButtonDidTrigger:(NSButton *)sender {
     [self resignFirstResponder];
+}
+
+- (void)_tmpButtonDidTrigger:(NSButton *)sender {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self removeFromSuperview];
+    });
 }
 
 - (void)mouseDown:(NSEvent *)event {

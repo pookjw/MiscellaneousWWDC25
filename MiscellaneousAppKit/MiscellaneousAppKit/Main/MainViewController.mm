@@ -22,6 +22,7 @@
 #import "CustomImageDemoViewController.h"
 #import "ButtonDemoViewController.h"
 #import "ResponderDemoViewController.h"
+#import "PanGestureRecognizerDemoViewController.h"
 #import <objc/message.h>
 #import <objc/runtime.h>
 #import "MiscellaneousAppKit-Swift.h"
@@ -48,6 +49,7 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [PanGestureRecognizerDemoViewController class],
         [ResponderDemoViewController class],
         [ButtonDemoViewController class],
         [CustomImageDemoViewController class],
