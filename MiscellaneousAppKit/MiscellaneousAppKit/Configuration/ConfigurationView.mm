@@ -684,6 +684,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
                                                 action:@selector(_didTriggerReloadButton:)];
     
     reloadButton.toolTip = @"Reload";
+    reloadButton.bezelStyle = NSBezelStyleGlass;
     
     _reloadButton = [reloadButton retain];
     return reloadButton;

@@ -127,7 +127,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     [super viewDidLoad];
     [self _cellRegistration];
     
-    [self _showViewControllerForClass:[RequestHostingSceneObjCViewController class]];
+    [self _showViewControllerForClass:[TabViewController class]];
 }
 
 - (void)viewDidMoveToWindow:(UIWindow *)window shouldAppearOrDisappear:(BOOL)shouldAppearOrDisappear {

@@ -21,6 +21,7 @@
 #import "BackgroundExtensionDemoViewController.h"
 #import "CustomImageDemoViewController.h"
 #import "ButtonDemoViewController.h"
+#import "ResponderDemoViewController.h"
 #import <objc/message.h>
 #import <objc/runtime.h>
 #import "MiscellaneousAppKit-Swift.h"
@@ -47,6 +48,7 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [ResponderDemoViewController class],
         [ButtonDemoViewController class],
         [CustomImageDemoViewController class],
         [BackgroundExtensionDemoViewController class],
@@ -78,7 +80,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.preferredContentSize = NSMakeSize(400., 400.);
-    [self _presentWindowForClass:[ButtonDemoViewController class]];
+    [self _presentWindowForClass:[ResponderDemoViewController class]];
 }
 
 - (NSScrollView *)_scrollView {

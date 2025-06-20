@@ -14,6 +14,11 @@
     [super dealloc];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.button.bezelStyle = NSBezelStyleGlass;
+}
+
 - (IBAction)_didTriggerButton:(NSButton *)sender {
     if (self.showsMenuAsPrimaryAction) {
         NSMenu *menu = sender.menu;

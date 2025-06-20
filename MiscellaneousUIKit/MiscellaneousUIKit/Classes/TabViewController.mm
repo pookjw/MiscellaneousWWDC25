@@ -92,7 +92,7 @@
         return [viewController autorelease];
     }];
     
-    UISearchTab *searchTab = [[UISearchTab alloc] initWithTitle:@"Search" image:[UIImage systemImageNamed:@"magnifyingglass"] identifier:@"4" viewControllerProvider:^UIViewController * _Nonnull(__kindof UITab * _Nonnull) {
+    UISearchTab *searchTab = [[UISearchTab alloc] initWithTitle:@"Search" image:[UIImage systemImageNamed:@"magnifyingglass"] identifier:@"5" viewControllerProvider:^UIViewController * _Nonnull(__kindof UITab * _Nonnull) {
         UIViewController *viewController = [UIViewController new];
         viewController.view.backgroundColor = UIColor.systemPinkColor;
         
@@ -107,7 +107,38 @@
     }];
     searchTab.automaticallyActivatesSearch = YES;
     
-    tabBarController.tabs = @[listTab, orangeTab, childTab, searchTab, greenTab, pinkTab];
+    UITabGroup *group_1 = [[UITabGroup alloc] initWithTitle:@"Group 1"
+                                                      image:[UIImage systemImageNamed:@"apple.intelligence"]
+                                                 identifier:@"6"
+                                                   children:@[
+        [[[UITab alloc] initWithTitle:@"Child 0" image:[UIImage systemImageNamed:@"apple.intelligence"] identifier:@"6-0" viewControllerProvider:^UIViewController * _Nonnull(__kindof UITab * _Nonnull) {
+        UIViewController *viewController = [UIViewController new];
+        viewController.view.backgroundColor = UIColor.systemPinkColor;
+        return [viewController autorelease];
+    }] autorelease],
+        [[[UITab alloc] initWithTitle:@"Child 1" image:[UIImage systemImageNamed:@"apple.intelligence"] identifier:@"6-1" viewControllerProvider:^UIViewController * _Nonnull(__kindof UITab * _Nonnull) {
+        UIViewController *viewController = [UIViewController new];
+        viewController.view.backgroundColor = UIColor.systemPinkColor;
+        return [viewController autorelease];
+    }] autorelease],
+        [[[UITab alloc] initWithTitle:@"Child 2" image:[UIImage systemImageNamed:@"apple.intelligence"] identifier:@"6-2" viewControllerProvider:^UIViewController * _Nonnull(__kindof UITab * _Nonnull) {
+        UIViewController *viewController = [UIViewController new];
+        viewController.view.backgroundColor = UIColor.systemPinkColor;
+        return [viewController autorelease];
+    }] autorelease],
+        
+    ]
+                                     viewControllerProvider:^UIViewController * _Nonnull(__kindof UITab * _Nonnull) {
+        UIViewController *viewController = [UIViewController new];
+        viewController.view.backgroundColor = UIColor.systemMintColor;
+        return [viewController autorelease];
+    }];
+    
+    UINavigationController *group1_managingNavigationController = [[UINavigationController alloc] init];
+    group_1.managingNavigationController = group1_managingNavigationController;
+    [group1_managingNavigationController release];
+    
+    tabBarController.tabs = @[listTab, orangeTab, childTab, searchTab, greenTab, pinkTab, group_1];
     [listTab release];
     [orangeTab release];
     [greenTab release];
