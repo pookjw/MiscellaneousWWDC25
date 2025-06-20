@@ -25,6 +25,7 @@
  NSOcclusionDetectionView
  _NSBoxMaterialCapableCustomView
  convertRectToLayer:r
+ NSHostingSceneRepresentation
  */
 
 int main(int argc, const char * argv[]) {

@@ -150,7 +150,18 @@
 
 - (void)_tmpButtonDidTrigger:(NSButton *)sender {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self removeFromSuperview];
+//        [self.window.sheetParent setIsMiniaturized:YES];
+//        [self.window.sheetParent setHidesOnDeactivate:YES];
+//        [NSApp deactivate];
+//        reinterpret_cast<void (*)(id, SEL)>(objc_msgSend)(self, sel_registerName("accessibilityPerformCancel"));
+//        kill(getpid(), SIGSTOP);
+        
+//        for (NSTrackingArea *area in self.trackingAreas) {
+//            reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(area, sel_registerName("_sendTrackingAreaCancelledFromWindow:"), self.window);
+//        }
+        
+        __kindof NSMenu *sharedMenu = reinterpret_cast<id (*)(Class, SEL)>(objc_msgSend)(objc_lookUpClass("_NSAppleMenu"), sel_registerName("sharedMenu"));
+        reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(sharedMenu, sel_registerName("_sleepRequested:"), nil);
     });
 }
 
