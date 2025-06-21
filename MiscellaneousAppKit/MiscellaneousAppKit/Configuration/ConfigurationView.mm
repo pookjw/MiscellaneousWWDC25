@@ -138,7 +138,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     BOOL responds = [super respondsToSelector:aSelector];
     
     if (!responds) {
-        NSLog(@"%@ does not respond to %s.", NSStringFromClass([self class]), sel_getName(aSelector));
+//        NSLog(@"%@ does not respond to %s.", NSStringFromClass([self class]), sel_getName(aSelector));
     }
     
     return responds;

@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)_fd__propertyDescriptionForClass:(Class)arg1;
 - (NSString *)_fd_ivarDescription;
 - (NSString *)_fd__ivarDescriptionForClass:(Class)arg1;
+- (NSString *)_fd__ivarDescriptionForClass:(Class)arg1 resolveValue:(BOOL)resolveValue;
 - (NSString *)_fd__protocolDescriptionForProtocol:(Protocol *)arg1;
 @end
 

@@ -18,6 +18,7 @@
     id<ConfigurationSliderItemDelegate> delegate = self.delegate;
     if (delegate == nil) return;
     
+    NSLog(@"%@", sender);
     [delegate configurationSliderItem:self didChangeValue:sender.doubleValue];
 }
 

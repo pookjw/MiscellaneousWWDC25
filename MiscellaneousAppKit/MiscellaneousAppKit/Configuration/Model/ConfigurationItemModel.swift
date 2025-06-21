@@ -78,6 +78,24 @@ extension ConfigurationItemModel {
         
         return ConfigurationItemModel(impl: impl)
     }
+    
+    public static func switchItem(
+        userInfo: [String: Any]? = nil,
+        label: String,
+        valueResolver: @escaping (_ itemModel: ConfigurationItemModel) -> Bool
+    ) -> ConfigurationItemModel {
+        let impl = __ConfigurationItemModel<NSNumber>(
+            type: .switch,
+            identifier: label,
+            userInfo: userInfo,
+            label: label,
+            valueResolver: { impl in
+                return valueResolver(ConfigurationItemModel(impl: impl)) as NSNumber
+            }
+        )
+        
+        return ConfigurationItemModel(impl: impl)
+    }
 }
 
 extension ConfigurationItemModel {
@@ -111,6 +129,24 @@ extension ConfigurationItemModel {
         let impl = __ConfigurationItemModel<__ConfigurationButtonDescription>(
             type: .button,
             identifier: identifier,
+            userInfo: userInfo,
+            label: label,
+            valueResolver: { impl in
+                return valueResolver(ConfigurationItemModel(impl: impl)) as __ConfigurationButtonDescription
+            }
+        )
+        
+        return ConfigurationItemModel(impl: impl)
+    }
+    
+    public static func buttonItem(
+        userInfo: [String: Any]? = nil,
+        label: String,
+        valueResolver: @escaping (_ itemModel: ConfigurationItemModel) -> ConfigurationButtonDescription
+    ) -> ConfigurationItemModel {
+        let impl = __ConfigurationItemModel<__ConfigurationButtonDescription>(
+            type: .button,
+            identifier: label,
             userInfo: userInfo,
             label: label,
             valueResolver: { impl in
@@ -162,6 +198,24 @@ extension ConfigurationItemModel {
         
         return ConfigurationItemModel(impl: impl)
     }
+    
+    public static func popUpButtonItem(
+        userInfo: [String: Any]? = nil,
+        label: String,
+        valueResolver: @escaping (_ itemModel: ConfigurationItemModel) -> ConfigurationPopUpButtonDescription
+    ) -> ConfigurationItemModel {
+        let impl = __ConfigurationItemModel<__ConfigurationPopUpButtonDescription>(
+            type: .popUpButton,
+            identifier: label,
+            userInfo: userInfo,
+            label: label,
+            valueResolver: { impl in
+                return valueResolver(ConfigurationItemModel(impl: impl)) as __ConfigurationPopUpButtonDescription
+            }
+        )
+        
+        return ConfigurationItemModel(impl: impl)
+    }
 }
 
 extension ConfigurationItemModel {
@@ -195,6 +249,24 @@ extension ConfigurationItemModel {
         let impl = __ConfigurationItemModel<__ConfigurationSliderDescription>(
             type: .slider,
             identifier: identifier,
+            userInfo: userInfo,
+            label: label,
+            valueResolver: { impl in
+                return valueResolver(ConfigurationItemModel(impl: impl)) as __ConfigurationSliderDescription
+            }
+        )
+        
+        return ConfigurationItemModel(impl: impl)
+    }
+    
+    public static func sliderItem(
+        userInfo: [String: Any]? = nil,
+        label: String,
+        valueResolver: @escaping (_ itemModel: ConfigurationItemModel) -> ConfigurationSliderDescription
+    ) -> ConfigurationItemModel {
+        let impl = __ConfigurationItemModel<__ConfigurationSliderDescription>(
+            type: .slider,
+            identifier: label,
             userInfo: userInfo,
             label: label,
             valueResolver: { impl in
@@ -246,6 +318,24 @@ extension ConfigurationItemModel {
         
         return ConfigurationItemModel(impl: impl)
     }
+    
+    public static func stepperItem(
+        userInfo: [String: Any]? = nil,
+        label: String,
+        valueResolver: @escaping (_ itemModel: ConfigurationItemModel) -> ConfigurationStepperDescription
+    ) -> ConfigurationItemModel {
+        let impl = __ConfigurationItemModel<__ConfigurationStepperDescription>(
+            type: .stepper,
+            identifier: label,
+            userInfo: userInfo,
+            label: label,
+            valueResolver: { impl in
+                return valueResolver(ConfigurationItemModel(impl: impl)) as __ConfigurationStepperDescription
+            }
+        )
+        
+        return ConfigurationItemModel(impl: impl)
+    }
 }
 
 extension ConfigurationItemModel {
@@ -279,6 +369,24 @@ extension ConfigurationItemModel {
         let impl = __ConfigurationItemModel<__ConfigurationViewPresentationDescription>(
             type: .viewPresentation,
             identifier: identifier,
+            userInfo: userInfo,
+            label: label,
+            valueResolver: { impl in
+                return valueResolver(ConfigurationItemModel(impl: impl)) as __ConfigurationViewPresentationDescription
+            }
+        )
+        
+        return ConfigurationItemModel(impl: impl)
+    }
+    
+    public static func viewPresentationItem(
+        userInfo: [String: Any]? = nil,
+        label: String,
+        valueResolver: @escaping (_ itemModel: ConfigurationItemModel) -> ConfigurationViewPresentationDescription
+    ) -> ConfigurationItemModel {
+        let impl = __ConfigurationItemModel<__ConfigurationViewPresentationDescription>(
+            type: .viewPresentation,
+            identifier: label,
             userInfo: userInfo,
             label: label,
             valueResolver: { impl in
@@ -324,6 +432,21 @@ extension ConfigurationItemModel {
         
         return ConfigurationItemModel(impl: impl)
     }
+    
+    public static func labelItem(
+        userInfo: [String: Any]? = nil,
+        label: String
+    ) -> ConfigurationItemModel {
+        let impl = __ConfigurationItemModel<__ConfigurationViewPresentationDescription>(
+            type: .label,
+            identifier: label,
+            userInfo: userInfo,
+            label: label,
+            valueResolver: { _ in return NSNull() }
+        )
+        
+        return ConfigurationItemModel(impl: impl)
+    }
 }
 
 extension ConfigurationItemModel {
@@ -357,6 +480,24 @@ extension ConfigurationItemModel {
         let impl = __ConfigurationItemModel<__ConfigurationViewPresentationDescription>(
             type: .colorWell,
             identifier: identifier,
+            userInfo: userInfo,
+            label: label,
+            valueResolver: { impl in
+                return valueResolver(ConfigurationItemModel(impl: impl))
+            }
+        )
+        
+        return ConfigurationItemModel(impl: impl)
+    }
+    
+    public static func colorWellItem(
+        userInfo: [String: Any]? = nil,
+        label: String,
+        valueResolver: @escaping (_ itemModel: ConfigurationItemModel) -> NSColor
+    ) -> ConfigurationItemModel {
+        let impl = __ConfigurationItemModel<__ConfigurationViewPresentationDescription>(
+            type: .colorWell,
+            identifier: label,
             userInfo: userInfo,
             label: label,
             valueResolver: { impl in
