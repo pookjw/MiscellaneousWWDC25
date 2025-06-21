@@ -24,6 +24,7 @@
 #import "ResponderDemoViewController.h"
 #import "GestureRecognizerDemoViewController.h"
 #import "GlassEffectDemoViewController.h"
+#import "ImageDemoViewController.h"
 #import <objc/message.h>
 #import <objc/runtime.h>
 #import "MiscellaneousAppKit-Swift.h"
@@ -50,6 +51,7 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [ImageDemoViewController class],
         [GlassEffectDemoViewController class],
         [GestureRecognizerDemoViewController class],
         [ResponderDemoViewController class],
@@ -84,7 +86,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.preferredContentSize = NSMakeSize(400., 400.);
-    [self _presentWindowForClass:[GlassEffectDemoViewController class]];
+    [self _presentWindowForClass:[ImageDemoViewController class]];
 }
 
 - (NSScrollView *)_scrollView {
