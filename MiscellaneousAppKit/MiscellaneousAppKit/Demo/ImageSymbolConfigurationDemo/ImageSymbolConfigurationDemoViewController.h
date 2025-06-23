@@ -1,5 +1,5 @@
 //
-//  ImageDemoViewController.h
+//  ImageSymbolConfigurationDemoViewController.h
 //  MiscellaneousAppKit
 //
 //  Created by Jinwoo Kim on 6/22/25.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ImageDemoViewController : NSViewController
+@interface ImageSymbolConfigurationDemoViewController : NSViewController
 
 @end
 
