@@ -9,6 +9,7 @@ import SwiftUI
 
 public struct ConfigurationForm: NSViewRepresentable {
     private let items: [any Item]
+    private var isSearchEnabled: Bool
     
     private func makeSnapshot() -> NSDiffableDataSourceSnapshot<NSNull, ConfigurationItemModel> {
         var snapshot = NSDiffableDataSourceSnapshot<NSNull, ConfigurationItemModel>()
@@ -22,12 +23,17 @@ public struct ConfigurationForm: NSViewRepresentable {
         return snapshot
     }
     
-    public init(@DescriptorBuilder _ items: () -> [any Item]) {
+    public init(
+        isSearchEnabled: Bool = true,
+        @DescriptorBuilder _ items: () -> [any Item]
+    ) {
+        self.isSearchEnabled = isSearchEnabled
         self.items = items()
     }
     
     public func makeNSView(context: Context) -> ConfigurationView {
         let view = ConfigurationView()
+        view.isSearchEnabled = isSearchEnabled
         view.delegate = context.coordinator
         view.apply(makeSnapshot(), animatingDifferences: true)
         return view
@@ -35,6 +41,7 @@ public struct ConfigurationForm: NSViewRepresentable {
     
     public func updateNSView(_ nsView: ConfigurationView, context: Context) {
         context.coordinator.items = items
+        nsView.isSearchEnabled = isSearchEnabled
         nsView.apply(makeSnapshot(), animatingDifferences: false)
         nsView.reloadPresentations()
     }

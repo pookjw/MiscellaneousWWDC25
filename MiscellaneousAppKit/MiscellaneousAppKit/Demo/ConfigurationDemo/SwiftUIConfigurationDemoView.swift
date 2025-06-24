@@ -18,9 +18,10 @@ struct SwiftUIConfigurationDemoView: View {
     @State private var sliderValue = 0.5
     @State private var stepperValue = 0.5
     @State private var isOn = true
+    @State private var isSearchEnabled = true
     
     var body: some View {
-        ConfigurationForm {
+        ConfigurationForm(isSearchEnabled: isSearchEnabled) {
             ConfigurationForm
                 .ButtonItem(
                     identifier: "Button",
@@ -116,6 +117,9 @@ struct SwiftUIConfigurationDemoView: View {
             
             ConfigurationForm
                 .SwitchItem(identifier: "Switch", title: "Switch \(isOn)", isOn: $isOn)
+            
+            ConfigurationForm
+                .SwitchItem(identifier: "Search Enabled", title: "Search Enabled", isOn: $isSearchEnabled)
         }
         .overlay(alignment: .center) { 
             Color(nsColor: color)

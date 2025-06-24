@@ -721,6 +721,24 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     return stackView;
 }
 
+- (BOOL)isSearchEnabled {
+    return [self.stackView.arrangedSubviews containsObject:self.searchField];
+}
+
+- (void)setSearchEnabled:(BOOL)searchEnabled {
+    if (searchEnabled) {
+        if (![self.stackView.arrangedSubviews containsObject:self.searchField]) {
+            [self.stackView insertArrangedSubview:self.searchField atIndex:0];
+            [self _filterItemModelsWithQuery:self.searchField.stringValue animatingDifferences:YES];
+        }
+    } else {
+        if ([self.stackView.arrangedSubviews containsObject:self.searchField]) {
+            [self.stackView removeArrangedSubview:self.searchField];
+            [self _filterItemModelsWithQuery:nil animatingDifferences:YES];
+        }
+    }
+}
+
 - (void)setDelegate:(id<ConfigurationViewDelegate>)delegate {
     _delegate = delegate;
     
@@ -923,7 +941,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 }
 
 - (void)_filterItemModelsWithQuery:(NSString * _Nullable)query animatingDifferences:(BOOL)animatingDifferences {
-    NSDiffableDataSourceSnapshot<NSNull *, ConfigurationItemModel *> * __autoreleasing snapshot;
+    NSDiffableDataSourceSnapshot<NSNull *, ConfigurationItemModel *> * __autoreleasing _Nullable snapshot;
     if ((query == nil) or (query.length == 0)) {
         snapshot = self.originalSnapshot;
     } else {
@@ -957,7 +975,9 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
         }
     }
     
-    [self.dataSource applySnapshot:snapshot animatingDifferences:animatingDifferences];
+    if (snapshot != nil) {
+        [self.dataSource applySnapshot:snapshot animatingDifferences:animatingDifferences];
+    }
 }
 
 - (void)controlTextDidChange:(NSNotification *)obj {

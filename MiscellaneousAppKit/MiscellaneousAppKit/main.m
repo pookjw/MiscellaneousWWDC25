@@ -27,6 +27,7 @@
  _NSBoxMaterialCapableCustomView
  convertRectToLayer:r
  NSHostingSceneRepresentation
+ ObservationTracking
  */
 
 int main(int argc, const char * argv[]) {

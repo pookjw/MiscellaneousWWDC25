@@ -27,6 +27,7 @@
 #import "ImageSymbolConfigurationDemoViewController.h"
 #import "ScreenDemoViewController.h"
 #import "SliderDemoViewController.h"
+#import "SplitViewDemoViewController.h"
 #import <objc/message.h>
 #import <objc/runtime.h>
 #import "MiscellaneousAppKit-Swift.h"
@@ -53,6 +54,7 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [SplitViewDemoViewController class],
         [SliderDemoViewController class],
         [ScreenDemoViewController class],
         [ImageSymbolConfigurationDemoViewController class],
@@ -90,7 +92,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.preferredContentSize = NSMakeSize(400., 400.);
-    [self _presentWindowForClass:[SliderDemoViewController class]];
+    [self _presentWindowForClass:[SplitViewDemoViewController class]];
 }
 
 - (NSScrollView *)_scrollView {

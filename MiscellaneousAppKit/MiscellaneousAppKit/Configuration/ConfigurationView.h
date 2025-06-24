@@ -23,6 +23,7 @@ NS_REFINED_FOR_SWIFT
 
 @interface ConfigurationView : NSView
 @property (assign, nonatomic) BOOL showBlendedBackground;
+@property (assign, nonatomic, getter=isSearchEnabled) BOOL searchEnabled;
 @property (copy, nonatomic, readonly) NSDiffableDataSourceSnapshot<NSNull *, ConfigurationItemModel *> *snapshot NS_REFINED_FOR_SWIFT;
 @property (assign, nonatomic) id<ConfigurationViewDelegate> delegate NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use ConfigurationView.delegate");
 - (void)reconfigureItemModelsWithIdentifiers:(NSArray<NSString *> *)identifiers;

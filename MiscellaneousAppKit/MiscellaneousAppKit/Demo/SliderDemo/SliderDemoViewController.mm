@@ -8,6 +8,7 @@
 #import "SliderDemoViewController.h"
 #import "ConfigurationView.h"
 #import "NSStringFromNSTickMarkPosition.h"
+#import "NSStringFromNSSliderType.h"
 #include <objc/message.h>
 #include <objc/runtime.h>
 #include <vector>
@@ -19,6 +20,8 @@
 @property (retain, nonatomic, readonly, getter=_slider) NSSlider *slider;
 @property (retain, nonatomic, readonly, getter=_sliderContainerView) NSView *sliderContainerView;
 @property (copy, nonatomic, nullable, getter=_sliderContainerConstraints, setter=_setsliderContainerConstraints:) NSArray<NSLayoutConstraint *> *sliderContainerConstraints;
+@property (assign, nonatomic) double closestTickMarkInputValue;
+@property (assign, nonatomic) double closestTickMarkOutputValue;
 @end
 
 @implementation SliderDemoViewController
@@ -104,7 +107,12 @@
         [NSLayoutConstraint deactivateConstraints:sliderContainerConstraints];
     }
     
-    if (self.slider.vertical) {
+    if (self.slider.sliderType == NSSliderTypeCircular) {
+        self.sliderContainerConstraints = @[
+            [self.slider.centerXAnchor constraintEqualToAnchor:self.sliderContainerView.safeAreaLayoutGuide.centerXAnchor],
+            [self.slider.centerYAnchor constraintEqualToAnchor:self.sliderContainerView.safeAreaLayoutGuide.centerYAnchor]
+        ];
+    } else if (self.slider.vertical) {
         self.sliderContainerConstraints = @[
             [self.slider.centerXAnchor constraintEqualToAnchor:self.sliderContainerView.safeAreaLayoutGuide.centerXAnchor],
             [self.slider.topAnchor constraintEqualToAnchor:self.sliderContainerView.safeAreaLayoutGuide.topAnchor],
@@ -126,6 +134,7 @@
     NSMutableArray<ConfigurationItemModel *> *itemModels = [NSMutableArray new];
     
     NSSlider *slider = self.slider;
+    __block auto unretained = self;
     
     ConfigurationItemModel<ConfigurationSliderDescription *> *neutralValueItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSlider
                                                                                                                           label:@"Neutral Value"
@@ -236,8 +245,73 @@
 //    }];
 //    [itemModels addObject:rectOfTickMarkItemModel];
     
+    ConfigurationItemModel<NSNumber *> *allowsTickMarkValuesOnlyItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSwitch
+                                                                                                                label:@"Allows Tick Mark Values Only"
+                                                                                                        valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
+        return @(slider.allowsTickMarkValuesOnly);
+    }];
+    [itemModels addObject:allowsTickMarkValuesOnlyItemModel];
+    
+    ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *tickMarkValueAtIndexItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
+                                                                                                                                 label:@"Tick Mark Value At Index"
+                                                                                                                         valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
+        auto titlesVec = std::views::iota(0, slider.numberOfTickMarks)
+        | std::views::transform([slider](NSInteger index) {
+            return @([slider tickMarkValueAtIndex:index]).stringValue;
+        })
+        | std::ranges::to<std::vector<NSString *>>();
+        
+        NSArray<NSString *> *titles = [[NSArray alloc] initWithObjects:titlesVec.data() count:titlesVec.size()];
+        ConfigurationPopUpButtonDescription *description = [ConfigurationPopUpButtonDescription descriptionWithTitles:titles
+                                                                                                       selectedTitles:@[]
+                                                                                                 selectedDisplayTitle:nil];
+        [titles release];
+        
+        return description;
+    }];
+    [itemModels addObject:tickMarkValueAtIndexItemModel];
+    
+    ConfigurationItemModel<ConfigurationSliderDescription *> *closestTickMarkValueToValueItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSlider
+                                                                                                                                    identifier:@"Closest Tick Mark Value To Value"
+                                                                                                                                      userInfo:nil
+                                                                                                                                 labelResolver:^NSString * _Nonnull(ConfigurationItemModel * _Nonnull itemModel, id<NSCopying>  _Nonnull value) {
+        return [NSString stringWithFormat:@"Closest Tick Mark Value To Value : (%lf - %lf)", unretained.closestTickMarkInputValue, unretained.closestTickMarkOutputValue];
+    }
+                                                                                                                                 valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
+        return [ConfigurationSliderDescription descriptionWithSliderValue:unretained.closestTickMarkInputValue
+                                                             minimumValue:slider.minValue
+                                                             maximumValue:slider.maxValue
+                                                               continuous:NO];
+    }];
+    [itemModels addObject:closestTickMarkValueToValueItemModel];
+    
+    ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *sliderTypeItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
+                                                                                                                             label:@"Slider Type"
+                                                                                                                     valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
+        NSUInteger count;
+        const NSSliderType *allTypes = allNSSliderTypes(&count);
+        
+        auto titlesVec = std::views::iota(allTypes, allTypes + count)
+        | std::views::transform([](const NSSliderType *ptr) { return *ptr; })
+        | std::views::transform([](const NSSliderType sliderType) {
+            return NSStringFromNSSliderType(sliderType);
+        })
+        | std::ranges::to<std::vector<NSString *>>();
+        
+        NSArray<NSString *> *titles = [[NSArray alloc] initWithObjects:titlesVec.data() count:titlesVec.size()];
+        
+        ConfigurationPopUpButtonDescription *description = [ConfigurationPopUpButtonDescription descriptionWithTitles:titles
+                                                                                                       selectedTitles:@[NSStringFromNSSliderType(slider.sliderType)]
+                                                                                                 selectedDisplayTitle:NSStringFromNSSliderType(slider.sliderType)];
+        [titles release];
+        
+        return description;
+    }];
+    [itemModels addObject:sliderTypeItemModel];
+    
     [snapshot appendSectionsWithIdentifiers:@[[NSNull null]]];
     [snapshot appendItemsWithIdentifiers:itemModels intoSectionWithIdentifier:[NSNull null]];
+    [snapshot reloadItemsWithIdentifiers:itemModels];
     [itemModels release];
     
     [self.configurationView applySnapshot:snapshot animatingDifferences:YES];
@@ -267,6 +341,17 @@
         self.slider.needsUpdateConstraints = YES;
     } else if ([itemModel.identifier isEqualToString:@"Rect Of Tick Mark"]) {
         // nop
+    } else if ([itemModel.identifier isEqualToString:@"Allows Tick Mark Values Only"]) {
+        self.slider.allowsTickMarkValuesOnly = static_cast<NSNumber *>(newValue).boolValue;
+    } else if ([itemModel.identifier isEqualToString:@"Tick Mark Value At Index"]) {
+        // nop
+    } else if ([itemModel.identifier isEqualToString:@"Closest Tick Mark Value To Value"]) {
+        double doubleValue = static_cast<NSNumber *>(newValue).doubleValue;
+        self.closestTickMarkInputValue = doubleValue;
+        self.closestTickMarkOutputValue = [self.slider closestTickMarkValueToValue:doubleValue];
+        return YES;
+    } else if ([itemModel.identifier isEqualToString:@"Slider Type"]) {
+        self.slider.sliderType = NSSliderTypeFromString(static_cast<NSString *>(newValue));
     } else {
         abort();
     }
