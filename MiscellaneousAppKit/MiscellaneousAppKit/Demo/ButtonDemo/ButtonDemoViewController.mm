@@ -10,6 +10,7 @@
 #import "NSStringFromNSBezelStyle.h"
 #import "NSStringFromNSButtonType.h"
 #import "NSStringFromNSControlSize.h"
+#import "NSStringFromNSTintProminence.h"
 #include <vector>
 #include <ranges>
 #include <objc/message.h>
@@ -174,10 +175,34 @@
         return description;
     }];
     
+    ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *tintProminenceItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
+                                                                                                                            identifier:@"tintProminence"
+                                                                                                                         valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
+        NSUInteger count;
+        const NSTintProminence *allProminence = allNSTintProminences(&count);
+        
+        auto titlesVec = std::views::iota(allProminence, allProminence + count)
+        | std::views::transform([](const NSTintProminence *ptr) { return *ptr; })
+        | std::views::transform([](const NSTintProminence prominence) {
+            return NSStringFromNSTintProminence(prominence);
+        })
+        | std::ranges::to<std::vector<NSString *>>();
+        
+        NSArray<NSString *> *titles = [[NSArray alloc] initWithObjects:titlesVec.data() count:titlesVec.size()];
+        
+        ConfigurationPopUpButtonDescription *description = [ConfigurationPopUpButtonDescription descriptionWithTitles:titles
+                                                                                                       selectedTitles:@[NSStringFromNSTintProminence(button.tintProminence)]
+                                                                                                 selectedDisplayTitle:NSStringFromNSTintProminence(button.tintProminence)];
+        [titles release];
+        
+        return description;
+    }];
+    
     [snapshot appendItemsWithIdentifiers:@[
         bezelStyleItemModel,
         buttonTypeItemModel,
-        controlSizeIteModel
+        controlSizeIteModel,
+        tintProminenceItemModel
     ]
                intoSectionWithIdentifier:[NSNull null]];
     
@@ -192,6 +217,8 @@
         [static_cast<NSButtonCell *>(self.button.cell) setButtonType:NSButtonTypeFromString(static_cast<NSString *>(newValue))];
     } else if ([itemModel.identifier isEqualToString:@"controlSize"]) {
         self.button.cell.controlSize = NSControlSizeFromString(static_cast<NSString *>(newValue));
+    } else if ([itemModel.identifier isEqualToString:@"tintProminence"]) {
+        self.button.tintProminence = NSTintProminenceFromString(static_cast<NSString *>(newValue));
     } else {
         abort();
     }

@@ -71,6 +71,10 @@
     
     [self.itemConfigurationsSplitView setPosition:NSWidth(self.itemConfigurationsSplitView.bounds) / 3.0 ofDividerAtIndex:0];
     [self.itemConfigurationsSplitView setPosition:(NSWidth(self.itemConfigurationsSplitView.bounds) / 3.0) * 2.0 ofDividerAtIndex:1];
+    
+    [self.sidebarConfigurationView reload];
+    [self.contentListConfigurationView reload];
+    [self.inspectorConfigurationView reload];
 }
 
 - (NSSplitView *)_splitView {

@@ -61,7 +61,7 @@
     
     __block auto unretained = self;
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *screensItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                          label:@"Screens"
+                                                                                                                          identifier:@"Screens"
                                                                                                                   valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSArray<NSScreen *> *screens = NSScreen.screens;
         NSMutableArray<NSString *> *titles = [[NSMutableArray alloc] initWithCapacity:screens.count];

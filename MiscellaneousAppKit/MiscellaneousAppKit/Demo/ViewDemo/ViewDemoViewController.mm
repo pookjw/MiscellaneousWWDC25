@@ -21,6 +21,7 @@
 #import "ViewDemoFrameRotationView.h"
 #import "VideoDemoFrameDidChangeNotificationView.h"
 #import "ViewDemoBoundsRotationView.h"
+#import "ViewDemoPrefersCompactControlSizeMetricsView.h"
 
 @interface ViewDemoViewController () <ConfigurationViewDelegate>
 @property (retain, nonatomic, readonly, getter=_configurationView) ConfigurationView *configurationView;
@@ -50,6 +51,7 @@
     
     [snapshot appendSectionsWithIdentifiers:@[[NSNull null]]];
     [snapshot appendItemsWithIdentifiers:@[
+        [self _makePrefersCompactControlSizeMetricsViewItemModel],
         [self _makeBoundsRotationViewItemModel],
         [self _makeFrameDidChangeNotificationViewItemModel],
         [self _makeFrameRotationViewItemModel],
@@ -228,6 +230,18 @@
         return [ConfigurationViewPresentationDescription descriptorWithStyle:ConfigurationViewPresentationStyleAlert
                                                                  viewBuilder:^__kindof NSView * _Nonnull(void (^ _Nonnull layout)(), __kindof NSView * _Nullable reloadingView) {
             return [[[ViewDemoBoundsRotationView alloc] initWithFrame:NSMakeRect(0., 0., 300., 300.)] autorelease];
+        }
+                                                             didCloseHandler:nil];
+    }];
+}
+
+- (ConfigurationItemModel *)_makePrefersCompactControlSizeMetricsViewItemModel {
+    return [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeViewPresentation
+                                          identifier:@"Prefers Compact Control Size Metrics"
+                                       valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
+        return [ConfigurationViewPresentationDescription descriptorWithStyle:ConfigurationViewPresentationStyleAlert
+                                                                 viewBuilder:^__kindof NSView * _Nonnull(void (^ _Nonnull layout)(), __kindof NSView * _Nullable reloadingView) {
+            return [[[ViewDemoPrefersCompactControlSizeMetricsView alloc] initWithFrame:NSMakeRect(0., 0., 300., 300.)] autorelease];
         }
                                                              didCloseHandler:nil];
     }];

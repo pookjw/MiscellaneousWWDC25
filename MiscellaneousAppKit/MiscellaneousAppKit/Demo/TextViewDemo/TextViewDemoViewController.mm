@@ -108,26 +108,14 @@
 
 - (void)_reload {
     NSDiffableDataSourceSnapshot<NSNull *, ConfigurationItemModel *> *snapshot = [NSDiffableDataSourceSnapshot new];
-    
-    [snapshot appendSectionsWithIdentifiers:@[[NSNull null]]];
-    [snapshot appendItemsWithIdentifiers:@[
-        [self _makeSmartReplyItemModel],
-        [self _makeWritingToolsBehaviorItemModel]
-    ]
-               intoSectionWithIdentifier:[NSNull null]];
-    
-    [self.configurationView applySnapshot:snapshot animatingDifferences:NO];
-    [snapshot release];
-}
-
-- (ConfigurationItemModel *)_makeWritingToolsBehaviorItemModel {
+    NSMutableArray<ConfigurationItemModel *> *itemModels = [NSMutableArray new];
     TextView *textView = self.textView;
     
-    return [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                          identifier:@"Writing Tools Behavior"
-                                            userInfo:nil
-                                               label:@"Writing Tools Behavior"
-                                       valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
+    ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *writingToolsBehaviorItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
+                                                                                                                                  identifier:@"Writing Tools Behavior"
+                                                                                                                                    userInfo:nil
+                                                                                                                                       label:@"Writing Tools Behavior"
+                                                                                                                               valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSUInteger count;
         const NSWritingToolsBehavior *allBehaviors = allNSWritingToolsBehaviors(&count);
         
@@ -143,18 +131,29 @@
                                                            selectedTitles:@[selectedTitle]
                                                      selectedDisplayTitle:selectedTitle];
     }];
-}
-
-- (ConfigurationItemModel *)_makeSmartReplyItemModel {
-    TextView *textView = self.textView;
+    [itemModels addObject:writingToolsBehaviorItemModel];
     
-    return [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSwitch
-                                          identifier:@"Smart Reply"
-                                            userInfo:nil
-                                               label:@"Smart Reply"
-                                       valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
+    ConfigurationItemModel<NSNumber *> *smartReplyItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSwitch
+                                                                                             identifier:@"Smart Reply"
+                                                                                               userInfo:nil
+                                                                                                  label:@"Smart Reply"
+                                                                                          valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         return @(textView.smartInsertDeleteEnabled);
     }];
+    [itemModels addObject:smartReplyItemModel];
+    
+    ConfigurationItemModel *includesTextListMarkersItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSwitch
+                                                                                              identifier:@"includesTextListMarkers"
+                                                                                           valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
+        return @(textView.textContentStorage.includesTextListMarkers);
+    }];
+    [itemModels addObject:includesTextListMarkersItemModel];
+    
+    [snapshot appendSectionsWithIdentifiers:@[[NSNull null]]];
+    [snapshot appendItemsWithIdentifiers:itemModels intoSectionWithIdentifier:[NSNull null]];
+    
+    [self.configurationView applySnapshot:snapshot animatingDifferences:NO];
+    [snapshot release];
 }
 
 - (BOOL)configurationView:(ConfigurationView *)configurationView didTriggerActionWithItemModel:(ConfigurationItemModel *)itemModel newValue:(id<NSCopying>)newValue {
@@ -169,6 +168,10 @@
     } else if ([identifier isEqualToString:@"Smart Reply"]) {
         BOOL boolValue = static_cast<NSNumber *>(newValue).boolValue;
         textView.smartInsertDeleteEnabled = boolValue;
+        return NO;
+    } else if ([identifier isEqualToString:@"includesTextListMarkers"]) {
+        BOOL boolValue = static_cast<NSNumber *>(newValue).boolValue;
+        textView.textContentStorage.includesTextListMarkers = boolValue;
         return NO;
     } else {
         abort();

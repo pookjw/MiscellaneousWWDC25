@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFrame:(NSRect)frameRect NS_UNAVAILABLE;
 - (nullable instancetype)initWithCoder:(NSCoder *)coder NS_UNAVAILABLE;
 - (instancetype)initWithSplitViewItem:(NSSplitViewItem *)splitViewItem;
+- (void)reload;
 @end
 
 NS_ASSUME_NONNULL_END

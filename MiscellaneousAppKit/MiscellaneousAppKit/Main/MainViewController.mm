@@ -28,6 +28,8 @@
 #import "ScreenDemoViewController.h"
 #import "SliderDemoViewController.h"
 #import "SplitViewDemoViewController.h"
+#import "TextFieldDemoViewController.h"
+#import "ToolbarItemDemoViewController.h"
 #import <objc/message.h>
 #import <objc/runtime.h>
 #import "MiscellaneousAppKit-Swift.h"
@@ -54,6 +56,8 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [ToolbarItemDemoViewController class],
+        [TextFieldDemoViewController class],
         [SplitViewDemoViewController class],
         [SliderDemoViewController class],
         [ScreenDemoViewController class],
@@ -92,7 +96,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.preferredContentSize = NSMakeSize(400., 400.);
-    [self _presentWindowForClass:[SplitViewDemoViewController class]];
+    [self _presentWindowForClass:[ViewDemoViewController class]];
 }
 
 - (NSScrollView *)_scrollView {

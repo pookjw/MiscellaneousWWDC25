@@ -33,8 +33,8 @@
                                            valueResolver:valueResolver] autorelease];
 }
 
-+ (ConfigurationItemModel *)itemModelWithType:(ConfigurationItemModelType)type label:(NSString *)label valueResolver:(id<NSCopying>  _Nonnull (^)(ConfigurationItemModel * _Nonnull))valueResolver {
-    return [ConfigurationItemModel itemModelWithType:type identifier:label label:label valueResolver:valueResolver];
++ (ConfigurationItemModel *)itemModelWithType:(ConfigurationItemModelType)type identifier:(NSString *)identifier valueResolver:(id<NSCopying>  _Nonnull (^)(ConfigurationItemModel * _Nonnull))valueResolver {
+    return [ConfigurationItemModel itemModelWithType:type identifier:identifier label:identifier valueResolver:valueResolver];
 }
 
 - (instancetype)initWithType:(ConfigurationItemModelType)type identifier:(NSString *)identifier userInfo:(NSDictionary * _Nullable)userInfo labelResolver:(NSString * _Nonnull (^)(ConfigurationItemModel * _Nonnull, id<NSCopying> _Nonnull))labelResolver valueResolver:(id<NSCopying> _Nonnull (^)(ConfigurationItemModel * _Nonnull))valueResolver {

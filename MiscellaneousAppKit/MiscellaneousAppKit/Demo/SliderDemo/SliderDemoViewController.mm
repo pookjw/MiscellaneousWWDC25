@@ -9,6 +9,7 @@
 #import "ConfigurationView.h"
 #import "NSStringFromNSTickMarkPosition.h"
 #import "NSStringFromNSSliderType.h"
+#import "NSStringFromNSTintProminence.h"
 #include <objc/message.h>
 #include <objc/runtime.h>
 #include <vector>
@@ -137,7 +138,7 @@
     __block auto unretained = self;
     
     ConfigurationItemModel<ConfigurationSliderDescription *> *neutralValueItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSlider
-                                                                                                                          label:@"Neutral Value"
+                                                                                                                          identifier:@"Neutral Value"
                                                                                                                   valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         return [ConfigurationSliderDescription descriptionWithSliderValue:slider.neutralValue
                                                              minimumValue:slider.minValue
@@ -147,7 +148,7 @@
     [itemModels addObject:neutralValueItemModel];
     
     ConfigurationItemModel<ConfigurationSliderDescription *> *altIncrementValueItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSlider
-                                                                                                                          label:@"Alt Increment Value"
+                                                                                                                          identifier:@"Alt Increment Value"
                                                                                                                   valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         return [ConfigurationSliderDescription descriptionWithSliderValue:slider.altIncrementValue
                                                              minimumValue:0.
@@ -168,14 +169,14 @@
     [itemModels addObject:knobThicknessItemModel];
     
     ConfigurationItemModel<NSNumber *> *verticalItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSwitch
-                                                                                                label:@"Vertical"
+                                                                                                identifier:@"Vertical"
                                                                                         valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         return @(slider.vertical);
     }];
     [itemModels addObject:verticalItemModel];
     
     ConfigurationItemModel<NSColor *> *trackFillColorItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeColorWell
-                                                                                                     label:@"Track Fill Color"
+                                                                                                     identifier:@"Track Fill Color"
                                                                                              valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         if (NSColor *trackFillColor = slider.trackFillColor) {
             return trackFillColor;
@@ -203,7 +204,7 @@
     [itemModels addObject:numberOfTickMarksItemModel];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *tickMarkPositionItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                                   label:@"Tick Mark Position"
+                                                                                                                                   identifier:@"Tick Mark Position"
                                                                                                                            valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSUInteger count;
         const NSTickMarkPosition *allPositions = allNSTickMarkPositions(&count);
@@ -246,14 +247,14 @@
 //    [itemModels addObject:rectOfTickMarkItemModel];
     
     ConfigurationItemModel<NSNumber *> *allowsTickMarkValuesOnlyItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSwitch
-                                                                                                                label:@"Allows Tick Mark Values Only"
+                                                                                                                identifier:@"Allows Tick Mark Values Only"
                                                                                                         valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         return @(slider.allowsTickMarkValuesOnly);
     }];
     [itemModels addObject:allowsTickMarkValuesOnlyItemModel];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *tickMarkValueAtIndexItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                                 label:@"Tick Mark Value At Index"
+                                                                                                                                 identifier:@"Tick Mark Value At Index"
                                                                                                                          valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         auto titlesVec = std::views::iota(0, slider.numberOfTickMarks)
         | std::views::transform([slider](NSInteger index) {
@@ -286,7 +287,7 @@
     [itemModels addObject:closestTickMarkValueToValueItemModel];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *sliderTypeItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                             label:@"Slider Type"
+                                                                                                                             identifier:@"Slider Type"
                                                                                                                      valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSUInteger count;
         const NSSliderType *allTypes = allNSSliderTypes(&count);
@@ -308,6 +309,30 @@
         return description;
     }];
     [itemModels addObject:sliderTypeItemModel];
+    
+    ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *tintProminenceItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
+                                                                                                                            identifier:@"tintProminence"
+                                                                                                                         valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
+        NSUInteger count;
+        const NSTintProminence *allProminence = allNSTintProminences(&count);
+        
+        auto titlesVec = std::views::iota(allProminence, allProminence + count)
+        | std::views::transform([](const NSTintProminence *ptr) { return *ptr; })
+        | std::views::transform([](const NSTintProminence prominence) {
+            return NSStringFromNSTintProminence(prominence);
+        })
+        | std::ranges::to<std::vector<NSString *>>();
+        
+        NSArray<NSString *> *titles = [[NSArray alloc] initWithObjects:titlesVec.data() count:titlesVec.size()];
+        
+        ConfigurationPopUpButtonDescription *description = [ConfigurationPopUpButtonDescription descriptionWithTitles:titles
+                                                                                                       selectedTitles:@[NSStringFromNSTintProminence(slider.tintProminence)]
+                                                                                                 selectedDisplayTitle:NSStringFromNSTintProminence(slider.tintProminence)];
+        [titles release];
+        
+        return description;
+    }];
+    [itemModels addObject:tintProminenceItemModel];
     
     [snapshot appendSectionsWithIdentifiers:@[[NSNull null]]];
     [snapshot appendItemsWithIdentifiers:itemModels intoSectionWithIdentifier:[NSNull null]];
@@ -352,6 +377,8 @@
         return YES;
     } else if ([itemModel.identifier isEqualToString:@"Slider Type"]) {
         self.slider.sliderType = NSSliderTypeFromString(static_cast<NSString *>(newValue));
+    } else if ([itemModel.identifier isEqualToString:@"tintProminence"]) {
+        self.slider.tintProminence = NSTintProminenceFromString(static_cast<NSString *>(newValue));
     } else {
         abort();
     }

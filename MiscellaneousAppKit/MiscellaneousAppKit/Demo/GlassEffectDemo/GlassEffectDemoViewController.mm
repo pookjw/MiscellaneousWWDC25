@@ -165,7 +165,7 @@
     NSGlassEffectView *glassEffectView_2 = self.glassEffectView_2;
     
     ConfigurationItemModel<ConfigurationSliderDescription *> *glassEffectContainerSpacingItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSlider
-                                                                                                                                         label:@"Glass Effect Container Spacing"
+                                                                                                                                         identifier:@"Glass Effect Container Spacing"
                                                                                                                                  valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         return [ConfigurationSliderDescription descriptionWithSliderValue:glassEffectContainerView.spacing
                                                              minimumValue:0.
@@ -174,7 +174,7 @@
     }];
     
     ConfigurationItemModel<ConfigurationSliderDescription *> *cornerRadiusItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSlider
-                                                                                                                          label:@"Corner Radius"
+                                                                                                                          identifier:@"Corner Radius"
                                                                                                                   valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         return [ConfigurationSliderDescription descriptionWithSliderValue:glassEffectView_1.cornerRadius
                                                              minimumValue:0.
@@ -183,7 +183,7 @@
     }];
     
     ConfigurationItemModel<NSColor *> *tintColorItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeColorWell
-                                                                                                label:@"Tint Color"
+                                                                                                identifier:@"Tint Color"
                                                                                         valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         if (NSColor *tintColor = glassEffectView_1.tintColor) {
             return tintColor;
@@ -193,7 +193,7 @@
     }];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *variantItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                          label:@"Variant"
+                                                                                                                          identifier:@"Variant"
                                                                                                                   valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSInteger _variant = reinterpret_cast<NSInteger (*)(id, SEL)>(objc_msgSend)(glassEffectView_1, sel_registerName("_variant"));
         
@@ -203,7 +203,7 @@
     }];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *interactionStateItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                                   label:@"Interaction State"
+                                                                                                                                   identifier:@"Interaction State"
                                                                                                                            valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSInteger _interactionState = reinterpret_cast<NSInteger (*)(id, SEL)>(objc_msgSend)(glassEffectView_1, sel_registerName("_interactionState"));
         
@@ -213,7 +213,7 @@
     }];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *subduedStateItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                               label:@"Subdued State"
+                                                                                                                               identifier:@"Subdued State"
                                                                                                                        valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSInteger _subduedState = reinterpret_cast<NSInteger (*)(id, SEL)>(objc_msgSend)(glassEffectView_1, sel_registerName("_subduedState"));
         
@@ -223,7 +223,7 @@
     }];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *scrimStateItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                             label:@"Scrim State"
+                                                                                                                             identifier:@"Scrim State"
                                                                                                                      valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSInteger _scrimState = reinterpret_cast<NSInteger (*)(id, SEL)>(objc_msgSend)(glassEffectView_1, sel_registerName("_scrimState"));
         
@@ -233,7 +233,7 @@
     }];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *contentLensingItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                                 label:@"Content Lensing"
+                                                                                                                                 identifier:@"Content Lensing"
                                                                                                                          valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSInteger _contentLensing = reinterpret_cast<NSInteger (*)(id, SEL)>(objc_msgSend)(glassEffectView_1, sel_registerName("_contentLensing"));
         
@@ -243,7 +243,7 @@
     }];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *adaptiveAppearanceItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                                     label:@"Adaptive Appearance"
+                                                                                                                                     identifier:@"Adaptive Appearance"
                                                                                                                              valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSInteger _adaptiveAppearance = reinterpret_cast<NSInteger (*)(id, SEL)>(objc_msgSend)(glassEffectView_1, sel_registerName("_adaptiveAppearance"));
         
@@ -253,14 +253,14 @@
     }];
     
     ConfigurationItemModel<NSNumber *> *pathItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSwitch
-                                                                                            label:@"Path"
+                                                                                            identifier:@"Path"
                                                                                     valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         CGPathRef _path = reinterpret_cast<CGPathRef (*)(id, SEL)>(objc_msgSend)(glassEffectView_1, sel_registerName("_path"));
         return @(_path != nil);
     }];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *disableEmbeddingCountItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                                        label:@"Disable Embedding Count"
+                                                                                                                                        identifier:@"Disable Embedding Count"
                                                                                                                                 valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSInteger _disableEmbeddingCount = reinterpret_cast<NSInteger (*)(id, SEL)>(objc_msgSend)(glassEffectView_1, sel_registerName("_disableEmbeddingCount"));
         

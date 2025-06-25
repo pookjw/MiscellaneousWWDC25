@@ -85,7 +85,7 @@
     NSImageView *imageView = self.imageView;
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *symbolNameItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                             label:@"Symbol Name"
+                                                                                                                             identifier:@"Symbol Name"
                                                                                                                      valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         id _reps = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(imageView.image, sel_registerName("_reps"));
         NSString *symbolName = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(_reps, sel_registerName("symbolName"));
@@ -100,7 +100,7 @@
     }];
     
     ConfigurationItemModel<ConfigurationSliderDescription *> *variableValueItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSlider
-                                                                                                                           label:@"Variable Value"
+                                                                                                                           identifier:@"Variable Value"
                                                                                                                    valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSImage *image = [NSImage imageWithSystemSymbolName:@"tree.circle" variableValue:0.5 accessibilityDescription:nil];
         id _reps = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(image, sel_registerName("_reps"));
@@ -115,7 +115,7 @@
     }];
     
     ConfigurationItemModel<ConfigurationSliderDescription *> *pointSizeItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSlider
-                                                                                                                       label:@"Point Size"
+                                                                                                                       identifier:@"Point Size"
                                                                                                                valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSImageSymbolConfiguration *symbolConfiguration = imageView.image.symbolConfiguration;
         CGFloat pointSize = reinterpret_cast<CGFloat (*)(id, SEL)>(objc_msgSend)(symbolConfiguration, sel_registerName("pointSize"));
@@ -123,7 +123,7 @@
     }];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *weightItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                         label:@"Weight"
+                                                                                                                         identifier:@"Weight"
                                                                                                                  valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSImageSymbolConfiguration *symbolConfiguration = imageView.image.symbolConfiguration;
         NSFontWeight weight = reinterpret_cast<NSFontWeight (*)(id, SEL)>(objc_msgSend)(symbolConfiguration, sel_registerName("weight"));
@@ -149,7 +149,7 @@
     }];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *scaleItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                        label:@"Scale"
+                                                                                                                        identifier:@"Scale"
                                                                                                                 valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSImageSymbolConfiguration *symbolConfiguration = imageView.image.symbolConfiguration;
         NSImageSymbolScale scale = reinterpret_cast<NSImageSymbolScale (*)(id, SEL)>(objc_msgSend)(symbolConfiguration, sel_registerName("scale"));
@@ -175,7 +175,7 @@
     }];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *textStyleItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                            label:@"Text Style"
+                                                                                                                            identifier:@"Text Style"
                                                                                                                     valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         return [ConfigurationPopUpButtonDescription descriptionWithTitles:allNSFontTextStyles
                                                            selectedTitles:@[]
@@ -184,7 +184,7 @@
     
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *renderingStyleItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                                 label:@"Rendering Style"
+                                                                                                                                 identifier:@"Rendering Style"
                                                                                                                          valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSImageSymbolConfiguration *symbolConfiguration = imageView.image.symbolConfiguration;
         NSInteger renderingStyle = reinterpret_cast<NSInteger (*)(id, SEL)>(objc_msgSend)(symbolConfiguration, sel_registerName("renderingStyle"));
@@ -222,7 +222,7 @@
     
     if (renderingStyle == 2) {
         ConfigurationItemModel<NSColor *> *hierarchicalColorItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeColorWell
-                                                                                                            label:@"Hierarchical Color"
+                                                                                                            identifier:@"Hierarchical Color"
                                                                                                     valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
             NSImageSymbolConfiguration *symbolConfiguration = imageView.image.symbolConfiguration;
             NSArray<NSColor *> * _Nullable colors = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(symbolConfiguration, sel_registerName("colors"));
@@ -238,7 +238,7 @@
     } else if (renderingStyle == 3) {
         for (NSUInteger i = 0; i < 3; i++) {
             ConfigurationItemModel<NSColor *> *paletteColorItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeColorWell
-                                                                                                           label:[NSString stringWithFormat:@"Palette (%ld)", i]
+                                                                                                           identifier:[NSString stringWithFormat:@"Palette (%ld)", i]
                                                                                                    valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
                 NSImageSymbolConfiguration *symbolConfiguration = imageView.image.symbolConfiguration;
                 NSArray<NSColor *> * _Nullable colors = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(symbolConfiguration, sel_registerName("colors"));
@@ -254,7 +254,7 @@
     }
     
     ConfigurationItemModel<NSNumber *> *prefersMulticolorItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypeSwitch
-                                                                                                         label:@"Prefers Multicolor"
+                                                                                                         identifier:@"Prefers Multicolor"
                                                                                                  valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSImageSymbolConfiguration *symbolConfiguration = imageView.image.symbolConfiguration;
         BOOL prefersMulticolor = reinterpret_cast<BOOL (*)(id, SEL)>(objc_msgSend)(symbolConfiguration, sel_registerName("prefersMulticolor"));
@@ -263,7 +263,7 @@
     [itemModels addObject:prefersMulticolorItemModel];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *variableValueModeItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                                    label:@"Variable Value Mode"
+                                                                                                                                    identifier:@"Variable Value Mode"
                                                                                                                             valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSUInteger count;
         const NSImageSymbolVariableValueMode *allModes = allNSImageSymbolVariableValueModes(&count);
@@ -289,7 +289,7 @@
     [itemModels addObject:variableValueModeItemModel];
     
     ConfigurationItemModel<ConfigurationPopUpButtonDescription *> *colorRenderingModeItemModel = [ConfigurationItemModel itemModelWithType:ConfigurationItemModelTypePopUpButton
-                                                                                                                                     label:@"Color Rendering Mode"
+                                                                                                                                     identifier:@"Color Rendering Mode"
                                                                                                                              valueResolver:^id<NSCopying> _Nonnull(ConfigurationItemModel * _Nonnull itemModel) {
         NSImageSymbolColorRenderingMode colorRenderingMode = reinterpret_cast<NSImageSymbolColorRenderingMode (*)(id, SEL)>(objc_msgSend)(imageView.image.symbolConfiguration, sel_registerName("colorRenderingMode"));
         
