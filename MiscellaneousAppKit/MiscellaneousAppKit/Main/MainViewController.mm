@@ -56,6 +56,8 @@
 
 + (NSArray<Class> *)_classes {
     return @[
+        [HostingSceneRepresentationDemoViewController class],
+        [ObservationTrackingDemoViewController class],
         [ToolbarItemDemoViewController class],
         [TextFieldDemoViewController class],
         [SplitViewDemoViewController class],
@@ -96,7 +98,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.preferredContentSize = NSMakeSize(400., 400.);
-    [self _presentWindowForClass:[ViewDemoViewController class]];
+    [self _presentWindowForClass:[HostingSceneRepresentationDemoViewController class]];
 }
 
 - (NSScrollView *)_scrollView {

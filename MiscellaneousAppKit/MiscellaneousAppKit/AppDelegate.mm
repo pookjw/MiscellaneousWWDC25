@@ -11,6 +11,7 @@
 #import "NSWindow+MA_Category.h"
 #import <objc/message.h>
 #import <objc/runtime.h>
+#import "MiscellaneousAppKit-Swift.h"
 
 @interface AppDelegate ()
 @end
@@ -19,6 +20,10 @@
 
 - (void)dealloc {
     [super dealloc];
+}
+
+- (void)applicationWillFinishLaunching:(NSNotification *)notification {
+    [HostingSceneRepresentationDemoViewController registerHostingScene];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
