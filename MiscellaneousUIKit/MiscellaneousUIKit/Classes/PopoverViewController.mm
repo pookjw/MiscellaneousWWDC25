@@ -6,6 +6,8 @@
 //
 
 #import "PopoverViewController.h"
+#include <objc/message.h>
+#include <objc/runtime.h>
 
 @interface PopoverViewController ()
 @property (retain, nonatomic, readonly, getter=_barButtonItem) UIBarButtonItem *barButtonItem;
@@ -36,9 +38,12 @@
 
 - (void)_barButtonItemDidTrigger:(UIBarButtonItem *)sender {
     UIColorPickerViewController *colorPickerViewController = [UIColorPickerViewController new];
-    colorPickerViewController.modalPresentationStyle = UIModalPresentationPopover;
-    colorPickerViewController.popoverPresentationController.sourceItem = sender;
+    
+//    colorPickerViewController.modalPresentationStyle = UIModalPresentationPopover;
+//    colorPickerViewController.popoverPresentationController.sourceItem = sender;
+    reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(colorPickerViewController.sheetPresentationController, sel_registerName("_setPeeksWhenFloating:"), YES);
 //    colorPickerViewController.popoverPresentationController.sourceView = self.view;
+    
     [self presentViewController:colorPickerViewController animated:YES completion:nil];
     [colorPickerViewController release];
 }

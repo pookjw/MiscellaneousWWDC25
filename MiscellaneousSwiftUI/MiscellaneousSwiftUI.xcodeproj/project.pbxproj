@@ -44,9 +44,13 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
-				Demo/Demo.swift,
-				Demo/DemoListView.swift,
+				DemoList/Demo.swift,
+				DemoList/DemoListView.swift,
+				GlassEffect/GlassEffectView.swift,
+				GlassEffectTransition/GlassEffectTransitionView.swift,
 				MiscellaneousSwiftUIApp.swift,
+				ScrollDemo/ScrollDemoView.swift,
+				"ScrollDemo/ScrollDemoView+ContentView.swift",
 			);
 			target = 4F870FC02E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch */;
 		};

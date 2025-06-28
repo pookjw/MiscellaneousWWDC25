@@ -9,6 +9,11 @@ import SwiftUI
 
 @main
 struct MiscellaneousSwiftUIApp: App {
+    init() {
+        UserDefaults.standard.set(true, forKey: "com.apple.SwiftUI.IgnoreSolariumHardwareCheck")
+        UserDefaults.standard.set(true, forKey: "com.apple.SwiftUI.IgnoreSolariumLinkedOnCheck")
+    }
+    
     var body: some Scene {
         WindowGroup {
             DemoListView()

@@ -41,6 +41,9 @@
 #import "SymbolDrawEffectViewController.h"
 #import "SymbolColorRenderingViewController.h"
 #import "RequestHostingSceneObjCViewController.h"
+#import "SwipeActionsViewController.h"
+#import "InteractiveGlassEffectViewController.h"
+#import "FlexInteractionViewController.h"
 #include <objc/runtime.h>
 #include <objc/message.h>
 #import <Accessibility/Accessibility.h>
@@ -59,6 +62,9 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 
 + (NSArray<Class> *)_classes {
     return @[
+        [FlexInteractionViewController class],
+        [InteractiveGlassEffectViewController class],
+        [SwipeActionsViewController class],
         [RequestHostingSceneObjCViewController class],
         [RequestHostingSceneViewController class],
         [ObservationDemoContentConfigurationViewController class],
@@ -111,9 +117,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     UICollectionViewCompositionalLayout *collectionViewLayout = [UICollectionViewCompositionalLayout layoutWithListConfiguration:listConfiguration];
     [listConfiguration release];
     
-    if (self = [super initWithCollectionViewLayout:collectionViewLayout]) {
-//        [self commonInit_MainCollectionViewController];
-    }
+    self = [super initWithCollectionViewLayout:collectionViewLayout];
     
     return self;
 }
@@ -127,7 +131,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     [super viewDidLoad];
     [self _cellRegistration];
     
-    [self _showViewControllerForClass:[TabViewController class]];
+    [self _showViewControllerForClass:[FlexInteractionViewController class]];
 }
 
 - (void)viewDidMoveToWindow:(UIWindow *)window shouldAppearOrDisappear:(BOOL)shouldAppearOrDisappear {
