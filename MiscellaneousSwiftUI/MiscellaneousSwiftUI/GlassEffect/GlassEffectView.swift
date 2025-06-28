@@ -67,8 +67,10 @@ struct GlassEffectView: View {
     @ViewBuilder
     private var configuration: some View {
 #if os(watchOS)
-        NavigationLink("Glass") { 
-            glassConfiguration
+        NavigationLink("Glass") {
+            List {
+                glassConfiguration
+            }
         }
 #else
         Menu("Glass") { 

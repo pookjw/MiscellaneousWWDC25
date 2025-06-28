@@ -8,10 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		4F870FCB2E0C4E0800FF087B /* MiscellaneousSwiftUI_Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4F870FC12E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4FEF2CBB2E100B1C00C96B37 /* MiscellaneousSwiftUI_Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4F870FC12E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		4F870FC92E0C4E0800FF087B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F870FA72E0C4DC000FF087B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F870FC02E0C4E0700FF087B;
+			remoteInfo = "MiscellaneousSwiftUI_Watch Watch App";
+		};
+		4FEF2CB62E100B1C00C96B37 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4F870FA72E0C4DC000FF087B /* Project object */;
 			proxyType = 1;
@@ -32,25 +40,48 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FEF2CBA2E100B1C00C96B37 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				4FEF2CBB2E100B1C00C96B37 /* MiscellaneousSwiftUI_Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4F870FAF2E0C4DC000FF087B /* MiscellaneousSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F870FC12E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousSwiftUI_Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FEF2CBF2E100B1C00C96B37 /* MiscellaneousSwiftUI_Private.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousSwiftUI_Private.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FEF2CCA2E100BF600C96B37 /* MiscellaneousSwiftUI-Private-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "MiscellaneousSwiftUI-Private-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
 		4F870FD32E0C4E3D00FF087B /* Exceptions for "MiscellaneousSwiftUI" folder in "MiscellaneousSwiftUI_Watch" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				AccessibilityCustomContent/AccessibilityCustomContentView.swift,
+				AnimatableValues/AnimatableValuesView.swift,
 				Assets.xcassets,
+				ButtonSizing/ButtonSizingView.swift,
+				ControlSize/ControlSizeView.swift,
+				DebugReplaceableDemo/DebugReplaceableDemoView.swift,
 				DemoList/Demo.swift,
 				DemoList/DemoListView.swift,
+				FontResolved/FontResolvedView.swift,
 				GlassEffect/GlassEffectView.swift,
 				GlassEffectTransition/GlassEffectTransitionView.swift,
 				MiscellaneousSwiftUIApp.swift,
+				OpenURLAction/OpenURLActionView.swift,
+				ResolvedHDR/ResolvedColorView.swift,
 				ScrollDemo/ScrollDemoView.swift,
 				"ScrollDemo/ScrollDemoView+ContentView.swift",
+				SymbolColorRenderingMode/SymbolColorRenderingModeView.swift,
+				SymbolVariableValueMode/SymbolVariableValueModeView.swift,
 			);
 			target = 4F870FC02E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch */;
 		};
@@ -82,12 +113,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FEF2CB82E100B1C00C96B37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		4F870FA62E0C4DC000FF087B = {
 			isa = PBXGroup;
 			children = (
+				4FEF2CCA2E100BF600C96B37 /* MiscellaneousSwiftUI-Private-Info.plist */,
 				4F870FB12E0C4DC000FF087B /* MiscellaneousSwiftUI */,
 				4F870FB02E0C4DC000FF087B /* Products */,
 			);
@@ -98,6 +137,7 @@
 			children = (
 				4F870FAF2E0C4DC000FF087B /* MiscellaneousSwiftUI.app */,
 				4F870FC12E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch.app */,
+				4FEF2CBF2E100B1C00C96B37 /* MiscellaneousSwiftUI_Private.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,6 +188,30 @@
 			productReference = 4F870FC12E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4FEF2CB42E100B1C00C96B37 /* MiscellaneousSwiftUI_Private */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FEF2CBC2E100B1C00C96B37 /* Build configuration list for PBXNativeTarget "MiscellaneousSwiftUI_Private" */;
+			buildPhases = (
+				4FEF2CB72E100B1C00C96B37 /* Sources */,
+				4FEF2CB82E100B1C00C96B37 /* Frameworks */,
+				4FEF2CB92E100B1C00C96B37 /* Resources */,
+				4FEF2CBA2E100B1C00C96B37 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FEF2CB52E100B1C00C96B37 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				4F870FB12E0C4DC000FF087B /* MiscellaneousSwiftUI */,
+			);
+			name = MiscellaneousSwiftUI_Private;
+			packageProductDependencies = (
+			);
+			productName = MiscellaneousSwiftUI;
+			productReference = 4FEF2CBF2E100B1C00C96B37 /* MiscellaneousSwiftUI_Private.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -181,6 +245,7 @@
 			projectRoot = "";
 			targets = (
 				4F870FAE2E0C4DC000FF087B /* MiscellaneousSwiftUI */,
+				4FEF2CB42E100B1C00C96B37 /* MiscellaneousSwiftUI_Private */,
 				4F870FC02E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch */,
 			);
 		};
@@ -195,6 +260,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4F870FBF2E0C4E0700FF087B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FEF2CB92E100B1C00C96B37 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -218,6 +290,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FEF2CB72E100B1C00C96B37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -225,6 +304,11 @@
 			isa = PBXTargetDependency;
 			target = 4F870FC02E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch */;
 			targetProxy = 4F870FC92E0C4E0800FF087B /* PBXContainerItemProxy */;
+		};
+		4FEF2CB52E100B1C00C96B37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F870FC02E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch */;
+			targetProxy = 4FEF2CB62E100B1C00C96B37 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -496,6 +580,96 @@
 			};
 			name = Release;
 		};
+		4FEF2CBD2E100B1C00C96B37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MiscellaneousSwiftUI/MiscellaneousSwiftUI_Private.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MiscellaneousSwiftUI-Private-Info.plist";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.MiscellaneousSwiftUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		4FEF2CBE2E100B1C00C96B37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MiscellaneousSwiftUI/MiscellaneousSwiftUI_Private.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MiscellaneousSwiftUI-Private-Info.plist";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.MiscellaneousSwiftUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -522,6 +696,15 @@
 			buildConfigurations = (
 				4F870FCD2E0C4E0800FF087B /* Debug */,
 				4F870FCE2E0C4E0800FF087B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FEF2CBC2E100B1C00C96B37 /* Build configuration list for PBXNativeTarget "MiscellaneousSwiftUI_Private" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FEF2CBD2E100B1C00C96B37 /* Debug */,
+				4FEF2CBE2E100B1C00C96B37 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
