@@ -100,21 +100,21 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 - (void)_panGestureRecognizerDidTrigger:(UIPanGestureRecognizer *)sender {
     CGPoint location = [sender locationInView:self];
     
-    NSMutableString *text = [NSMutableString stringWithFormat:@"%@\n", NSStringFromCGPoint(location)];
+    NSMutableString *text = [NSMutableString stringWithFormat:@"%@", NSStringFromCGPoint(location)];
     
     CGPoint lastLocation = self.lastLocation;
     self.lastLocation = location;
     
     if (lastLocation.x < location.x) {
-        [text appendString:@"Left\n"];
+        [text appendString:@"\nLeft"];
     } else if (lastLocation.x > location.x) {
-        [text appendString:@"Right\n"];
+        [text appendString:@"\nRight"];
     }
     
     if (lastLocation.y < location.y) {
-        [text appendString:@"Top"];
+        [text appendString:@"\nTop"];
     } else if (lastLocation.y > location.y) {
-        [text appendString:@"Bottom"];
+        [text appendString:@"\nBottom"];
     }
     
     self.label.text = text;
