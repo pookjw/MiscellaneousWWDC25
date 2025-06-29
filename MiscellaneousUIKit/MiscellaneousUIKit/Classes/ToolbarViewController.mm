@@ -6,6 +6,9 @@
 //
 
 #import "ToolbarViewController.h"
+
+#if !TARGET_OS_VISION
+
 #import "UINavigationItemSearchBarPlacement+String.h"
 #include <ranges>
 #include <vector>
@@ -204,3 +207,5 @@
 
 @end
 
+
+#endif

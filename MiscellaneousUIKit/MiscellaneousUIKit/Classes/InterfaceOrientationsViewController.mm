@@ -6,6 +6,9 @@
 //
 
 #import "InterfaceOrientationsViewController.h"
+
+#if !TARGET_OS_VISION
+
 #import "UIInterfaceOrientationMask+String.h"
 #include <objc/message.h>
 #include <objc/runtime.h>
@@ -131,3 +134,5 @@ UIKIT_EXTERN NSString * _UIInterfaceOrientationMaskDebugDescription(UIInterfaceO
 }
 
 @end
+
+#endif

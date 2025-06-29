@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F870FCB2E0C4E0800FF087B /* MiscellaneousSwiftUI_Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4F870FC12E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4F870FCB2E0C4E0800FF087B /* MiscellaneousSwiftUI_Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4F870FC12E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4FEF2CBB2E100B1C00C96B37 /* MiscellaneousSwiftUI_Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4F870FC12E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -57,31 +57,56 @@
 		4F870FAF2E0C4DC000FF087B /* MiscellaneousSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F870FC12E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousSwiftUI_Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FEF2CBF2E100B1C00C96B37 /* MiscellaneousSwiftUI_Private.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousSwiftUI_Private.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FEF2CCA2E100BF600C96B37 /* MiscellaneousSwiftUI-Private-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "MiscellaneousSwiftUI-Private-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4F5893DB2E112B0000DBDAEE /* Exceptions for "MiscellaneousSwiftUI" folder in "MiscellaneousSwiftUI" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 4F870FAE2E0C4DC000FF087B /* MiscellaneousSwiftUI */;
+		};
+		4F5893DC2E112B0000DBDAEE /* Exceptions for "MiscellaneousSwiftUI" folder in "MiscellaneousSwiftUI_Private" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 4FEF2CB42E100B1C00C96B37 /* MiscellaneousSwiftUI_Private */;
+		};
 		4F870FD32E0C4E3D00FF087B /* Exceptions for "MiscellaneousSwiftUI" folder in "MiscellaneousSwiftUI_Watch" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AccessibilityCustomContent/AccessibilityCustomContentView.swift,
 				AnimatableValues/AnimatableValuesView.swift,
 				Assets.xcassets,
+				AssistiveAccess/AssistiveAccessView.swift,
+				BackgroundExtensionEffect/BackgroundExtensionEffectView.swift,
+				ButtonRole/ButtonRoleView.swift,
 				ButtonSizing/ButtonSizingView.swift,
 				ControlSize/ControlSizeView.swift,
 				DebugReplaceableDemo/DebugReplaceableDemoView.swift,
+				DefaultToolbarItem/DefaultToolbarItemView.swift,
 				DemoList/Demo.swift,
 				DemoList/DemoListView.swift,
 				FontResolved/FontResolvedView.swift,
 				GlassEffect/GlassEffectView.swift,
 				GlassEffectTransition/GlassEffectTransitionView.swift,
+				LabelSpacing/LabelSpacingView.swift,
+				ListRowInsets/ListRowInsetsView.swift,
 				MiscellaneousSwiftUIApp.swift,
 				OpenURLAction/OpenURLActionView.swift,
+				PrimitiveButtonStyle/PrimitiveButtonStyleView.swift,
 				ResolvedHDR/ResolvedColorView.swift,
+				SafeAreaBar/SafeAreaBarView.swift,
 				ScrollDemo/ScrollDemoView.swift,
 				"ScrollDemo/ScrollDemoView+ContentView.swift",
+				ScrollEdgeEffectStyle/ScrollEdgeEffectStyleView.swift,
+				SectionIndexTitle/SectionIndexTitleView.swift,
+				SensoryFeedback/SensoryFeedbackView.swift,
 				SymbolColorRenderingMode/SymbolColorRenderingModeView.swift,
 				SymbolVariableValueMode/SymbolVariableValueModeView.swift,
+				TabBar/TabBarView.swift,
 			);
 			target = 4F870FC02E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch */;
 		};
@@ -91,6 +116,8 @@
 		4F870FB12E0C4DC000FF087B /* MiscellaneousSwiftUI */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				4F5893DB2E112B0000DBDAEE /* Exceptions for "MiscellaneousSwiftUI" folder in "MiscellaneousSwiftUI" target */,
+				4F5893DC2E112B0000DBDAEE /* Exceptions for "MiscellaneousSwiftUI" folder in "MiscellaneousSwiftUI_Private" target */,
 				4F870FD32E0C4E3D00FF087B /* Exceptions for "MiscellaneousSwiftUI" folder in "MiscellaneousSwiftUI_Watch" target */,
 			);
 			path = MiscellaneousSwiftUI;
@@ -126,7 +153,6 @@
 		4F870FA62E0C4DC000FF087B = {
 			isa = PBXGroup;
 			children = (
-				4FEF2CCA2E100BF600C96B37 /* MiscellaneousSwiftUI-Private-Info.plist */,
 				4F870FB12E0C4DC000FF087B /* MiscellaneousSwiftUI */,
 				4F870FB02E0C4DC000FF087B /* Products */,
 			);
@@ -302,6 +328,7 @@
 /* Begin PBXTargetDependency section */
 		4F870FCA2E0C4E0800FF087B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 4F870FC02E0C4E0700FF087B /* MiscellaneousSwiftUI_Watch */;
 			targetProxy = 4F870FC92E0C4E0800FF087B /* PBXContainerItemProxy */;
 		};
@@ -442,6 +469,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MiscellaneousSwiftUI/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -485,6 +513,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MiscellaneousSwiftUI/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -594,7 +623,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MiscellaneousSwiftUI-Private-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -639,7 +668,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MiscellaneousSwiftUI-Private-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

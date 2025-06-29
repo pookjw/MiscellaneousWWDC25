@@ -6,6 +6,9 @@
  //
 
 #import "GlassEffectViewController.h"
+
+#if !TARGET_OS_VISION
+
 #import "UIViewController+Menu.h"
 #include <objc/runtime.h>
 #include <objc/message.h>
@@ -392,3 +395,4 @@
 
 @end
 
+#endif

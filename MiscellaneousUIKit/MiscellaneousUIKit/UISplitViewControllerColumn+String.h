@@ -5,6 +5,10 @@
 //  Created by Jinwoo Kim on 6/11/25.
 //
 
+#import <TargetConditionals.h>
+
+#if !TARGET_OS_VISION
+
 #import <UIKit/UIKit.h>
 #import "Extern.h"
 
@@ -15,3 +19,5 @@ MUK_EXTERN UISplitViewControllerColumn UISplitViewControllerColumnFromString(NSS
 MUK_EXTERN const UISplitViewControllerColumn * allUISplitViewControllerColumns(NSUInteger * _Nullable count);
 
 NS_ASSUME_NONNULL_END
+
+#endif

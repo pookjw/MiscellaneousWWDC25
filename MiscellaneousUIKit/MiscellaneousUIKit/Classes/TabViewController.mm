@@ -12,6 +12,7 @@
 #include <objc/message.h>
 #include <vector>
 #include <ranges>
+#import <TargetConditionals.h>
 
 @interface TabViewController () <UITabBarControllerDelegate>
 @property (retain, nonatomic, readonly, getter=_tabBarController) UITabBarController *tabBarController;
@@ -58,11 +59,13 @@
         UIButton *button = [UIButton new];
         button.configuration = configuration;
         
+#if !TARGET_OS_VISION
         UITabAccessory *bottomTabAccessory = [[UITabAccessory alloc] initWithContentView:button];
         [button release];
         
         tabBarController.bottomAccessory = bottomTabAccessory;
         [bottomTabAccessory release];
+#endif
     }
     
     UITab *listTab = [[UITab alloc] initWithTitle:@"List" image:[UIImage systemImageNamed:@"apple.intelligence"] identifier:@"0" viewControllerProvider:^UIViewController * _Nonnull(__kindof UITab * _Nonnull) {
@@ -105,7 +108,10 @@
         
         return [navigationController autorelease];
     }];
+    
+#if !TARGET_OS_VISION
     searchTab.automaticallyActivatesSearch = YES;
+#endif
     
     UITabGroup *group_1 = [[UITabGroup alloc] initWithTitle:@"Group 1"
                                                       image:[UIImage systemImageNamed:@"apple.intelligence"]
@@ -165,6 +171,7 @@
     UIDeferredMenuElement *element = [UIDeferredMenuElement elementWithUncachedProvider:^(void (^ _Nonnull completion)(NSArray<UIMenuElement *> * _Nonnull)) {
         NSMutableArray<__kindof UIMenuElement *> *results = [NSMutableArray new];
         
+#if !TARGET_OS_VISION
         {
             NSUInteger count;
             const UITabBarMinimizeBehavior *allBehaviors = allUITabBarMinimizeBehaviors(&count);
@@ -186,6 +193,7 @@
             menu.subtitle = NSStringFromUITabBarMinimizeBehavior(tabBarController.tabBarMinimizeBehavior);
             [results addObject:menu];
         }
+#endif
         
         completion(results);
         [results release];
@@ -210,44 +218,44 @@
             for (UIView *subview in viewController.view.subviews) {
                 [subview removeFromSuperview];
             }
-             
-             UIView *fullView = [UIView new];
-             fullView.backgroundColor = UIColor.systemGreenColor;
-             
-             UIView *safeAreaView = [UIView new];
-             safeAreaView.backgroundColor = UIColor.systemOrangeColor;
-             
-             UIView *tabContentView = [UIView new];
-             tabContentView.backgroundColor = UIColor.systemBlueColor;
-             
-             fullView.translatesAutoresizingMaskIntoConstraints = NO;
-             safeAreaView.translatesAutoresizingMaskIntoConstraints = NO;
-             tabContentView.translatesAutoresizingMaskIntoConstraints = NO;
-             
-             [viewController.view addSubview:fullView];
-             [viewController.view addSubview:safeAreaView];
-             [viewController.view addSubview:tabContentView];
-             
-             [NSLayoutConstraint activateConstraints:@[
-             [fullView.topAnchor constraintEqualToAnchor:viewController.view.topAnchor],
-             [fullView.leadingAnchor constraintEqualToAnchor:viewController.view.leadingAnchor],
-             [fullView.trailingAnchor constraintEqualToAnchor:viewController.view.trailingAnchor],
-             [fullView.bottomAnchor constraintEqualToAnchor:viewController.view.bottomAnchor],
-             
-             [safeAreaView.topAnchor constraintEqualToAnchor:viewController.view.safeAreaLayoutGuide.topAnchor],
-             [safeAreaView.leadingAnchor constraintEqualToAnchor:viewController.view.safeAreaLayoutGuide.leadingAnchor],
-             [safeAreaView.trailingAnchor constraintEqualToAnchor:viewController.view.safeAreaLayoutGuide.trailingAnchor],
-             [safeAreaView.bottomAnchor constraintEqualToAnchor:viewController.view.safeAreaLayoutGuide.bottomAnchor],
-             
-             [tabContentView.topAnchor constraintEqualToAnchor:tabBarController.contentLayoutGuide.topAnchor],
-             [tabContentView.leadingAnchor constraintEqualToAnchor:tabBarController.contentLayoutGuide.leadingAnchor],
-             [tabContentView.trailingAnchor constraintEqualToAnchor:tabBarController.contentLayoutGuide.trailingAnchor],
-             [tabContentView.bottomAnchor constraintEqualToAnchor:tabBarController.contentLayoutGuide.bottomAnchor]
-             ]];
-             
-             [fullView release];
-             [safeAreaView release];
-             [tabContentView release];
+            
+            UIView *fullView = [UIView new];
+            fullView.backgroundColor = UIColor.systemGreenColor;
+            
+            UIView *safeAreaView = [UIView new];
+            safeAreaView.backgroundColor = UIColor.systemOrangeColor;
+            
+            UIView *tabContentView = [UIView new];
+            tabContentView.backgroundColor = UIColor.systemBlueColor;
+            
+            fullView.translatesAutoresizingMaskIntoConstraints = NO;
+            safeAreaView.translatesAutoresizingMaskIntoConstraints = NO;
+            tabContentView.translatesAutoresizingMaskIntoConstraints = NO;
+            
+            [viewController.view addSubview:fullView];
+            [viewController.view addSubview:safeAreaView];
+            [viewController.view addSubview:tabContentView];
+            
+            [NSLayoutConstraint activateConstraints:@[
+                [fullView.topAnchor constraintEqualToAnchor:viewController.view.topAnchor],
+                [fullView.leadingAnchor constraintEqualToAnchor:viewController.view.leadingAnchor],
+                [fullView.trailingAnchor constraintEqualToAnchor:viewController.view.trailingAnchor],
+                [fullView.bottomAnchor constraintEqualToAnchor:viewController.view.bottomAnchor],
+                
+                [safeAreaView.topAnchor constraintEqualToAnchor:viewController.view.safeAreaLayoutGuide.topAnchor],
+                [safeAreaView.leadingAnchor constraintEqualToAnchor:viewController.view.safeAreaLayoutGuide.leadingAnchor],
+                [safeAreaView.trailingAnchor constraintEqualToAnchor:viewController.view.safeAreaLayoutGuide.trailingAnchor],
+                [safeAreaView.bottomAnchor constraintEqualToAnchor:viewController.view.safeAreaLayoutGuide.bottomAnchor],
+                
+                [tabContentView.topAnchor constraintEqualToAnchor:tabBarController.contentLayoutGuide.topAnchor],
+                [tabContentView.leadingAnchor constraintEqualToAnchor:tabBarController.contentLayoutGuide.leadingAnchor],
+                [tabContentView.trailingAnchor constraintEqualToAnchor:tabBarController.contentLayoutGuide.trailingAnchor],
+                [tabContentView.bottomAnchor constraintEqualToAnchor:tabBarController.contentLayoutGuide.bottomAnchor]
+            ]];
+            
+            [fullView release];
+            [safeAreaView release];
+            [tabContentView release];
         });
     }
 }

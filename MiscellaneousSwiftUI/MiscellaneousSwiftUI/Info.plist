@@ -21,5 +21,14 @@
 			</array>
 		</dict>
 	</array>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<true/>
+	</dict>
+	<key>UISupportsAssistiveAccess</key>
+	<true/>
+	<key>UISupportsFullScreenInAssistiveAccess</key>
+	<true/>
 </dict>
 </plist>

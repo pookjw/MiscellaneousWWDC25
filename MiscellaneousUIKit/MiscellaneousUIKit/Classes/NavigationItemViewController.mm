@@ -7,6 +7,8 @@
 
 #import "NavigationItemViewController.h"
 
+#if !TARGET_OS_VISION
+
 @interface NavigationItemViewController ()
 
 @end
@@ -31,3 +33,5 @@
 }
 
 @end
+
+#endif

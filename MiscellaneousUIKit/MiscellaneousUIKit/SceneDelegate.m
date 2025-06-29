@@ -7,6 +7,7 @@
 
 #import "SceneDelegate.h"
 #import "HomeViewController.h"
+#import <TargetConditionals.h>
 
 // _NSStringFromUIWindowingControlStyleType
 
@@ -37,11 +38,19 @@
 }
 
 - (void)windowScene:(UIWindowScene *)windowScene didUpdateEffectiveGeometry:(UIWindowSceneGeometry *)previousEffectiveGeometry {
+#if TARGET_OS_VISION
+    NSLog(@"%@", windowScene.effectiveGeometry);
+#else
     NSLog(@"%@, interfaceOrientationLocked: %d", windowScene.effectiveGeometry, windowScene.effectiveGeometry.interfaceOrientationLocked);
+#endif
 }
 
 - (UISceneWindowingControlStyle *)preferredWindowingControlStyleForScene:(UIWindowScene *)windowScene {
+#if TARGET_OS_VISION
+    return UISceneWindowingControlStyle.automaticStyle;
+#else
     return UISceneWindowingControlStyle.unifiedStyle;
+#endif
 }
 
 @end

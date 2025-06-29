@@ -7,6 +7,8 @@
 
 #import "UISplitViewControllerColumn+String.h"
 
+#if !TARGET_OS_VISION
+
 NSString * NSStringFromUISplitViewControllerColumn(UISplitViewControllerColumn column) {
     switch (column) {
         case UISplitViewControllerColumnPrimary:
@@ -55,3 +57,5 @@ const UISplitViewControllerColumn * allUISplitViewControllerColumns(NSUInteger *
     
     return columns;
 }
+
+#endif

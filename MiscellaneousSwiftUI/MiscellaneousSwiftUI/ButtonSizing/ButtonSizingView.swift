@@ -38,7 +38,7 @@ struct ButtonSizingView: View {
     
     @ToolbarContentBuilder
     private var menuToolbarItem: some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) { 
+        ToolbarItem { 
 #if os(watchOS)
             Button {
                 isConfigurationPresented = true

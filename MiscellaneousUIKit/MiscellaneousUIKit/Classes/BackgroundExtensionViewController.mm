@@ -6,6 +6,7 @@
 //
 
 #import "BackgroundExtensionViewController.h"
+#import <TargetConditionals.h>
 
 @interface BackgroundExtensionViewController ()
 @property (retain, nonatomic, readonly, getter=_ownSplitViewController) UISplitViewController *ownSplitViewController;
@@ -49,10 +50,12 @@
     
     [ownSplitViewController setViewController:self.secondaryViewController forColumn:UISplitViewControllerColumnSecondary];
     
+#if !TARGET_OS_VISION
     UIViewController *inspectorViewController = [UIViewController new];
     inspectorViewController.view.backgroundColor = [UIColor.systemGreenColor colorWithAlphaComponent:0.2];
     [ownSplitViewController setViewController:inspectorViewController forColumn:UISplitViewControllerColumnInspector];
     [inspectorViewController release];
+#endif
     
     _ownSplitViewController = ownSplitViewController;
     return ownSplitViewController;

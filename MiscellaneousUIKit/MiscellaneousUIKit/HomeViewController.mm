@@ -44,10 +44,13 @@
 #import "SwipeActionsViewController.h"
 #import "InteractiveGlassEffectViewController.h"
 #import "FlexInteractionViewController.h"
+#import "LookToScrollAxesViewController.h"
+#import "WolfScrollEventViewController.h"
 #include <objc/runtime.h>
 #include <objc/message.h>
 #import <Accessibility/Accessibility.h>
 #import "MiscellaneousUIKit-Swift.h"
+#import <TargetConditionals.h>
 
 OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self class] }; */
 
@@ -62,8 +65,14 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 
 + (NSArray<Class> *)_classes {
     return @[
+#if TARGET_OS_VISION
+        [WolfScrollEventViewController class],
+        [LookToScrollAxesViewController class],
+#endif
         [FlexInteractionViewController class],
+#if !TARGET_OS_VISION
         [InteractiveGlassEffectViewController class],
+#endif
         [SwipeActionsViewController class],
         [RequestHostingSceneObjCViewController class],
         [RequestHostingSceneViewController class],
@@ -74,7 +83,9 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
         [HDRHeadroomUsageViewController class],
         [PropertiesViewController class],
         [FlushUpdatesViewController class],
+#if !TARGET_OS_VISION
         [InterfaceOrientationsViewController class],
+#endif
         [ShortcutHUDServiceViewController class],
         [KeyCommandsViewController class],
         [MainMenuSystemViewController class],
@@ -82,18 +93,24 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
         [SymbolContentTransitionViewController class],
         [WindowControlViewController class],
         [NaturalSelectionViewController class],
+#if !TARGET_OS_VISION
         [BarButtonItemBadgeViewController class],
+#endif
         [BackgroundExtensionViewController class],
         [PopoverViewController class],
         [ColorWellViewController class],
         [ColorPickerPresenterViewController class],
         [ColorLinearExposureViewController class],
         [ColorExposureViewController class],
+#if !TARGET_OS_VISION
         [NavigationItemViewController class],
+#endif
         [SliderViewController class],
         [SearchBarPlacementViewController class],
         [SplitContentViewController class],
+#if !TARGET_OS_VISION
         [ToolbarViewController class],
+#endif
         [ActionSheetViewController class],
         [BarButtonZoomTransitionViewController class],
         [ScrollEdgeElementContainerInteractionViewController class],
@@ -102,7 +119,9 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
         [TabViewController class],
         [LiquidLensViewController class],
         [ButtonViewController class],
+#if !TARGET_OS_VISION
         [GlassEffectViewController class]
+#endif
     ];
 }
 
@@ -131,7 +150,11 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     [super viewDidLoad];
     [self _cellRegistration];
     
+#if TARGET_OS_VISION
+    [self _showViewControllerForClass:[WolfScrollEventViewController class]];
+#else
     [self _showViewControllerForClass:[FlexInteractionViewController class]];
+#endif
 }
 
 - (void)viewDidMoveToWindow:(UIWindow *)window shouldAppearOrDisappear:(BOOL)shouldAppearOrDisappear {
@@ -144,12 +167,16 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 - (void)_showViewControllerForClass:(Class)viewControllerClass {
     __kindof UIViewController *viewController = [viewControllerClass new];
     
+#if !TARGET_OS_VISION
     if (viewControllerClass == [InterfaceOrientationsViewController class]) {
         viewController.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:viewController animated:YES completion:nil];
     } else {
         [self.navigationController pushViewController:viewController animated:YES];
     }
+#else
+    [self.navigationController pushViewController:viewController animated:YES];
+#endif
     [viewController release];
 }
 

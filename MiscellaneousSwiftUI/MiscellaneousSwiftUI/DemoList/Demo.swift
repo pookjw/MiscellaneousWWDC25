@@ -12,8 +12,10 @@ enum Demo: Int, CaseIterable, Identifiable, Hashable {
     static let defaultCase: Demo = Demo.allCases.last!
     
     case scrollDemoView
+#if !os(visionOS)
     case glassEffectView
     case glassEffectTransitionView
+#endif
     case openURLActionView
     case buttonSizingView
     case debugReplaceableDemoView
@@ -32,6 +34,50 @@ enum Demo: Int, CaseIterable, Identifiable, Hashable {
     case caLayerDemoView
 #endif
     
+#if os(iOS) || os(macOS)
+    case toolbarSpacerView
+#endif
+    case sensoryFeedbackView
+#if os(iOS) || os(macOS) || os(visionOS)
+    case searchSelectionView
+#endif
+    case listRowInsetsView
+    case primitiveButtonStyleView
+#if os(iOS) || os(macOS) || os(visionOS)
+    case findContextView
+    case attributedTextEditorView
+#endif
+    case sectionIndexTitleView
+#if os(iOS) || os(macOS)
+    case sharedBackgroundVisibilityView
+#endif
+#if os(iOS)
+    case toolbarTitleView
+#endif
+    case defaultToolbarItemView
+    case tabBarView
+    case buttonRoleView
+    case backgroundExtensionEffectView
+#if !os(visionOS)
+    case scrollEdgeEffectStyleView
+#endif
+    case assistiveAccessView
+#if os(iOS)
+    case toolbarTransitionView
+#endif
+    case safeAreaBarView
+    
+#if os(iOS) || os(macOS)
+    case navigationSubtitleView
+#endif
+#if os(iOS)
+    case searchToolbarBehaviorView
+#endif
+    case labelSpacingView
+#if os(visionOS)
+    case customHoverEffectView
+#endif
+    
     var id: Int {
         rawValue
     }
@@ -41,10 +87,12 @@ enum Demo: Int, CaseIterable, Identifiable, Hashable {
         switch self {
         case .scrollDemoView:
             ScrollDemoView()
+#if !os(visionOS)
         case .glassEffectView:
             GlassEffectView()
         case .glassEffectTransitionView:
             GlassEffectTransitionView()
+#endif
         case .openURLActionView:
             OpenURLActionView()
         case .buttonSizingView:
@@ -73,6 +121,67 @@ enum Demo: Int, CaseIterable, Identifiable, Hashable {
         case .caLayerDemoView:
             CALayerDemoView()
 #endif
-        }
+#if os(iOS) || os(macOS)
+        case .toolbarSpacerView:
+            ToolbarSpacerView()
+#endif
+        case .sensoryFeedbackView:
+            SensoryFeedbackView()
+#if os(iOS) || os(macOS) || os(visionOS)
+        case .searchSelectionView:
+            SearchSelectionView()
+#endif
+        case .listRowInsetsView:
+            ListRowInsetsView()
+        case .primitiveButtonStyleView:
+            PrimitiveButtonStyleView()
+#if os(iOS) || os(macOS) || os(visionOS)
+        case .findContextView:
+            FindContextView()
+        case .attributedTextEditorView:
+            AttributedTextEditorView()
+#endif
+        case .sectionIndexTitleView:
+            SectionIndexTitleView()
+#if os(iOS) || os(macOS)
+        case .sharedBackgroundVisibilityView:
+            SharedBackgroundVisibilityView()
+#endif
+#if os(iOS)
+        case .toolbarTitleView:
+            ToolbarTitleView()
+#endif
+        case .defaultToolbarItemView:
+            DefaultToolbarItemView()
+        case .tabBarView:
+            TabBarView()
+        case .buttonRoleView:
+            ButtonRoleView()
+        case .backgroundExtensionEffectView:
+            BackgroundExtensionEffectView()
+#if !os(visionOS)
+        case .scrollEdgeEffectStyleView:
+            ScrollEdgeEffectStyleView()
+#endif
+        case .assistiveAccessView:
+            AssistiveAccessView()
+#if os(iOS)
+        case .toolbarTransitionView:
+            ToolbarTransitionView()
+#endif
+        case .safeAreaBarView:
+            SafeAreaBarView()
+#if os(iOS) || os(macOS)
+        case .navigationSubtitleView:
+            NavigationSubtitleView()
+#endif
+#if os(iOS)
+        case .searchToolbarBehaviorView:
+            SearchToolbarBehaviorView()
+#endif
+        case .labelSpacingView:
+            LabelSpacingView()
+        case .customHoverEffectView:
+            CustomHoverEffectView()
     }
 }

@@ -7,6 +7,8 @@
 
 #import "BarButtonItemBadgeViewController.h"
 
+#if !TARGET_OS_VISION
+
 @interface BarButtonItemBadgeViewController ()
 @property (retain, nonatomic, readonly, getter=_barButtonItem) UIBarButtonItem *barButtonItem;
 @property (retain, nonatomic, readonly, getter=_indicatorBarButtonItem) UIBarButtonItem *indicatorBarButtonItem;
@@ -76,3 +78,4 @@
 
 @end
 
+#endif

@@ -18,5 +18,23 @@ struct MiscellaneousSwiftUIApp: App {
         WindowGroup {
             DemoListView()
         }
+#if os(macOS) || os(visionOS)
+        .defaultLaunchBehavior(.presented) // 기본으로 어떤 Scene이 뜰지 정할 수 있음
+#endif
+#if os(visionOS)
+        .restorationBehavior(.disabled)
+#endif
+#if !os(watchOS)
+        .commands {
+            TextEditingCommands()
+        }
+#endif
+        
+        AssistiveAccess { 
+            VStack {
+                Text("AssistiveAccess Scene")
+                DemoListView()
+            }
+        }
     }
 }

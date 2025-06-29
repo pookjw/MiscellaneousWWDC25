@@ -12,6 +12,7 @@
 #import "SplitLayoutEnvironmentViewController.h"
 #include <vector>
 #include <ranges>
+#import <TargetConditionals.h>
 
 UIKIT_EXTERN NSString * _UISplitViewControllerColumnDescription(UISplitViewControllerColumn);
 
@@ -65,7 +66,9 @@ UIKIT_EXTERN NSString * _UISplitViewControllerColumnDescription(UISplitViewContr
     [ownSplitViewController setViewController:self.secondaryViewController forColumn:UISplitViewControllerColumnSupplementary];
     [ownSplitViewController setViewController:self.supplementaryViewController forColumn:UISplitViewControllerColumnSecondary];
     [ownSplitViewController setViewController:self.compactViewController forColumn:UISplitViewControllerColumnCompact];
+#if !TARGET_OS_VISION
     [ownSplitViewController setViewController:self.inspectorViewController forColumn:UISplitViewControllerColumnInspector];
+#endif
     
     ownSplitViewController.delegate = self;
     
@@ -139,6 +142,7 @@ UIKIT_EXTERN NSString * _UISplitViewControllerColumnDescription(UISplitViewContr
     UIDeferredMenuElement *element = [UIDeferredMenuElement elementWithUncachedProvider:^(void (^ _Nonnull completion)(NSArray<UIMenuElement *> * _Nonnull)) {
         NSMutableArray<__kindof UIMenuElement *> *results = [NSMutableArray new];
         
+#if !TARGET_OS_VISION
         {
             NSMutableArray<UIAction *> *actions = [[NSMutableArray alloc] initWithCapacity:weakSelf.ownSplitViewController.viewControllers.count];
             
@@ -170,6 +174,7 @@ UIKIT_EXTERN NSString * _UISplitViewControllerColumnDescription(UISplitViewContr
             [actions release];
             [results addObject:menu];
         }
+#endif
         
         {
             UIAction *action = [UIAction actionWithTitle:@"searchBarPlacementAllowsExternalIntegration" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
@@ -190,7 +195,9 @@ UIKIT_EXTERN NSString * _UISplitViewControllerColumnDescription(UISplitViewContr
                 UISplitViewControllerColumnSupplementary,
                 UISplitViewControllerColumnSecondary,
                 UISplitViewControllerColumnCompact,
+#if !TARGET_OS_VISION
                 UISplitViewControllerColumnInspector
+#endif
             }
             | std::views::transform([weakSelf](const UISplitViewControllerColumn column) -> UIAction * {
                 UIAction *action = [UIAction actionWithTitle:_UISplitViewControllerColumnDescription(column) image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {

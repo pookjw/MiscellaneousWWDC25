@@ -7,6 +7,8 @@
 
 #import "UITabBarMinimizeBehavior+String.h"
 
+#if !TARGET_OS_VISION
+
 NSString * NSStringFromUITabBarMinimizeBehavior(UITabBarMinimizeBehavior behavior) {
     switch (behavior) {
         case UITabBarMinimizeBehaviorAutomatic:
@@ -50,3 +52,5 @@ const UITabBarMinimizeBehavior * allUITabBarMinimizeBehaviors(NSUInteger * _Null
     
     return behaviors;
 }
+
+#endif

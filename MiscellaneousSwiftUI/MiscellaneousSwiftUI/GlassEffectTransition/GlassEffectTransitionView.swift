@@ -5,6 +5,8 @@
 //  Created by Jinwoo Kim on 6/28/25.
 //
 
+#if !os(visionOS)
+
 import SwiftUI
 
 struct GlassEffectTransitionView: View {
@@ -51,7 +53,7 @@ struct GlassEffectTransitionView: View {
             }
             .animation(.easeInOut(duration: 3), value: flag)
             .toolbar { 
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem {
                     Button("Toggle", systemImage: "apple.intelligence") { 
                         flag.toggle()
                     }
@@ -63,3 +65,5 @@ struct GlassEffectTransitionView: View {
 #Preview {
     GlassEffectTransitionView()
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Jinwoo Kim on 6/27/25.
 //
 
+#if !os(visionOS)
+
 import SwiftUI
 
 struct GlassEffectView: View {
@@ -46,7 +48,7 @@ struct GlassEffectView: View {
     
     @ToolbarContentBuilder
     private var menuToolbarItem: some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) { 
+        ToolbarItem { 
 #if os(watchOS)
             Button {
                 isConfigurationPresented = true
@@ -116,3 +118,5 @@ struct GlassEffectView: View {
 #Preview {
     GlassEffectView()
 }
+
+#endif

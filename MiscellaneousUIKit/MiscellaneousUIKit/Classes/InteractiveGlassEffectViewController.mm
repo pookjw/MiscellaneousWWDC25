@@ -7,6 +7,8 @@
 
 #import "InteractiveGlassEffectViewController.h"
 
+#if !TARGET_OS_VISION
+
 @interface InteractiveGlassEffectViewController ()
 
 @end
@@ -47,3 +49,5 @@
 }
 
 @end
+
+#endif
