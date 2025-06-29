@@ -39,6 +39,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 @property (class, readonly, getter=_muk_REEntityGetLocalId) unsigned long long (*REEntityGetLocalId)(const void *);
 @property (retain, nonatomic, readonly, getter=_label) UILabel *label;
 @property (assign, nonatomic, getter=_lastLocation, setter=_setLastLocation:) CGPoint lastLocation;
+@property (retain, nonatomic, readonly, getter=_timer) NSTimer *timer;
 @end
 
 @implementation WolfScrollEventView
@@ -57,9 +58,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            [self _muk_setPreferredAutoScrollWithWolfAxes:UIAxisBoth];
-        }];
+        _timer = [[NSTimer scheduledTimerWithTimeInterval:1. target:self selector:@selector(_timerDidTrigger:) userInfo:nil repeats:YES] retain];
         
         _WolfScrollEventGestureRecognizer *gesture = [[_WolfScrollEventGestureRecognizer alloc] initWithTarget:self action:@selector(_panGestureRecognizerDidTrigger:)];
         [self addGestureRecognizer:gesture];
@@ -74,9 +73,15 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 }
 
 - (void)dealloc {
+    [_timer invalidate];
+    [_timer release];
     [_wolfScrollGroup release];
     [_label release];
     [super dealloc];;
+}
+
+- (void)_timerDidTrigger:(NSTimer *)sender {
+    [self _muk_setPreferredAutoScrollWithWolfAxes:UIAxisBoth];
 }
 
 - (UILabel *)_label {
