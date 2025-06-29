@@ -23,10 +23,12 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 - (BOOL)shouldReceiveEvent:(UIEvent *)event {
     if (event.type == UIEventTypeScroll) {
         return YES;
+    } else {
+        return NO;
     }
     
-    objc_super superInfo = { self, [self class] };
-    return reinterpret_cast<BOOL (*)(objc_super *, SEL, id)>(objc_msgSendSuper2)(&superInfo, _cmd, event);
+//    objc_super superInfo = { self, [self class] };
+//    return reinterpret_cast<BOOL (*)(objc_super *, SEL, id)>(objc_msgSendSuper2)(&superInfo, _cmd, event);
 }
 
 @end
