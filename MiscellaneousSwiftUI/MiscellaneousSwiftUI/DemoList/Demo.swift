@@ -28,6 +28,10 @@ enum Demo: Int, CaseIterable, Identifiable, Hashable {
 #endif
     case fontResolvedView
     
+#if !os(watchOS)
+    case caLayerDemoView
+#endif
+    
     var id: Int {
         rawValue
     }
@@ -65,6 +69,10 @@ enum Demo: Int, CaseIterable, Identifiable, Hashable {
 #endif
         case .fontResolvedView:
             FontResolvedView()
+#if !os(watchOS)
+        case .caLayerDemoView:
+            CALayerDemoView()
+#endif
         }
     }
 }
