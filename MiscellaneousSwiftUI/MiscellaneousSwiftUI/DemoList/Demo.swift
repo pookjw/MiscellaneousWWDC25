@@ -77,6 +77,19 @@ enum Demo: Int, CaseIterable, Identifiable, Hashable {
 #if os(visionOS)
     case customHoverEffectView
 #endif
+#if os(watchOS) || os(visionOS)
+    case scrollInputKindView
+#endif
+#if os(macOS) || os(visionOS)
+    case windowPresenterView
+#endif
+#if os(visionOS)
+    case contentCaptureProtectedView
+    case onWorldRecenterView
+#endif
+#if os(macOS) || os(iOS)
+    case inspectorView
+#endif
     
     var id: Int {
         rawValue
@@ -181,7 +194,28 @@ enum Demo: Int, CaseIterable, Identifiable, Hashable {
 #endif
         case .labelSpacingView:
             LabelSpacingView()
+#if os(visionOS)
         case .customHoverEffectView:
             CustomHoverEffectView()
+#endif
+#if os(watchOS) || os(visionOS)
+        case .scrollInputKindView:
+            ScrollInputKindView()
+#endif
+#if os(macOS) || os(visionOS)
+        case .windowPresenterView:
+            WindowPresenterView()
+#endif
+#if os(visionOS)
+        case .contentCaptureProtectedView:
+            ContentCaptureProtectedView()
+        case .onWorldRecenterView:
+            OnWorldRecenterView()
+#endif
+#if os(macOS) || os(iOS)
+        case .inspectorView:
+            InspectorView()
+#endif
+        }
     }
 }

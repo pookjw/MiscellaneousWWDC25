@@ -46,6 +46,8 @@
 #import "FlexInteractionViewController.h"
 #import "LookToScrollAxesViewController.h"
 #import "WolfScrollEventViewController.h"
+#import "MRUINotificationsViewController.h"
+#import "PlacementsRecenterViewController.h"
 #include <objc/runtime.h>
 #include <objc/message.h>
 #import <Accessibility/Accessibility.h>
@@ -66,6 +68,8 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
 + (NSArray<Class> *)_classes {
     return @[
 #if TARGET_OS_VISION
+        [PlacementsRecenterViewController class],
+        [MRUINotificationsViewController class],
         [WolfScrollEventViewController class],
         [LookToScrollAxesViewController class],
 #endif
@@ -151,7 +155,7 @@ OBJC_EXPORT id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     [self _cellRegistration];
     
 #if TARGET_OS_VISION
-    [self _showViewControllerForClass:[WolfScrollEventViewController class]];
+    [self _showViewControllerForClass:[PlacementsRecenterViewController class]];
 #else
     [self _showViewControllerForClass:[FlexInteractionViewController class]];
 #endif

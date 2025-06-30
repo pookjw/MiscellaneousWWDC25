@@ -36,5 +36,11 @@ struct MiscellaneousSwiftUIApp: App {
                 DemoListView()
             }
         }
+        
+#if os(macOS) || os(visionOS)
+        Window("Title", id: "Window") { 
+            Text("Hello World!")
+        }
+#endif
     }
 }

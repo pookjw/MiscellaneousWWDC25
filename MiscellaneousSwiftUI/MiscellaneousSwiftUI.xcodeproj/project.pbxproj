@@ -102,6 +102,7 @@
 				ScrollDemo/ScrollDemoView.swift,
 				"ScrollDemo/ScrollDemoView+ContentView.swift",
 				ScrollEdgeEffectStyle/ScrollEdgeEffectStyleView.swift,
+				ScrollInputKind/ScrollInputKindView.swift,
 				SectionIndexTitle/SectionIndexTitleView.swift,
 				SensoryFeedback/SensoryFeedbackView.swift,
 				SymbolColorRenderingMode/SymbolColorRenderingModeView.swift,
