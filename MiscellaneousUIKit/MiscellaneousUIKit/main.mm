@@ -19,7 +19,7 @@ int main(int argc, char * argv[]) {
     @autoreleasepool {
         NSDictionary *dictionary = @{
             @"PreferredPlacementTarget": @{
-                // only single target is allowed!
+                // Only one of them is allowed!
 //                @"Default": @{
 //                    @"Alignment": @"Horizontal" // or Vertical
 //                }
@@ -35,6 +35,7 @@ int main(int argc, char * argv[]) {
                 @"Hidden": @{}
             },
             @"PreferredLaunchPosition": @{
+                // Only one of them is allowed!
 //                @"Default": @{
 //                    @"Distance": @3,
 //                    @"MinimumDistance": @3,
