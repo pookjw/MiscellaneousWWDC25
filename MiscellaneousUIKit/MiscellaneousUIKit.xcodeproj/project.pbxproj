@@ -13,6 +13,13 @@
 		4F84B5752DFC10E700753B04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F84B5742DFC10E700753B04 /* UIKit.framework */; };
 		4F84B5772DFC10EE00753B04 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F84B5762DFC10EE00753B04 /* UniformTypeIdentifiers.framework */; };
 		4FB978712E00701400DF2EFA /* Symbols.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB978702E00701400DF2EFA /* Symbols.framework */; };
+		4FE31EE92E13CEED00C5F614 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7823822E12651000214146 /* WebKit.framework */; };
+		4FE31EEA2E13CEED00C5F614 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F84B5762DFC10EE00753B04 /* UniformTypeIdentifiers.framework */; };
+		4FE31EEB2E13CEED00C5F614 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F84B5742DFC10E700753B04 /* UIKit.framework */; };
+		4FE31EEC2E13CEED00C5F614 /* Symbols.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB978702E00701400DF2EFA /* Symbols.framework */; };
+		4FE31EED2E13CEED00C5F614 /* Accessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F46DEA22E0046E90007AEE0 /* Accessibility.framework */; };
+		4FE31EEE2E13CEED00C5F614 /* UIKitPrivate.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F725C752DF8991D00262588 /* UIKitPrivate.xcframework */; };
+		4FE31EEF2E13CEED00C5F614 /* SwiftUIPrivate.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FEB49B32E03F15A0052CBBB /* SwiftUIPrivate.xcframework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4FEB49B42E03F15A0052CBBB /* SwiftUIPrivate.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FEB49B32E03F15A0052CBBB /* SwiftUIPrivate.xcframework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -23,11 +30,91 @@
 		4F84B5742DFC10E700753B04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		4F84B5762DFC10EE00753B04 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = DEVELOPER_DIR; };
 		4FB978702E00701400DF2EFA /* Symbols.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Symbols.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/Library/Frameworks/Symbols.framework; sourceTree = DEVELOPER_DIR; };
+		4FE31EF42E13CEED00C5F614 /* MiscellaneousUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FEB49B32E03F15A0052CBBB /* SwiftUIPrivate.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SwiftUIPrivate.xcframework; sourceTree = "<group>"; };
 		4FFCE2862DF775F900B23138 /* MiscellaneousUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4FE31EF52E13CEED00C5F614 /* Exceptions for "MiscellaneousUIKit" folder in "MiscellaneousUIKit_Private" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"/Localized: LaunchScreen.storyboard",
+				AppDelegate.mm,
+				Assets.xcassets,
+				AssistiveAccessSceneDelegate.m,
+				Classes/ActionSheetViewController.mm,
+				Classes/BackgroundExtensionViewController.mm,
+				Classes/BarButtonItemBadgeViewController.mm,
+				Classes/BarButtonZoomTransitionViewController.mm,
+				Classes/ButtonViewController.mm,
+				Classes/ColorExposureViewController.mm,
+				Classes/ColorLinearExposureViewController.mm,
+				Classes/ColorPickerPresenterViewController.mm,
+				Classes/ColorWellViewController.mm,
+				Classes/CornerMaskingViewController.swift,
+				Classes/DeferredMenuElementViewController.mm,
+				Classes/FlexInteractionViewController.mm,
+				Classes/FlushUpdatesViewController.mm,
+				Classes/GlassEffectViewController.mm,
+				Classes/HDRHeadroomUsageViewController.mm,
+				Classes/InteractiveGlassEffectViewController.mm,
+				Classes/InterfaceOrientationsViewController.mm,
+				Classes/KeyCommandsViewController.mm,
+				Classes/LiquidLensViewController.mm,
+				Classes/ListViewController.mm,
+				Classes/LookToScrollAxesViewController.mm,
+				Classes/MainMenuSystemViewController.mm,
+				Classes/MRUINotificationsViewController.mm,
+				Classes/NaturalSelectionViewController.mm,
+				Classes/NavigationItemViewController.mm,
+				Classes/ObservationDemoContentConfigurationViewController.swift,
+				Classes/ObservationDemoViewController.swift,
+				Classes/PlacementsRecenterViewController.mm,
+				Classes/PopoverViewController.mm,
+				Classes/PropertiesViewController.mm,
+				Classes/RequestHostingSceneObjCViewController.mm,
+				Classes/RequestHostingSceneViewController.swift,
+				Classes/ScrollEdgeElementContainerInteractionViewController.mm,
+				Classes/ScrollPocketViewController.mm,
+				Classes/SearchBarPlacementViewController.mm,
+				Classes/ShortcutHUDServiceViewController.mm,
+				Classes/SliderViewController.mm,
+				Classes/SplitContentViewController.mm,
+				Classes/SplitLayoutEnvironmentViewController.mm,
+				Classes/SwipeActionsViewController.mm,
+				Classes/SymbolColorRenderingViewController.mm,
+				Classes/SymbolContentTransitionViewController.mm,
+				Classes/SymbolDrawEffectViewController.mm,
+				Classes/TabViewController.mm,
+				Classes/ToolbarViewController.mm,
+				Classes/WindowControlViewController.mm,
+				Classes/WolfScrollEventView.mm,
+				Classes/WolfScrollEventViewController.mm,
+				HomeViewController.mm,
+				HostingSceneDelegate.swift,
+				Info.plist,
+				KeyValueObserver.m,
+				main.mm,
+				"NSObject+Foundation_IvarDescription.mm",
+				SceneDelegate.m,
+				"UIHDRHeadroomUsageLimit+String.m",
+				"UIImageSymbolColorRenderingMode+String.m",
+				"UIInterfaceOrientationMask+String.m",
+				"UIMenuSystemElementGroupPreference+String.m",
+				"UIMenuSystemFindElementGroupConfigurationStyle+String.m",
+				"UINavigationItemSearchBarPlacement+String.m",
+				"UISliderStyle+String.m",
+				"UISplitViewControllerColumn+String.m",
+				"UISplitViewControllerLayoutEnvironment+String.m",
+				"UITabBarMinimizeBehavior+String.m",
+				"UIUserInterfaceStyle+String.m",
+				"UIView+Swizzle.mm",
+				"UIViewController+Menu.mm",
+				WindowObservingInteraction.m,
+			);
+			target = 4FE31EE62E13CEED00C5F614 /* MiscellaneousUIKit_Private */;
+		};
 		4FFCE29D2DF775F900B23138 /* Exceptions for "MiscellaneousUIKit" folder in "MiscellaneousUIKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -42,6 +129,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				4FFCE29D2DF775F900B23138 /* Exceptions for "MiscellaneousUIKit" folder in "MiscellaneousUIKit" target */,
+				4FE31EF52E13CEED00C5F614 /* Exceptions for "MiscellaneousUIKit" folder in "MiscellaneousUIKit_Private" target */,
 			);
 			path = MiscellaneousUIKit;
 			sourceTree = "<group>";
@@ -49,6 +137,20 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4FE31EE82E13CEED00C5F614 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FE31EE92E13CEED00C5F614 /* WebKit.framework in Frameworks */,
+				4FE31EEA2E13CEED00C5F614 /* UniformTypeIdentifiers.framework in Frameworks */,
+				4FE31EEB2E13CEED00C5F614 /* UIKit.framework in Frameworks */,
+				4FE31EEC2E13CEED00C5F614 /* Symbols.framework in Frameworks */,
+				4FE31EED2E13CEED00C5F614 /* Accessibility.framework in Frameworks */,
+				4FE31EEE2E13CEED00C5F614 /* UIKitPrivate.xcframework in Frameworks */,
+				4FE31EEF2E13CEED00C5F614 /* SwiftUIPrivate.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FFCE2832DF775F900B23138 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				4FFCE2862DF775F900B23138 /* MiscellaneousUIKit.app */,
+				4FE31EF42E13CEED00C5F614 /* MiscellaneousUIKit.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,6 +203,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4FE31EE62E13CEED00C5F614 /* MiscellaneousUIKit_Private */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FE31EF12E13CEED00C5F614 /* Build configuration list for PBXNativeTarget "MiscellaneousUIKit_Private" */;
+			buildPhases = (
+				4FE31EE72E13CEED00C5F614 /* Sources */,
+				4FE31EE82E13CEED00C5F614 /* Frameworks */,
+				4FE31EF02E13CEED00C5F614 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4FFCE2882DF775F900B23138 /* MiscellaneousUIKit */,
+			);
+			name = MiscellaneousUIKit_Private;
+			packageProductDependencies = (
+			);
+			productName = MiscellaneousUIKit;
+			productReference = 4FE31EF42E13CEED00C5F614 /* MiscellaneousUIKit.app */;
+			productType = "com.apple.product-type.application";
+		};
 		4FFCE2852DF775F900B23138 /* MiscellaneousUIKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FFCE29E2DF775F900B23138 /* Build configuration list for PBXNativeTarget "MiscellaneousUIKit" */;
@@ -156,11 +281,19 @@
 			projectRoot = "";
 			targets = (
 				4FFCE2852DF775F900B23138 /* MiscellaneousUIKit */,
+				4FE31EE62E13CEED00C5F614 /* MiscellaneousUIKit_Private */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4FE31EF02E13CEED00C5F614 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FFCE2842DF775F900B23138 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -171,6 +304,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4FE31EE72E13CEED00C5F614 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FFCE2822DF775F900B23138 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,6 +321,71 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		4FE31EF22E13CEED00C5F614 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.MiscellaneousUIKit;
+				PRODUCT_NAME = MiscellaneousUIKit;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MiscellaneousUIKit/MiscellaneousUIKit-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		4FE31EF32E13CEED00C5F614 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.MiscellaneousUIKit;
+				PRODUCT_NAME = MiscellaneousUIKit;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MiscellaneousUIKit/MiscellaneousUIKit-Bridging-Header.h";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
 		4FFCE29F2DF775F900B23138 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -371,6 +576,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4FE31EF12E13CEED00C5F614 /* Build configuration list for PBXNativeTarget "MiscellaneousUIKit_Private" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FE31EF22E13CEED00C5F614 /* Debug */,
+				4FE31EF32E13CEED00C5F614 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4FFCE2812DF775F900B23138 /* Build configuration list for PBXProject "MiscellaneousUIKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

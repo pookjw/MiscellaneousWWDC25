@@ -325,7 +325,6 @@
 		4F9879BD2C5A8A2E00E4D2F3 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS11.0.sdk/System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = DEVELOPER_DIR; };
 		4FA997BC2C5E3369000E5AFB /* Symbols.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Symbols.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS11.0.sdk/System/Library/Frameworks/Symbols.framework; sourceTree = DEVELOPER_DIR; };
 		4FAB0D212D0C9FB10011A815 /* MiscellaneousPepperUICore Watch App Private.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MiscellaneousPepperUICore Watch App Private.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FAB0D222D0C9FB10011A815 /* MiscellaneousPepperUICore Watch App copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "MiscellaneousPepperUICore Watch App copy-Info.plist"; path = "/Users/pookjw/git/MiscellaneousWWDC24/MiscellaneousPepperUICore/MiscellaneousPepperUICore Watch App copy-Info.plist"; sourceTree = "<absolute>"; };
 		4FAB0D232D0C9FD10011A815 /* MiscellaneousPepperUICore Watch App Private.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MiscellaneousPepperUICore Watch App Private.entitlements"; sourceTree = "<group>"; };
 		4FAB0D252D0CA2B50011A815 /* CarouselServicesListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarouselServicesListViewController.h; sourceTree = "<group>"; };
 		4FAB0D262D0CA2B50011A815 /* CarouselServicesListViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CarouselServicesListViewController.mm; sourceTree = "<group>"; };
@@ -458,7 +457,6 @@
 				4F94F8802CB10CC3002F31E2 /* MiscellaneousPepperUICore Watch App */,
 				4F8A34CB2C5A861400E3CFC4 /* Products */,
 				4F9879B82C5A8A2600E4D2F3 /* Frameworks */,
-				4FAB0D222D0C9FB10011A815 /* MiscellaneousPepperUICore Watch App copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1435,14 +1433,14 @@
 				CODE_SIGN_ENTITLEMENTS = "MiscellaneousPepperUICore Watch App/MiscellaneousPepperUICore Watch App Private.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = P53D29U9LJ;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"PRIVATE=1",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MiscellaneousPepperUICore Watch App copy-Info.plist";
+				INFOPLIST_FILE = "MiscellaneousPepperUICore Watch App/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = MiscellaneousPepperUICore;
 				INFOPLIST_KEY_NSContactsUsageDescription = Hello;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -1477,11 +1475,11 @@
 				CODE_SIGN_ENTITLEMENTS = "MiscellaneousPepperUICore Watch App/MiscellaneousPepperUICore Watch App Private.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = P53D29U9LJ;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "PRIVATE=1";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MiscellaneousPepperUICore Watch App copy-Info.plist";
+				INFOPLIST_FILE = "MiscellaneousPepperUICore Watch App/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = MiscellaneousPepperUICore;
 				INFOPLIST_KEY_NSContactsUsageDescription = Hello;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
