@@ -28,7 +28,10 @@
 @property (retain, nonatomic, nullable, getter=_skybox, setter=_setSkybox:) id<MTLTexture> skybox;
 @property (retain, nonatomic, nullable, getter=_skyboxPipeline, setter=_setSkyboxPipeline:) id<MTLRenderPipelineState> skyboxPipeline;
 
-@property (retain, nonatomic, readonly, getter=_textures) NSMutableArray<id<MTLTexture>> *textures;
+@property (retain, nonatomic, readonly, getter=_textures) NSMutableDictionary<NSURL *, id<MTLTexture>> *textures;
+@property (retain, nonatomic, readonly, getter=_scene) Scene *scene;
+
+@property (nonatomic, readonly, getter=_rootTransform) simd::float4x4 rootTransform;
 @end
 
 @implementation Renderer
@@ -95,7 +98,8 @@
         [allocator release];
         
         _textureLoader = [[MTKTextureLoader alloc] initWithDevice:device];
-        _textures = [NSMutableArray new];
+        _textures = [NSMutableDictionary new];
+        _scene = [Scene new];
     }
     
     return self;
@@ -116,8 +120,23 @@
     [_skybox release];
     [_skyboxPipeline release];
     [_textures release];
+    [_scene release];
     
     [super dealloc];
+}
+
+- (simd::float4x4)_rootTransform {
+    simd::float4x4 rotation = simd::float4x4(simd::quatf(0.f, 0.f, 0.f, 1.f));
+    
+    simd::float3 scale { 2.f, 2.f, 2.f };
+    rotation.columns[0] *= scale.x;
+    rotation.columns[1] *= scale.y;
+    rotation.columns[2] *= scale.z;
+    
+    simd::float3 translation { 0.f, -2.f, -5.f };
+    rotation.columns[3].xyz += translation;
+    
+    return rotation;
 }
 
 - (void)run {
@@ -131,6 +150,8 @@
 
 - (void)_threadMain:(id _Nullable)object {
     [self _setupWorldTracking];
+    [self _loadAssets];
+    [self _setUpTileResolvePipeline];
     
     abort();
 }
@@ -205,9 +226,45 @@
                 NSURL *URLValue = color.URLValue;
                 if (URLValue == nil) continue;
                 
+                id<MTLTexture> texture;
+                if (id<MTLTexture> _texture = self.textures[URLValue]) {
+                    texture = [_texture retain];
+                } else {
+                    NSDictionary<MTKTextureLoaderOption, id> *options = @{
+                        MTKTextureLoaderOptionAllocateMipmaps: @YES,
+                        MTKTextureLoaderOptionGenerateMipmaps: @YES
+                    };
+                    
+                    NSError * _Nullable error = nil;
+                    texture = [self.textureLoader newTextureWithContentsOfURL:URLValue options:options error:&error];
+                    assert(texture != nil);
+                    self.textures[URLValue] = texture;
+                }
                 
-                abort();
+                DrawCallMaterial *material = [[DrawCallMaterial alloc] initWithTexture:texture color:color.float4Value];
+                [texture release];
+                [materials addObject:material];
+                [material release];
             }
+            
+            NSError * _Nullable error = nil;
+            MTKMesh *mtkMesh = [[MTKMesh alloc] initWithMesh:mesh device:self.device error:&error];
+            assert(mtkMesh != nil);
+            
+            DrawCall *drawCall = [[DrawCall alloc] initWithTransformWhole:self.rootTransform * [MDLTransform globalTransformWithObject:mesh atTime:0.]
+                                  
+                                                        transformExploded:self.rootTransform * [MDLTransform globalTransformWithObject:mesh atTime:3]
+                                                                     mesh:mtkMesh
+                                                              boundingBox:{}
+                                                                materials:materials];
+            [mtkMesh release];
+            [materials release];
+            
+            os_unfair_lock_lock(&self.scene->_lock);
+            [self.scene.drawCalls addObject:drawCall];
+            os_unfair_lock_unlock(&self.scene->_lock);
+            
+            [drawCall release];
         }
         
         [object release];
@@ -283,6 +340,16 @@
     
     self.skyboxPipeline = pState;
     [pState release];
+}
+
+- (void)_setUpTileResolvePipeline {
+    abort();
+    
+    if (self.configuration.hoverEnabled && self.configuration.useMSAA) {
+        
+    } else {
+        
+    }
 }
 
 @end

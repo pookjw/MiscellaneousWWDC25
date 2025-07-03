@@ -24,3 +24,49 @@
 }
 
 @end
+
+
+@implementation DrawCall
+
+- (instancetype)initWithTransformWhole:(simd::float4x4)transformWhole transformExploded:(simd::float4x4)transformExploded mesh:(MTKMesh *)mesh boundingBox:(MDLAxisAlignedBoundingBox)boundingBox materials:(NSArray<DrawCallMaterial *> *)materials {
+    if (self = [super init]) {
+        _transformWhole = transformWhole;
+        _transformExploded = transformExploded;
+        _mesh = [mesh retain];
+        _boundingBox = boundingBox;
+        _materials = [materials retain];
+        
+        _animationState = [AnimationState new];
+        _animationState.value = AnimationStateValueIdle;
+        _animationState.progress = std::nullopt;
+    }
+    
+    return self;
+}
+
+- (void)dealloc {
+    [_mesh release];
+    [_materials release];
+    [_animationState release];
+    [super dealloc];
+}
+
+@end
+
+
+@implementation Scene
+
+- (instancetype)init {
+    if (self = [super init]) {
+        _drawCalls = [NSMutableArray new];
+    }
+    
+    return self;
+}
+
+- (void)dealloc {
+    [_drawCalls release];
+    [super dealloc];
+}
+
+@end
