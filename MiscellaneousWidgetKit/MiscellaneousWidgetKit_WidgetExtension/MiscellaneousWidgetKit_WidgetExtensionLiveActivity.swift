@@ -5,6 +5,8 @@
 //  Created by Jinwoo Kim on 7/3/25.
 //
 
+#if os(iOS)
+
 import ActivityKit
 import WidgetKit
 import SwiftUI
@@ -78,3 +80,5 @@ extension MiscellaneousWidgetKit_WidgetExtensionAttributes.ContentState {
     MiscellaneousWidgetKit_WidgetExtensionAttributes.ContentState.smiley
     MiscellaneousWidgetKit_WidgetExtensionAttributes.ContentState.starEyes
 }
+
+#endif

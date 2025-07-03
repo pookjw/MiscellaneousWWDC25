@@ -10,38 +10,18 @@
 #import "MiscellaneousWidgetKit-Swift.h"
 #include <objc/message.h>
 #include <objc/runtime.h>
+#import "MyWidgetCenter.h"
 
 OBJC_EXTERN id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self class] }; */
 
 @interface ViewController ()
 @property (retain, nonatomic, readonly, getter=_menuButton) UIButton *menuButton;
-@property (retain, nonatomic, readonly, getter=_widgetCenterConnection) NSXPCConnection *widgetCenterConnection;
 @end
 
 @implementation ViewController
 @synthesize menuButton = _menuButton;
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        _widgetCenterConnection = reinterpret_cast<id (*)(id, SEL, id, NSXPCConnectionOptions)>(objc_msgSend)([NSXPCConnection alloc], sel_registerName("initWithMachServiceName:options:"), @"com.apple.chrono.widgetcenterconnection", 0);
-        _widgetCenterConnection.exportedInterface = [NSXPCInterface interfaceWithProtocol:NSProtocolFromString(@"WidgetKit.WidgetCenterConnection_Remote")];
-        
-        NSXPCInterface *remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:NSProtocolFromString(@"WidgetKit.WidgetCenterConnection_Host")];
-        [remoteObjectInterface setClasses:[NSSet setWithObjects:objc_lookUpClass("CHSWidget"), [NSArray class], nil] forSelector:sel_registerName("_loadCurrentConfigurations:") argumentIndex:0 ofReply:YES];
-        _widgetCenterConnection.remoteObjectInterface = remoteObjectInterface;
-        
-        _widgetCenterConnection.invalidationHandler = ^{
-            abort();
-        };
-        [_widgetCenterConnection activate];
-    }
-    
-    return self;
-}
-
 - (void)dealloc {
-    [_widgetCenterConnection invalidate];
-    [_widgetCenterConnection release];
     [_menuButton release];
     [super dealloc];
 }
@@ -78,7 +58,7 @@ OBJC_EXTERN id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
     __weak auto weakSelf = self;
     
     UIDeferredMenuElement *element = [UIDeferredMenuElement elementWithUncachedProvider:^(void (^ _Nonnull completion)(NSArray<UIMenuElement *> * _Nonnull)) {
-        reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(weakSelf.widgetCenterConnection.remoteObjectProxy, sel_registerName("_loadCurrentConfigurations:"), ^(NSArray *configurations, NSError * _Nullable error) {
+        [MyWidgetCenter.sharedInstance loadCurrentConfigurations:^(NSArray * _Nullable configurations, NSError * _Nullable error) {
             assert(error == nil);
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSMutableArray<__kindof UIMenuElement *> *results = [NSMutableArray new];
@@ -113,9 +93,9 @@ OBJC_EXTERN id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
                     {
                         UIAction *action = [UIAction actionWithTitle:@"_reloadAllTimelines:" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
                             WidgetCenter_reloadAllTimelines();
-                            reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(weakSelf.widgetCenterConnection.remoteObjectProxy, sel_registerName("_reloadAllTimelines:"), ^(NSError * _Nullable error) {
+                            [MyWidgetCenter.sharedInstance reloadAllTimelines:^(NSError * _Nullable error) {
                                 assert(error == nil);
-                            });
+                            }];
                             [weakSelf.menuButton he_presentMenu];
                         }];
                         [children addObject:action];
@@ -128,9 +108,9 @@ OBJC_EXTERN id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
                             for (id configuration in configurations) {
                                 NSString *kind = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(configuration, sel_registerName("kind"));
                                 UIAction *action = [UIAction actionWithTitle:kind image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
-                                    reinterpret_cast<void (*)(id, SEL, id, id)>(objc_msgSend)(weakSelf.widgetCenterConnection.remoteObjectProxy, sel_registerName("_reloadTimelinesOfKind:completion:"), kind, ^(NSError * _Nullable error) {
+                                    [MyWidgetCenter.sharedInstance reloadAllTimelinesOfKind:kind completion:^(NSError * _Nullable error) {
                                         assert(error == nil);
-                                    });
+                                    }];
                                 }];
                                 [elements addObject:action];
                             }
@@ -146,16 +126,9 @@ OBJC_EXTERN id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
                             for (id configuration in configurations) {
                                 NSString *kind = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(configuration, sel_registerName("kind"));
                                 UIAction *action = [UIAction actionWithTitle:kind image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
-                                    NSURL *url = [NSBundle.mainBundle.builtInPlugInsURL URLByAppendingPathComponent:@"MiscellaneousWidgetKit_WidgetExtensionExtension.appex" isDirectory:YES];
-                                    NSBundle *bundle = [NSBundle bundleWithURL:url];
-                                    assert(bundle != nil);
-                                    
-                                    NSLog(@"%@", url.path);
-                                    
-                                    reinterpret_cast<void (*)(id, SEL, id, id, id)>(objc_msgSend)(weakSelf.widgetCenterConnection.remoteObjectProxy, sel_registerName("_reloadTimelinesOfKind:inBundle:completion:"), kind, @"com.pookjw.MiscellaneousWidgetKit.WidgetExtension", ^(NSError * _Nullable error) {
-                                        NSLog(@"%@", error);
+                                    [MyWidgetCenter.sharedInstance reloadAllTimelinesOfKind:kind inBundle:@"com.pookjw.MiscellaneousWidgetKit.WidgetExtension" completion:^(NSError * _Nullable error) {
                                         assert(error == nil);
-                                    });
+                                    }];
                                 }];
                                 [elements addObject:action];
                             }
@@ -166,7 +139,17 @@ OBJC_EXTERN id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
                         }
                     }
                     
-                    UIMenu *menu = [UIMenu menuWithTitle: @"com.apple.chrono.widgetcenterconnection" children:children];
+                    {
+                        UIAction *action = [UIAction actionWithTitle:@"invalidateConfigurationRecommendationsInBundle" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+                            [MyWidgetCenter.sharedInstance invalidateConfigurationRecommendationsInBundle:@"com.pookjw.MiscellaneousWidgetKit.WidgetExtension" completion:^(NSError * _Nullable error) {
+                                assert(error == nil);
+                            }];
+                            [weakSelf.menuButton he_presentMenu];
+                        }];
+                        [children addObject:action];
+                    }
+                    
+                    UIMenu *menu = [UIMenu menuWithTitle: @"MyWidgetCenter" children:children];
                     [children release];
                     [results addObject:menu];
                 }
@@ -174,7 +157,7 @@ OBJC_EXTERN id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
                 completion(results);
                 [results release];
             });
-        });
+        }];
     }];
     
     return [UIMenu menuWithChildren:@[element]];

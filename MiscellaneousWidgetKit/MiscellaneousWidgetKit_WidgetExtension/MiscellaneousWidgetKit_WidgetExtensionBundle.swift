@@ -12,7 +12,10 @@ import SwiftUI
 struct MiscellaneousWidgetKit_WidgetExtensionBundle: WidgetBundle {
     var body: some Widget {
         MiscellaneousWidgetKit_WidgetExtension()
+        
+#if os(iOS)
         MiscellaneousWidgetKit_WidgetExtensionControl()
         MiscellaneousWidgetKit_WidgetExtensionLiveActivity()
+#endif
     }
 }
