@@ -29,6 +29,9 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
     dispatch_once(&onceToken, ^{
         Class _isa = objc_allocateClassPair(objc_lookUpClass("SPViewController"), "_GlassEffectViewController", 0);
         
+        IMP dealloc = class_getMethodImplementation(self, @selector(dealloc));
+        assert(class_addMethod(_isa, @selector(dealloc), dealloc, NULL));
+        
         IMP loadView = class_getMethodImplementation(self, @selector(loadView));
         assert(class_addMethod(_isa, @selector(loadView), loadView, NULL));
         

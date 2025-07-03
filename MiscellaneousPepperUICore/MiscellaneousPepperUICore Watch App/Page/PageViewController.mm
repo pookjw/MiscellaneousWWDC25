@@ -50,6 +50,13 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
         IMP collectionView_didSelectItemAtIndexPath = class_getMethodImplementation(self, @selector(collectionView:didSelectItemAtIndexPath:));
         assert(class_addMethod(_isa, @selector(collectionView:didSelectItemAtIndexPath:), collectionView_didSelectItemAtIndexPath, NULL));
         
+        IMP addPageViewControllerActivationButtonPressed_ = class_getMethodImplementation(self, @selector(addPageViewControllerActivationButtonPressed:));
+        assert(class_addMethod(_isa, @selector(addPageViewControllerActivationButtonPressed:), addPageViewControllerActivationButtonPressed_, NULL));
+        
+        if (Protocol *PUICAddPageViewControllerDelegate = NSProtocolFromString(@"PUICAddPageViewControllerDelegate")) {
+            assert(class_addProtocol(_isa, PUICAddPageViewControllerDelegate));
+        }
+        
         //
         
 //        assert(class_addProtocol(_isa, NSProtocolFromString(@"PUICStatusBarCubicContainerDataSource")));
@@ -126,15 +133,22 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
         
         //
         
+        id addPageViewController = [objc_lookUpClass("PUICAddPageViewController") new];
+        reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(addPageViewController, sel_registerName("setDelegate:"), self);
+        
+        //
+        
         reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(self, sel_registerName("setViewControllers:"), @[
             cyanViewController,
             pinkViewController,
-            yellowGreenViewController
+            yellowGreenViewController,
+            addPageViewController
         ]);
         
         [cyanViewController release];
         [pinkViewController release];
         [yellowGreenViewController release];
+        [addPageViewController release];
         
         //
         
@@ -228,6 +242,10 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
 
 - (void)collectionView:(id)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%@", indexPath);
+}
+
+- (void)addPageViewControllerActivationButtonPressed:(id)addPageViewController {
+    NSLog(@"%s", sel_getName(_cmd));
 }
 
 @end

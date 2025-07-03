@@ -45,6 +45,13 @@
 #import "CoreMLImageClassificationViewController.h"
 #import "MapViewController.h"
 #import "GlassEffectViewController.h"
+#import "WheelsOfTimeEditTimeViewController.h"
+#import "HighlightingViewController.h"
+#import "SwitcherViewController.h"
+#import "PlatterBackgroundViewController.h"
+#import "LinkViewController.h"
+#import "SideBySideButtonsViewController.h"
+#import "TimeInputViewController.h"
 
 /*
  PUICSideBySideButtonsView
@@ -57,6 +64,13 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
 
 + (NSArray<Class> *)classes {
     return @[
+        TimeInputViewController.class,
+        SideBySideButtonsViewController.class,
+        LinkViewController.class,
+        PlatterBackgroundViewController.class,
+        SwitcherViewController.class,
+        HighlightingViewController.class,
+        WheelsOfTimeEditTimeViewController.class,
         GlassEffectViewController.class,
         MapViewController.class,
         CoreMLImageClassificationViewController.class,
@@ -167,8 +181,8 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
     
     //
     
-    id viewController = [[ClassListViewController classes][0] new];
-//    id viewController = [MenuPresenterViewController new];
+//    id viewController = [[ClassListViewController classes][0] new];
+    id viewController = [TimeOffsetInputViewController new];
     id navigationController = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(self, sel_registerName("navigationController"));
     reinterpret_cast<void (*)(id, SEL, id, BOOL)>(objc_msgSend)(navigationController, sel_registerName("pushViewController:animated:"), viewController, YES);
     [viewController release];
