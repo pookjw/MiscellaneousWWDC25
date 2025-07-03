@@ -27,6 +27,8 @@
 @property (retain, nonatomic, nullable, getter=_thread, setter=_setThread:) NSThread *thread;
 @property (retain, nonatomic, nullable, getter=_skybox, setter=_setSkybox:) id<MTLTexture> skybox;
 @property (retain, nonatomic, nullable, getter=_skyboxPipeline, setter=_setSkyboxPipeline:) id<MTLRenderPipelineState> skyboxPipeline;
+
+@property (retain, nonatomic, readonly, getter=_textures) NSMutableArray<id<MTLTexture>> *textures;
 @end
 
 @implementation Renderer
@@ -93,6 +95,7 @@
         [allocator release];
         
         _textureLoader = [[MTKTextureLoader alloc] initWithDevice:device];
+        _textures = [NSMutableArray new];
     }
     
     return self;
@@ -112,6 +115,8 @@
     [_textureLoader release];
     [_skybox release];
     [_skyboxPipeline release];
+    [_textures release];
+    
     [super dealloc];
 }
 
@@ -187,14 +192,19 @@
                 continue;
             }
             
-            NSMutableArray<DrawCallMaterial *> *materials = [[NSMutableArray alloc] initWithCapacity:submeshes.count];
+            NSMutableArray<DrawCallMaterial *> *materials = [NSMutableArray new];
             for (MDLSubmesh *submesh in submeshes) {
                 MDLMaterialProperty *color = [submesh.material propertyNamed:@"emissiveColor"];
                 if (color == nil) {
                     DrawCallMaterial *material = [[DrawCallMaterial alloc] initWithTexture:nil color:std::nullopt];
                     [materials addObject:material];
                     [material release];
+                    continue;
                 }
+                
+                NSURL *URLValue = color.URLValue;
+                if (URLValue == nil) continue;
+                
                 
                 abort();
             }
