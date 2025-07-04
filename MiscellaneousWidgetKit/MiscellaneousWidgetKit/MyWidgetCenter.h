@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)invalidateRelevancesOfKind:(NSString *)kind completionHandler:(void (^ _Nullable)(NSError * _Nullable error))completionHandler; // not working
 - (void)invalidateRelevancesOfKind:(NSString *)kind inBundle:(NSString *)bundle completionHandler:(void (^ _Nullable)(NSError * _Nullable error))completionHandler; // not working
 - (void)widgetPushTokenWithCompletionHandler:(void (^ _Nullable)(NSData * _Nullable pushInfo, NSError * _Nullable error))completionHandler;
-- (void)widgetRelevanceArchiveForKind:(NSString *)kind inBundle:(NSString *)bundle handler:(void (^)(NSError * _Nullable error, NSFileHandle * _Nullable handle))handler;
+- (void)widgetRelevanceArchiveForKind:(NSString *)kind inBundle:(NSString *)bundle handler:(void (^)(NSError * _Nullable error, NSFileHandle * _Nullable handle))handler; // not working
 @end
 
 NS_ASSUME_NONNULL_END

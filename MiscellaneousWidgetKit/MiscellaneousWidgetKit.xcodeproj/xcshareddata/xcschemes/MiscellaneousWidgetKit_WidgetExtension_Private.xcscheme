@@ -16,23 +16,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4F9EEAB22E16941700602285"
-               BuildableName = "MiscellaneousWidgetKit_WidgetExtension.appex"
-               BlueprintName = "MiscellaneousWidgetKit_WidgetExtension"
-               ReferencedContainer = "container:MiscellaneousWidgetKit.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4F9EEA1D2E1672AB00602285"
-               BuildableName = "MiscellaneousWidgetKit.app"
-               BlueprintName = "MiscellaneousWidgetKit"
+               BlueprintIdentifier = "4F60E87A2E1803BA00C896BB"
+               BuildableName = "MiscellaneousWidgetKit_WidgetExtension_Private.appex"
+               BlueprintName = "MiscellaneousWidgetKit_WidgetExtension_Private"
                ReferencedContainer = "container:MiscellaneousWidgetKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -62,21 +48,12 @@
          BundleIdentifier = "com.apple.springboard">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4F9EEAB22E16941700602285"
-            BuildableName = "MiscellaneousWidgetKit_WidgetExtension.appex"
-            BlueprintName = "MiscellaneousWidgetKit_WidgetExtension"
+            BlueprintIdentifier = "4F60E87A2E1803BA00C896BB"
+            BuildableName = "MiscellaneousWidgetKit_WidgetExtension_Private.appex"
+            BlueprintName = "MiscellaneousWidgetKit_WidgetExtension_Private"
             ReferencedContainer = "container:MiscellaneousWidgetKit.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4F9EEA1D2E1672AB00602285"
-            BuildableName = "MiscellaneousWidgetKit.app"
-            BlueprintName = "MiscellaneousWidgetKit"
-            ReferencedContainer = "container:MiscellaneousWidgetKit.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "_XCWidgetKind"
@@ -93,16 +70,6 @@
             value = "systemMedium"
             isEnabled = "YES">
          </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "_XCWidgetKind"
-            value = ""
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "_XCWidgetKind"
-            value = "MiscellaneousWidgetKit_WidgetExtension"
-            isEnabled = "YES">
-         </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
@@ -113,16 +80,15 @@
       debugDocumentVersioning = "YES"
       askForAppToLaunch = "Yes"
       launchAutomaticallySubstyle = "2">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4F9EEA1D2E1672AB00602285"
-            BuildableName = "MiscellaneousWidgetKit.app"
-            BlueprintName = "MiscellaneousWidgetKit"
+            BlueprintIdentifier = "4F60E87A2E1803BA00C896BB"
+            BuildableName = "MiscellaneousWidgetKit_WidgetExtension_Private.appex"
+            BlueprintName = "MiscellaneousWidgetKit_WidgetExtension_Private"
             ReferencedContainer = "container:MiscellaneousWidgetKit.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -30,7 +30,7 @@
 		4F84B5742DFC10E700753B04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		4F84B5762DFC10EE00753B04 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = DEVELOPER_DIR; };
 		4FB978702E00701400DF2EFA /* Symbols.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Symbols.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/Library/Frameworks/Symbols.framework; sourceTree = DEVELOPER_DIR; };
-		4FE31EF42E13CEED00C5F614 /* MiscellaneousUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FE31EF42E13CEED00C5F614 /* MiscellaneousUIKit_Private.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousUIKit_Private.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FEB49B32E03F15A0052CBBB /* SwiftUIPrivate.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SwiftUIPrivate.xcframework; sourceTree = "<group>"; };
 		4FFCE2862DF775F900B23138 /* MiscellaneousUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -40,78 +40,8 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"/Localized: LaunchScreen.storyboard",
-				AppDelegate.mm,
 				Assets.xcassets,
-				AssistiveAccessSceneDelegate.m,
-				Classes/ActionSheetViewController.mm,
-				Classes/BackgroundExtensionViewController.mm,
-				Classes/BarButtonItemBadgeViewController.mm,
-				Classes/BarButtonZoomTransitionViewController.mm,
-				Classes/ButtonViewController.mm,
-				Classes/ColorExposureViewController.mm,
-				Classes/ColorLinearExposureViewController.mm,
-				Classes/ColorPickerPresenterViewController.mm,
-				Classes/ColorWellViewController.mm,
-				Classes/CornerMaskingViewController.swift,
-				Classes/DeferredMenuElementViewController.mm,
-				Classes/FlexInteractionViewController.mm,
-				Classes/FlushUpdatesViewController.mm,
-				Classes/GlassEffectViewController.mm,
-				Classes/HDRHeadroomUsageViewController.mm,
-				Classes/InteractiveGlassEffectViewController.mm,
-				Classes/InterfaceOrientationsViewController.mm,
-				Classes/KeyCommandsViewController.mm,
-				Classes/LiquidLensViewController.mm,
-				Classes/ListViewController.mm,
-				Classes/LookToScrollAxesViewController.mm,
-				Classes/MainMenuSystemViewController.mm,
-				Classes/MRUINotificationsViewController.mm,
-				Classes/NaturalSelectionViewController.mm,
-				Classes/NavigationItemViewController.mm,
-				Classes/ObservationDemoContentConfigurationViewController.swift,
-				Classes/ObservationDemoViewController.swift,
-				Classes/PlacementsRecenterViewController.mm,
-				Classes/PopoverViewController.mm,
-				Classes/PropertiesViewController.mm,
-				Classes/RequestHostingSceneObjCViewController.mm,
-				Classes/RequestHostingSceneViewController.swift,
-				Classes/ScrollEdgeElementContainerInteractionViewController.mm,
-				Classes/ScrollPocketViewController.mm,
-				Classes/SearchBarPlacementViewController.mm,
-				Classes/ShortcutHUDServiceViewController.mm,
-				Classes/SliderViewController.mm,
-				Classes/SplitContentViewController.mm,
-				Classes/SplitLayoutEnvironmentViewController.mm,
-				Classes/SwipeActionsViewController.mm,
-				Classes/SymbolColorRenderingViewController.mm,
-				Classes/SymbolContentTransitionViewController.mm,
-				Classes/SymbolDrawEffectViewController.mm,
-				Classes/TabViewController.mm,
-				Classes/ToolbarViewController.mm,
-				Classes/WindowControlViewController.mm,
-				Classes/WolfScrollEventView.mm,
-				Classes/WolfScrollEventViewController.mm,
-				HomeViewController.mm,
-				HostingSceneDelegate.swift,
 				Info.plist,
-				KeyValueObserver.m,
-				main.mm,
-				"NSObject+Foundation_IvarDescription.mm",
-				SceneDelegate.m,
-				"UIHDRHeadroomUsageLimit+String.m",
-				"UIImageSymbolColorRenderingMode+String.m",
-				"UIInterfaceOrientationMask+String.m",
-				"UIMenuSystemElementGroupPreference+String.m",
-				"UIMenuSystemFindElementGroupConfigurationStyle+String.m",
-				"UINavigationItemSearchBarPlacement+String.m",
-				"UISliderStyle+String.m",
-				"UISplitViewControllerColumn+String.m",
-				"UISplitViewControllerLayoutEnvironment+String.m",
-				"UITabBarMinimizeBehavior+String.m",
-				"UIUserInterfaceStyle+String.m",
-				"UIView+Swizzle.mm",
-				"UIViewController+Menu.mm",
-				WindowObservingInteraction.m,
 			);
 			target = 4FE31EE62E13CEED00C5F614 /* MiscellaneousUIKit_Private */;
 		};
@@ -195,7 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				4FFCE2862DF775F900B23138 /* MiscellaneousUIKit.app */,
-				4FE31EF42E13CEED00C5F614 /* MiscellaneousUIKit.app */,
+				4FE31EF42E13CEED00C5F614 /* MiscellaneousUIKit_Private.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,7 +152,7 @@
 			packageProductDependencies = (
 			);
 			productName = MiscellaneousUIKit;
-			productReference = 4FE31EF42E13CEED00C5F614 /* MiscellaneousUIKit.app */;
+			productReference = 4FE31EF42E13CEED00C5F614 /* MiscellaneousUIKit_Private.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4FFCE2852DF775F900B23138 /* MiscellaneousUIKit */ = {
@@ -342,12 +272,13 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apple.MiscellaneousUIKit;
-				PRODUCT_NAME = MiscellaneousUIKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "MiscellaneousUIKit/MiscellaneousUIKit-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "MiscellaneousUIKit-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
@@ -375,12 +306,13 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apple.MiscellaneousUIKit;
-				PRODUCT_NAME = MiscellaneousUIKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "MiscellaneousUIKit/MiscellaneousUIKit-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "MiscellaneousUIKit-Swift.h";
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
