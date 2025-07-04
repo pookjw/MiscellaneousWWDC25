@@ -17,8 +17,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4F9EEAB22E16941700602285"
-               BuildableName = "MiscellaneousWidgetKit_WidgetExtensionExtension.appex"
-               BlueprintName = "MiscellaneousWidgetKit_WidgetExtensionExtension"
+               BuildableName = "MiscellaneousWidgetKit_WidgetExtension.appex"
+               BlueprintName = "MiscellaneousWidgetKit_WidgetExtension"
                ReferencedContainer = "container:MiscellaneousWidgetKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -63,8 +63,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4F9EEAB22E16941700602285"
-            BuildableName = "MiscellaneousWidgetKit_WidgetExtensionExtension.appex"
-            BlueprintName = "MiscellaneousWidgetKit_WidgetExtensionExtension"
+            BuildableName = "MiscellaneousWidgetKit_WidgetExtension.appex"
+            BlueprintName = "MiscellaneousWidgetKit_WidgetExtension"
             ReferencedContainer = "container:MiscellaneousWidgetKit.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>

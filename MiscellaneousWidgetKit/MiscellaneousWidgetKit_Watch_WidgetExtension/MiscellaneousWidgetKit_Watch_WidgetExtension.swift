@@ -1,29 +1,25 @@
 //
-//  MiscellaneousWidgetKit_WidgetExtension.swift
-//  MiscellaneousWidgetKit_WidgetExtension
+//  MiscellaneousWidgetKit_Watch_WidgetExtension.swift
+//  MiscellaneousWidgetKit_Watch_WidgetExtension
 //
-//  Created by Jinwoo Kim on 7/3/25.
+//  Created by Jinwoo Kim on 7/4/25.
 //
 
 import WidgetKit
 import SwiftUI
 
 struct Provider: AppIntentTimelineProvider {
-    func recommendations() -> [AppIntentRecommendation<ConfigurationAppIntent>] {
-        []
-    }
-    
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
     }
-    
+
     func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
         SimpleEntry(date: Date(), configuration: configuration)
     }
     
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
         var entries: [SimpleEntry] = []
-        
+
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
@@ -31,9 +27,18 @@ struct Provider: AppIntentTimelineProvider {
             let entry = SimpleEntry(date: entryDate, configuration: configuration)
             entries.append(entry)
         }
-        
+
         return Timeline(entries: entries, policy: .atEnd)
     }
+
+    func recommendations() -> [AppIntentRecommendation<ConfigurationAppIntent>] {
+        // Create an array with all the preconfigured widgets to show.
+        [AppIntentRecommendation(intent: ConfigurationAppIntent(), description: "Example Widget")]
+    }
+
+//    func relevances() async -> WidgetRelevances<ConfigurationAppIntent> {
+//        // Generate a list containing the contexts this widget is relevant in.
+//    }
 }
 
 struct SimpleEntry: TimelineEntry {
@@ -41,26 +46,28 @@ struct SimpleEntry: TimelineEntry {
     let configuration: ConfigurationAppIntent
 }
 
-struct MiscellaneousWidgetKit_WidgetExtensionEntryView : View {
+struct MiscellaneousWidgetKit_Watch_WidgetExtensionEntryView : View {
     var entry: Provider.Entry
-    
+
     var body: some View {
         VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-            
+            HStack {
+                Text("Time:")
+                Text(entry.date, style: .time)
+            }
+        
             Text("Favorite Emoji:")
             Text(entry.configuration.favoriteEmoji)
         }
     }
 }
 
-struct MiscellaneousWidgetKit_WidgetExtension: Widget {
-    let kind: String = "MiscellaneousWidgetKit_WidgetExtension"
-    
+struct MiscellaneousWidgetKit_Watch_WidgetExtension: Widget {
+    let kind: String = "MiscellaneousWidgetKit_Watch_WidgetExtension"
+
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
-            MiscellaneousWidgetKit_WidgetExtensionEntryView(entry: entry)
+            MiscellaneousWidgetKit_Watch_WidgetExtensionEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
     }
@@ -79,3 +86,10 @@ extension ConfigurationAppIntent {
         return intent
     }
 }
+
+#Preview(as: .accessoryRectangular) {
+    MiscellaneousWidgetKit_Watch_WidgetExtension()
+} timeline: {
+    SimpleEntry(date: .now, configuration: .smiley)
+    SimpleEntry(date: .now, configuration: .starEyes)
+}    

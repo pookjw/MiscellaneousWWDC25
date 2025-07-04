@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		4F9EEAB62E16941800602285 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9EEAB52E16941700602285 /* WidgetKit.framework */; };
 		4F9EEAB82E16941800602285 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9EEAB72E16941800602285 /* SwiftUI.framework */; };
-		4F9EEACA2E16941800602285 /* MiscellaneousWidgetKit_WidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4F9EEAB32E16941700602285 /* MiscellaneousWidgetKit_WidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4F9EEACA2E16941800602285 /* MiscellaneousWidgetKit_WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4F9EEAB32E16941700602285 /* MiscellaneousWidgetKit_WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4FE651A02E176E39009A3DCF /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9EEAB52E16941700602285 /* WidgetKit.framework */; };
+		4FE651A12E176E39009A3DCF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9EEAB72E16941800602285 /* SwiftUI.framework */; };
+		4FE651B02E176E3A009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4FE6519F2E176E39009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4FF0E7D02E16E5580015B206 /* MiscellaneousWidgetKit_Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4FF0E7C62E16E5580015B206 /* MiscellaneousWidgetKit_Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		4FF0E7DA2E16E7BF0015B206 /* MiscellaneousWidgetKit_WidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4F9EEAB32E16941700602285 /* MiscellaneousWidgetKit_WidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,19 +24,19 @@
 			remoteGlobalIDString = 4F9EEAB22E16941700602285;
 			remoteInfo = MiscellaneousWidgetKit_WidgetExtensionExtension;
 		};
+		4FE651AE2E176E3A009A3DCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F9EEA162E1672AB00602285 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FE6519E2E176E39009A3DCF;
+			remoteInfo = MiscellaneousWidgetKit_Watch_WidgetExtensionExtension;
+		};
 		4FF0E7CE2E16E5580015B206 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4F9EEA162E1672AB00602285 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4FF0E7C52E16E5580015B206;
 			remoteInfo = "MiscellaneousWidgetKit Watch Watch App";
-		};
-		4FF0E7DB2E16E7BF0015B206 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4F9EEA162E1672AB00602285 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4F9EEAB22E16941700602285;
-			remoteInfo = MiscellaneousWidgetKit_WidgetExtensionExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -45,7 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				4F9EEACA2E16941800602285 /* MiscellaneousWidgetKit_WidgetExtensionExtension.appex in Embed Foundation Extensions */,
+				4F9EEACA2E16941800602285 /* MiscellaneousWidgetKit_WidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,7 +69,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				4FF0E7DA2E16E7BF0015B206 /* MiscellaneousWidgetKit_WidgetExtensionExtension.appex in Embed Foundation Extensions */,
+				4FE651B02E176E3A009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,9 +78,10 @@
 
 /* Begin PBXFileReference section */
 		4F9EEA1E2E1672AB00602285 /* MiscellaneousWidgetKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousWidgetKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F9EEAB32E16941700602285 /* MiscellaneousWidgetKit_WidgetExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MiscellaneousWidgetKit_WidgetExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F9EEAB32E16941700602285 /* MiscellaneousWidgetKit_WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MiscellaneousWidgetKit_WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9EEAB52E16941700602285 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		4F9EEAB72E16941800602285 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		4FE6519F2E176E39009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MiscellaneousWidgetKit_Watch_WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF0E7C62E16E5580015B206 /* MiscellaneousWidgetKit_Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousWidgetKit_Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -93,14 +96,21 @@
 			};
 			target = 4F9EEA1D2E1672AB00602285 /* MiscellaneousWidgetKit */;
 		};
-		4F9EEACE2E16941800602285 /* Exceptions for "MiscellaneousWidgetKit_WidgetExtension" folder in "MiscellaneousWidgetKit_WidgetExtensionExtension" target */ = {
+		4F9EEACE2E16941800602285 /* Exceptions for "MiscellaneousWidgetKit_WidgetExtension" folder in "MiscellaneousWidgetKit_WidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 4F9EEAB22E16941700602285 /* MiscellaneousWidgetKit_WidgetExtensionExtension */;
+			target = 4F9EEAB22E16941700602285 /* MiscellaneousWidgetKit_WidgetExtension */;
 		};
-		4FF0E7DE2E16E88F0015B206 /* Exceptions for "MiscellaneousWidgetKit" folder in "MiscellaneousWidgetKit_Watch" target */ = {
+		4FE651B42E176E3A009A3DCF /* Exceptions for "MiscellaneousWidgetKit_Watch_WidgetExtension" folder in "MiscellaneousWidgetKit_Watch_WidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 4FE6519E2E176E39009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension */;
+		};
+		4FE651C02E176F6B009A3DCF /* Exceptions for "MiscellaneousWidgetKit" folder in "MiscellaneousWidgetKit_Watch" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				MyWidgetCenter.mm,
@@ -114,7 +124,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				4F9EEA352E1672AC00602285 /* Exceptions for "MiscellaneousWidgetKit" folder in "MiscellaneousWidgetKit" target */,
-				4FF0E7DE2E16E88F0015B206 /* Exceptions for "MiscellaneousWidgetKit" folder in "MiscellaneousWidgetKit_Watch" target */,
+				4FE651C02E176F6B009A3DCF /* Exceptions for "MiscellaneousWidgetKit" folder in "MiscellaneousWidgetKit_Watch" target */,
 			);
 			path = MiscellaneousWidgetKit;
 			sourceTree = "<group>";
@@ -122,9 +132,17 @@
 		4F9EEAB92E16941800602285 /* MiscellaneousWidgetKit_WidgetExtension */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				4F9EEACE2E16941800602285 /* Exceptions for "MiscellaneousWidgetKit_WidgetExtension" folder in "MiscellaneousWidgetKit_WidgetExtensionExtension" target */,
+				4F9EEACE2E16941800602285 /* Exceptions for "MiscellaneousWidgetKit_WidgetExtension" folder in "MiscellaneousWidgetKit_WidgetExtension" target */,
 			);
 			path = MiscellaneousWidgetKit_WidgetExtension;
+			sourceTree = "<group>";
+		};
+		4FE651A22E176E39009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4FE651B42E176E3A009A3DCF /* Exceptions for "MiscellaneousWidgetKit_Watch_WidgetExtension" folder in "MiscellaneousWidgetKit_Watch_WidgetExtension" target */,
+			);
+			path = MiscellaneousWidgetKit_Watch_WidgetExtension;
 			sourceTree = "<group>";
 		};
 		4FF0E7C72E16E5580015B206 /* MiscellaneousWidgetKit_Watch */ = {
@@ -151,6 +169,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FE6519C2E176E39009A3DCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FE651A12E176E39009A3DCF /* SwiftUI.framework in Frameworks */,
+				4FE651A02E176E39009A3DCF /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FF0E7C32E16E5580015B206 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,6 +194,7 @@
 				4F9EEA202E1672AB00602285 /* MiscellaneousWidgetKit */,
 				4F9EEAB92E16941800602285 /* MiscellaneousWidgetKit_WidgetExtension */,
 				4FF0E7C72E16E5580015B206 /* MiscellaneousWidgetKit_Watch */,
+				4FE651A22E176E39009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension */,
 				4F9EEAB42E16941700602285 /* Frameworks */,
 				4F9EEA1F2E1672AB00602285 /* Products */,
 			);
@@ -176,8 +204,9 @@
 			isa = PBXGroup;
 			children = (
 				4F9EEA1E2E1672AB00602285 /* MiscellaneousWidgetKit.app */,
-				4F9EEAB32E16941700602285 /* MiscellaneousWidgetKit_WidgetExtensionExtension.appex */,
+				4F9EEAB32E16941700602285 /* MiscellaneousWidgetKit_WidgetExtension.appex */,
 				4FF0E7C62E16E5580015B206 /* MiscellaneousWidgetKit_Watch.app */,
+				4FE6519F2E176E39009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,9 +249,9 @@
 			productReference = 4F9EEA1E2E1672AB00602285 /* MiscellaneousWidgetKit.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4F9EEAB22E16941700602285 /* MiscellaneousWidgetKit_WidgetExtensionExtension */ = {
+		4F9EEAB22E16941700602285 /* MiscellaneousWidgetKit_WidgetExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F9EEACB2E16941800602285 /* Build configuration list for PBXNativeTarget "MiscellaneousWidgetKit_WidgetExtensionExtension" */;
+			buildConfigurationList = 4F9EEACB2E16941800602285 /* Build configuration list for PBXNativeTarget "MiscellaneousWidgetKit_WidgetExtension" */;
 			buildPhases = (
 				4F9EEAAF2E16941700602285 /* Sources */,
 				4F9EEAB02E16941700602285 /* Frameworks */,
@@ -235,11 +264,33 @@
 			fileSystemSynchronizedGroups = (
 				4F9EEAB92E16941800602285 /* MiscellaneousWidgetKit_WidgetExtension */,
 			);
-			name = MiscellaneousWidgetKit_WidgetExtensionExtension;
+			name = MiscellaneousWidgetKit_WidgetExtension;
 			packageProductDependencies = (
 			);
 			productName = MiscellaneousWidgetKit_WidgetExtensionExtension;
-			productReference = 4F9EEAB32E16941700602285 /* MiscellaneousWidgetKit_WidgetExtensionExtension.appex */;
+			productReference = 4F9EEAB32E16941700602285 /* MiscellaneousWidgetKit_WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		4FE6519E2E176E39009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FE651B12E176E3A009A3DCF /* Build configuration list for PBXNativeTarget "MiscellaneousWidgetKit_Watch_WidgetExtension" */;
+			buildPhases = (
+				4FE6519B2E176E39009A3DCF /* Sources */,
+				4FE6519C2E176E39009A3DCF /* Frameworks */,
+				4FE6519D2E176E39009A3DCF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4FE651A22E176E39009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension */,
+			);
+			name = MiscellaneousWidgetKit_Watch_WidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = MiscellaneousWidgetKit_Watch_WidgetExtensionExtension;
+			productReference = 4FE6519F2E176E39009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		4FF0E7C52E16E5580015B206 /* MiscellaneousWidgetKit_Watch */ = {
@@ -254,7 +305,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4FF0E7DC2E16E7BF0015B206 /* PBXTargetDependency */,
+				4FE651AF2E176E3A009A3DCF /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				4FF0E7C72E16E5580015B206 /* MiscellaneousWidgetKit_Watch */,
@@ -283,8 +334,12 @@
 					4F9EEAB22E16941700602285 = {
 						CreatedOnToolsVersion = 26.0;
 					};
+					4FE6519E2E176E39009A3DCF = {
+						CreatedOnToolsVersion = 26.0;
+					};
 					4FF0E7C52E16E5580015B206 = {
 						CreatedOnToolsVersion = 26.0;
+						LastSwiftMigration = 2600;
 					};
 				};
 			};
@@ -303,8 +358,9 @@
 			projectRoot = "";
 			targets = (
 				4F9EEA1D2E1672AB00602285 /* MiscellaneousWidgetKit */,
-				4F9EEAB22E16941700602285 /* MiscellaneousWidgetKit_WidgetExtensionExtension */,
+				4F9EEAB22E16941700602285 /* MiscellaneousWidgetKit_WidgetExtension */,
 				4FF0E7C52E16E5580015B206 /* MiscellaneousWidgetKit_Watch */,
+				4FE6519E2E176E39009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -318,6 +374,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4F9EEAB12E16941700602285 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FE6519D2E176E39009A3DCF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -348,6 +411,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FE6519B2E176E39009A3DCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FF0E7C22E16E5580015B206 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -360,18 +430,18 @@
 /* Begin PBXTargetDependency section */
 		4F9EEAC82E16941800602285 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4F9EEAB22E16941700602285 /* MiscellaneousWidgetKit_WidgetExtensionExtension */;
+			target = 4F9EEAB22E16941700602285 /* MiscellaneousWidgetKit_WidgetExtension */;
 			targetProxy = 4F9EEAC72E16941800602285 /* PBXContainerItemProxy */;
+		};
+		4FE651AF2E176E3A009A3DCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4FE6519E2E176E39009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension */;
+			targetProxy = 4FE651AE2E176E3A009A3DCF /* PBXContainerItemProxy */;
 		};
 		4FF0E7CF2E16E5580015B206 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4FF0E7C52E16E5580015B206 /* MiscellaneousWidgetKit_Watch */;
 			targetProxy = 4FF0E7CE2E16E5580015B206 /* PBXContainerItemProxy */;
-		};
-		4FF0E7DC2E16E7BF0015B206 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4F9EEAB22E16941700602285 /* MiscellaneousWidgetKit_WidgetExtensionExtension */;
-			targetProxy = 4FF0E7DB2E16E7BF0015B206 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -578,18 +648,17 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.MiscellaneousWidgetKit.WidgetExtension;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watch*]" = com.pookjw.MiscellaneousWidgetKit.watchkitapp.WidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator watchos watchsimulator xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2,4,7";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Debug;
 		};
@@ -612,17 +681,83 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.MiscellaneousWidgetKit.WidgetExtension;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watch*]" = com.pookjw.MiscellaneousWidgetKit.watchkitapp.WidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator watchos watchsimulator xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2,4,7";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
+		4FE651B22E176E3A009A3DCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MiscellaneousWidgetKit_Watch_WidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MiscellaneousWidgetKit_Watch_WidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.MiscellaneousWidgetKit.watchkitapp.WidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		4FE651B32E176E3A009A3DCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MiscellaneousWidgetKit_Watch_WidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MiscellaneousWidgetKit_Watch_WidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.MiscellaneousWidgetKit.watchkitapp.WidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
 		};
@@ -631,6 +766,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P53D29U9LJ;
@@ -652,6 +788,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MiscellaneousWidgetKit_Watch/MiscellaneousWidgetKit_Watch-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
@@ -665,6 +802,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P53D29U9LJ;
@@ -686,6 +824,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MiscellaneousWidgetKit_Watch/MiscellaneousWidgetKit_Watch-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -714,11 +853,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F9EEACB2E16941800602285 /* Build configuration list for PBXNativeTarget "MiscellaneousWidgetKit_WidgetExtensionExtension" */ = {
+		4F9EEACB2E16941800602285 /* Build configuration list for PBXNativeTarget "MiscellaneousWidgetKit_WidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F9EEACC2E16941800602285 /* Debug */,
 				4F9EEACD2E16941800602285 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FE651B12E176E3A009A3DCF /* Build configuration list for PBXNativeTarget "MiscellaneousWidgetKit_Watch_WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FE651B22E176E3A009A3DCF /* Debug */,
+				4FE651B32E176E3A009A3DCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

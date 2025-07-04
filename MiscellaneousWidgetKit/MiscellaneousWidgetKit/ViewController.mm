@@ -149,6 +149,24 @@ OBJC_EXTERN id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
                         [children addObject:action];
                     }
                     
+                    {
+                        UIAction *action = [UIAction actionWithTitle:@"widgetPushTokenWithCompletionHandler" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+                            [MyWidgetCenter.sharedInstance widgetPushTokenWithCompletionHandler:^(NSData * _Nullable pushInfo, NSError * _Nullable error) {
+                                assert(error == nil);
+                            }];
+                        }];
+                        [children addObject:action];
+                    }
+                    
+                    {
+                        UIAction *action = [UIAction actionWithTitle:@"widgetRelevanceArchiveForKind" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+                            [MyWidgetCenter.sharedInstance widgetRelevanceArchiveForKind:@"MiscellaneousWidgetKit_WidgetExtension" inBundle:@"com.pookjw.MiscellaneousWidgetKit.WidgetExtension" handler:^(id _Nullable archive, NSError * _Nullable error) {
+                                assert(error == nil);
+                            }];
+                        }];
+                        [children addObject:action];
+                    }
+                    
                     UIMenu *menu = [UIMenu menuWithTitle: @"MyWidgetCenter" children:children];
                     [children release];
                     [results addObject:menu];

@@ -33,6 +33,7 @@
         
         NSXPCInterface *remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:NSProtocolFromString(@"WidgetKit.WidgetCenterConnection_Host")];
         [remoteObjectInterface setClasses:[NSSet setWithObjects:objc_lookUpClass("CHSWidget"), [NSArray class], nil] forSelector:sel_registerName("_loadCurrentConfigurations:") argumentIndex:0 ofReply:YES];
+        [remoteObjectInterface setClasses:[NSSet setWithObjects:[NSString class], objc_lookUpClass("BSAuditToken"), [NSError class], nil] forSelector:sel_registerName("widgetRelevanceArchiveForKind:inBundle:handler:") argumentIndex:2 ofReply:YES];
         _widgetCenterConnection.remoteObjectInterface = remoteObjectInterface;
         
         _widgetCenterConnection.invalidationHandler = ^{
@@ -86,6 +87,46 @@
     reinterpret_cast<void (*)(id, SEL, id, id)>(objc_msgSend)(self.widgetCenterConnection.remoteObjectProxy, sel_registerName("invalidateConfigurationRecommendationsInBundle:completion:"), bundle, ^(NSError * _Nullable error) {
         if (completion != nil) {
             completion(error);
+        }
+    });
+}
+
+- (void)invalidateConfigurationRecommendationsWithCompletion:(void (^)(NSError * _Nullable))completion {
+    reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(self.widgetCenterConnection.remoteObjectProxy, sel_registerName("invalidateConfigurationRecommendationsWithCompletion:"), ^(NSError * _Nullable error) {
+        if (completion != nil) {
+            completion(error);
+        }
+    });
+}
+
+- (void)invalidateRelevancesOfKind:(NSString *)kind completionHandler:(void (^)(NSError * _Nullable))completionHandler {
+    reinterpret_cast<void (*)(id, SEL, id, id)>(objc_msgSend)(self.widgetCenterConnection.remoteObjectProxy, sel_registerName("invalidateRelevancesOfKind:completionHandler:"), kind, ^(NSError * _Nullable error) {
+        if (completionHandler != nil) {
+            completionHandler(error);
+        }
+    });
+}
+
+- (void)invalidateRelevancesOfKind:(NSString *)kind inBundle:(NSString *)bundle completionHandler:(void (^)(NSError * _Nullable))completionHandler {
+    reinterpret_cast<void (*)(id, SEL, id, id, id)>(objc_msgSend)(self.widgetCenterConnection.remoteObjectProxy, sel_registerName("invalidateRelevancesOfKind:inBundle:completionHandler:"), kind, bundle, ^(NSError * _Nullable error) {
+        if (completionHandler != nil) {
+            completionHandler(error);
+        }
+    });
+}
+
+- (void)widgetPushTokenWithCompletionHandler:(void (^)(NSData * _Nullable, NSError * _Nullable))completionHandler {
+    reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(self.widgetCenterConnection.remoteObjectProxy, sel_registerName("widgetPushTokenWithCompletionHandler:"), ^(NSData * _Nullable pushInfo, NSError * _Nullable error) {
+        if (completionHandler != nil) {
+            completionHandler(pushInfo, error);
+        }
+    });
+}
+
+- (void)widgetRelevanceArchiveForKind:(NSString *)kind inBundle:(NSString *)bundle handler:(void (^)(NSData * _Nullable archive,NSError * _Nullable))handler {
+    reinterpret_cast<void (*)(id, SEL, id, id, id)>(objc_msgSend)(self.widgetCenterConnection.remoteObjectProxy, sel_registerName("widgetRelevanceArchiveForKind:inBundle:handler:"), kind, bundle, ^(NSString * _Nullable, id token, NSError * _Nullable error) {
+        if (handler != nil) {
+            handler(nil, error);
         }
     });
 }
