@@ -7,10 +7,17 @@
 
 import WidgetKit
 import SwiftUI
+import RelevanceKit
 
 struct Provider: AppIntentTimelineProvider {
     func recommendations() -> [AppIntentRecommendation<ConfigurationAppIntent>] {
         []
+    }
+    
+    func relevance() async -> WidgetRelevance<ConfigurationAppIntent> {
+        WidgetRelevance([
+            .init(configuration: .smiley, context: .date(.now))
+        ])
     }
     
     func placeholder(in context: Context) -> SimpleEntry {

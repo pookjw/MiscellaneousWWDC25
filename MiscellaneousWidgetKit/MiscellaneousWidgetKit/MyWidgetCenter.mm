@@ -33,7 +33,6 @@
         
         NSXPCInterface *remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:NSProtocolFromString(@"WidgetKit.WidgetCenterConnection_Host")];
         [remoteObjectInterface setClasses:[NSSet setWithObjects:objc_lookUpClass("CHSWidget"), [NSArray class], nil] forSelector:sel_registerName("_loadCurrentConfigurations:") argumentIndex:0 ofReply:YES];
-        [remoteObjectInterface setClasses:[NSSet setWithObjects:[NSString class], objc_lookUpClass("BSAuditToken"), [NSError class], nil] forSelector:sel_registerName("widgetRelevanceArchiveForKind:inBundle:handler:") argumentIndex:2 ofReply:YES];
         _widgetCenterConnection.remoteObjectInterface = remoteObjectInterface;
         
         _widgetCenterConnection.invalidationHandler = ^{
@@ -123,10 +122,10 @@
     });
 }
 
-- (void)widgetRelevanceArchiveForKind:(NSString *)kind inBundle:(NSString *)bundle handler:(void (^)(NSData * _Nullable archive,NSError * _Nullable))handler {
-    reinterpret_cast<void (*)(id, SEL, id, id, id)>(objc_msgSend)(self.widgetCenterConnection.remoteObjectProxy, sel_registerName("widgetRelevanceArchiveForKind:inBundle:handler:"), kind, bundle, ^(NSString * _Nullable, id token, NSError * _Nullable error) {
+- (void)widgetRelevanceArchiveForKind:(NSString *)kind inBundle:(NSString *)bundle handler:(void (^)(NSError * _Nullable error, NSFileHandle * _Nullable handle))handler {
+    reinterpret_cast<void (*)(id, SEL, id, id, id)>(objc_msgSend)(self.widgetCenterConnection.remoteObjectProxy, sel_registerName("widgetRelevanceArchiveForKind:inBundle:handler:"), kind, bundle, ^(NSError * _Nullable error, NSFileHandle * _Nullable handle) {
         if (handler != nil) {
-            handler(nil, error);
+            handler(error, handle);
         }
     });
 }

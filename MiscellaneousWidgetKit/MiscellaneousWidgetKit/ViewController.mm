@@ -159,12 +159,21 @@ OBJC_EXTERN id objc_msgSendSuper2(void); /* objc_super superInfo = { self, [self
                     }
                     
                     {
-                        UIAction *action = [UIAction actionWithTitle:@"widgetRelevanceArchiveForKind" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
-                            [MyWidgetCenter.sharedInstance widgetRelevanceArchiveForKind:@"MiscellaneousWidgetKit_WidgetExtension" inBundle:@"com.pookjw.MiscellaneousWidgetKit.WidgetExtension" handler:^(id _Nullable archive, NSError * _Nullable error) {
-                                assert(error == nil);
+                        NSMutableArray<__kindof UIMenuElement *> *elements = [NSMutableArray new];
+                        
+                        for (id configuration in configurations) {
+                            NSString *kind = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(configuration, sel_registerName("kind"));
+                            UIAction *action = [UIAction actionWithTitle:kind image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+                                [MyWidgetCenter.sharedInstance widgetRelevanceArchiveForKind:kind inBundle:@"com.pookjw.MiscellaneousWidgetKit.WidgetExtension" handler:^(NSError * _Nullable error, NSFileHandle * _Nullable handle) {
+                                    assert(error == nil);
+                                }];
                             }];
-                        }];
-                        [children addObject:action];
+                            [elements addObject:action];
+                        }
+                        
+                        UIMenu *menu = [UIMenu menuWithTitle:@"widgetRelevanceArchiveForKind" children:elements];
+                        [elements release];
+                        [children addObject:menu];
                     }
                     
                     UIMenu *menu = [UIMenu menuWithTitle: @"MyWidgetCenter" children:children];
