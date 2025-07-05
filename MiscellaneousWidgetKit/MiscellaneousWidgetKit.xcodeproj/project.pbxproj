@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F27A49F2E192E75001B784A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F27A49E2E192E75001B784A /* AVFoundation.framework */; };
+		4F27A4A02E192E79001B784A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F27A49E2E192E75001B784A /* AVFoundation.framework */; };
+		4F27A4A82E192F03001B784A /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F27A4A72E192F03001B784A /* UniformTypeIdentifiers.framework */; };
+		4F27A4A92E192F07001B784A /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F27A4A72E192F03001B784A /* UniformTypeIdentifiers.framework */; };
+		4F27A4AA2E193331001B784A /* WidgetKitPrivate.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F28D1972E191F9C00DA3986 /* WidgetKitPrivate.xcframework */; };
+		4F28D1982E191F9C00DA3986 /* WidgetKitPrivate.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F28D1972E191F9C00DA3986 /* WidgetKitPrivate.xcframework */; };
 		4F60E87D2E1803BA00C896BB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9EEAB72E16941800602285 /* SwiftUI.framework */; };
 		4F60E87E2E1803BA00C896BB /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9EEAB52E16941700602285 /* WidgetKit.framework */; };
 		4F60E8862E18042900C896BB /* MiscellaneousWidgetKit_WidgetExtension_Private.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4F60E8832E1803BA00C896BB /* MiscellaneousWidgetKit_WidgetExtension_Private.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -117,6 +123,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F27A49E2E192E75001B784A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4F27A4A72E192F03001B784A /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
+		4F28D1972E191F9C00DA3986 /* WidgetKitPrivate.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WidgetKitPrivate.xcframework; sourceTree = "<group>"; };
 		4F60E8832E1803BA00C896BB /* MiscellaneousWidgetKit_WidgetExtension_Private.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MiscellaneousWidgetKit_WidgetExtension_Private.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9EEA1E2E1672AB00602285 /* MiscellaneousWidgetKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiscellaneousWidgetKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9EEAB32E16941700602285 /* MiscellaneousWidgetKit_WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MiscellaneousWidgetKit_WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F28D1982E191F9C00DA3986 /* WidgetKitPrivate.xcframework in Frameworks */,
 				4F60E87D2E1803BA00C896BB /* SwiftUI.framework in Frameworks */,
 				4F60E87E2E1803BA00C896BB /* WidgetKit.framework in Frameworks */,
 			);
@@ -227,6 +237,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F27A4AA2E193331001B784A /* WidgetKitPrivate.xcframework in Frameworks */,
+				4F27A4A82E192F03001B784A /* UniformTypeIdentifiers.framework in Frameworks */,
+				4F27A4A02E192E79001B784A /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +265,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F27A4A92E192F07001B784A /* UniformTypeIdentifiers.framework in Frameworks */,
+				4F27A49F2E192E75001B784A /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +308,9 @@
 		4F9EEAB42E16941700602285 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4F27A4A72E192F03001B784A /* UniformTypeIdentifiers.framework */,
+				4F27A49E2E192E75001B784A /* AVFoundation.framework */,
+				4F28D1972E191F9C00DA3986 /* WidgetKitPrivate.xcframework */,
 				4F9EEAB52E16941700602285 /* WidgetKit.framework */,
 				4F9EEAB72E16941800602285 /* SwiftUI.framework */,
 			);
@@ -603,6 +621,7 @@
 		};
 		4FE652032E17CFEB009A3DCF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 4FF0E7C52E16E5580015B206 /* MiscellaneousWidgetKit_Watch */;
 			targetProxy = 4FE652042E17CFEB009A3DCF /* PBXContainerItemProxy */;
 		};

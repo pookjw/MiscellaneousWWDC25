@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import "SceneDelegate.h"
+#import "LiveWidgetSceneDelegate.h"
 
 @interface AppDelegate ()
 @end
@@ -18,9 +19,15 @@
 }
 
 - (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
-    UISceneConfiguration *configuration = [connectingSceneSession.configuration copy];
-    configuration.delegateClass = [SceneDelegate class];
-    return [configuration autorelease];
+    if ([connectingSceneSession.role isEqualToString:@"RWSSceneSessionRoleLiveSceneWidget"]) {
+        UISceneConfiguration *configuration = [connectingSceneSession.configuration copy];
+        configuration.delegateClass = [LiveWidgetSceneDelegate class];
+        return [configuration autorelease];
+    } else {
+        UISceneConfiguration *configuration = [connectingSceneSession.configuration copy];
+        configuration.delegateClass = [SceneDelegate class];
+        return [configuration autorelease];
+    }
 }
 
 @end

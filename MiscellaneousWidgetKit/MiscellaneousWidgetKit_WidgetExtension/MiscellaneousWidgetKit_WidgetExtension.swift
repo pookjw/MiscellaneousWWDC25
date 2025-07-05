@@ -8,6 +8,8 @@
 import WidgetKit
 import SwiftUI
 import RelevanceKit
+import WidgetKitPrivate
+import AppIntents
 
 struct Provider: AppIntentTimelineProvider {
     func recommendations() -> [AppIntentRecommendation<ConfigurationAppIntent>] {
@@ -43,6 +45,20 @@ struct Provider: AppIntentTimelineProvider {
     }
 }
 
+struct StaticProvider: TimelineProvider {
+    func placeholder(in context: Context) -> SimpleEntry {
+        .init(date: .now, configuration: .smiley)
+    }
+    
+    func getSnapshot(in context: Context, completion: @escaping @Sendable (SimpleEntry) -> Void) {
+        completion(.init(date: .now, configuration: .smiley))
+    }
+    
+    func getTimeline(in context: Context, completion: @escaping @Sendable (Timeline<SimpleEntry>) -> Void) {
+        completion(.init(entries: [.init(date: .now, configuration: .smiley)], policy: .never))
+    }
+}
+
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationAppIntent
@@ -69,7 +85,25 @@ struct MiscellaneousWidgetKit_WidgetExtension: Widget {
         AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
             MiscellaneousWidgetKit_WidgetExtensionEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
+            
         }
+    }
+}
+
+struct MiscellaneousWidgetKit_StaticWidgetExtension: Widget {
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: "Static", provider: StaticProvider()) { entry in
+            Text("Hello World!")
+        }
+    }
+}
+
+struct MiscellaneousWidgetKit_LiveWidgetExtension: Widget {
+    let kind: String = "Static"
+    
+    var body: some WidgetConfiguration {
+        LiveSceneWidgetConfiguration(kind)
+            .configurationDisplayName(Text("Live"))
     }
 }
 

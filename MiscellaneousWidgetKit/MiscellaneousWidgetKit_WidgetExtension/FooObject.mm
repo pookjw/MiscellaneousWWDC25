@@ -36,9 +36,9 @@
  */
 
 @interface MyDescriptorFetchResult : NSObject <NSSecureCoding>
-@property (retain, nonatomic) id widgetDescriptors;
-@property (retain, nonatomic) id controlDescriptors;
-@property (retain, nonatomic) id activityDescriptors;
+@property (retain, nonatomic) NSMutableArray *widgetDescriptors;
+@property (retain, nonatomic) NSMutableArray *controlDescriptors;
+@property (retain, nonatomic) NSMutableArray *activityDescriptors;
 @end
 
 @implementation MyDescriptorFetchResult
@@ -49,9 +49,39 @@
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     if (self = [super init]) {
-        _activityDescriptors = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], objc_lookUpClass("CHSSessionPlatterDescriptor"), nil] forKey:@"activityDescriptors"] mutableCopy];
-        _controlDescriptors = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], objc_lookUpClass("CHSControlDescriptor"), nil] forKey:@"controlDescriptors"] mutableCopy];
-        _widgetDescriptors = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], objc_lookUpClass("CHSWidgetDescriptor"), nil] forKey:@"widgetDescriptors"] mutableCopy];
+        NSArray *activityDescriptors = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], objc_lookUpClass("CHSSessionPlatterDescriptor"), nil] forKey:@"activityDescriptors"];
+        NSArray *controlDescriptors = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], objc_lookUpClass("CHSControlDescriptor"), nil] forKey:@"controlDescriptors"];
+        NSArray *widgetDescriptors = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], objc_lookUpClass("CHSWidgetDescriptor"), nil] forKey:@"widgetDescriptors"];
+        
+        NSMutableArray *mutableActivityDescriptors = [[NSMutableArray alloc] initWithCapacity:activityDescriptors.count];
+        for (id desc in activityDescriptors) {
+            id mutableDesc = [desc mutableCopy];
+            [mutableActivityDescriptors addObject:mutableDesc];
+            [mutableDesc release];
+        }
+        _activityDescriptors = mutableActivityDescriptors;
+        
+        NSMutableArray *mutableControlDescriptors = [[NSMutableArray alloc] initWithCapacity:controlDescriptors.count];
+        for (id desc in controlDescriptors) {
+            id mutableDesc = [desc mutableCopy];
+            [mutableControlDescriptors addObject:mutableDesc];
+            [mutableDesc release];
+        }
+        _controlDescriptors = mutableControlDescriptors;
+        
+        NSMutableArray *mutableWidgetDescriptors = [[NSMutableArray alloc] initWithCapacity:widgetDescriptors.count];
+        for (id desc in widgetDescriptors) {
+            id mutableDesc = [desc mutableCopy];
+            
+//            BOOL wantsLiveScene = reinterpret_cast<BOOL (*)(id, SEL)>(objc_msgSend)(mutableDesc, sel_registerName("wantsLiveScene"));
+//            if (wantsLiveScene) {
+//                reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(mutableDesc, sel_registerName("setTargetLiveSceneBundleIdentifier:"), @"com.apple.mobilesafari");
+//            }
+            
+            [mutableWidgetDescriptors addObject:mutableDesc];
+            [mutableDesc release];
+        }
+        _widgetDescriptors = mutableWidgetDescriptors;
     }
     
     return self;
@@ -94,15 +124,17 @@ void custom(id self, SEL _cmd, void (^completion)(id fetchRequest)) {
         
         NSKeyedArchiver *archiver_2 = [[NSKeyedArchiver alloc] initRequiringSecureCoding:YES];
         [myFetchResult encodeWithCoder:archiver_2];
+        [myFetchResult release];
         NSData *data_2 = archiver_2.encodedData;
         [archiver_2 release];
         
         NSKeyedUnarchiver *unarchiver_2 = [[NSKeyedUnarchiver alloc] initForReadingFromData:data_2 error:&error];
         assert(error == nil);
         id updatedFetchResult = [[[fetchRequest class] alloc] initWithCoder:unarchiver_2];
-        [unarchiver_1 release];
+        [unarchiver_2 release];
         
         completion(updatedFetchResult);
+        [updatedFetchResult release];
     });
 }
 void swizzle() {
@@ -122,3 +154,10 @@ void swizzle() {
 }
 
 @end
+
+/*
+ spatialChromeStyles = (none);
+ spatialSurface = glass;
+ wantsLiveScene = NO;
+ requestedDataProtection = 2;
+ */

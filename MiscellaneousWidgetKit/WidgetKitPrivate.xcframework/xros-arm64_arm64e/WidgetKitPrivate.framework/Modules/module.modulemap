@@ -1,0 +1,5 @@
+framework module WidgetKitPrivate {
+    umbrella header "WidgetKitPrivate.h"
+    export *
+    module * { export * }
+}

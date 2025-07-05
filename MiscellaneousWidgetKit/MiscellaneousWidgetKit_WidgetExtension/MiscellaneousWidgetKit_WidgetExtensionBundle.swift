@@ -19,6 +19,8 @@ struct MiscellaneousWidgetKit_WidgetExtensionBundle: WidgetBundle {
     
     var body: some Widget {
         MiscellaneousWidgetKit_WidgetExtension()
+        MiscellaneousWidgetKit_LiveWidgetExtension()
+        MiscellaneousWidgetKit_StaticWidgetExtension()
         
 #if os(iOS)
         MiscellaneousWidgetKit_WidgetExtensionControl()
