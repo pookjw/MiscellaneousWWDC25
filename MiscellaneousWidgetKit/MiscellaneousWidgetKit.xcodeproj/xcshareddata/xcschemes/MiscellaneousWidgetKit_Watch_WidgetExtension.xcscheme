@@ -88,12 +88,21 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4FE6519E2E176E39009A3DCF"
+            BuildableName = "MiscellaneousWidgetKit_Watch_WidgetExtension.appex"
+            BlueprintName = "MiscellaneousWidgetKit_Watch_WidgetExtension"
+            ReferencedContainer = "container:MiscellaneousWidgetKit.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
             BlueprintIdentifier = "4F9EEA1D2E1672AB00602285"
             BuildableName = "MiscellaneousWidgetKit.app"
             BlueprintName = "MiscellaneousWidgetKit"
             ReferencedContainer = "container:MiscellaneousWidgetKit.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "_XCWidgetKind"

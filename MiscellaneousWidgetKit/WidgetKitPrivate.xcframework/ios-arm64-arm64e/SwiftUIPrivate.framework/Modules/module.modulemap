@@ -1,5 +1,0 @@
-framework module SwiftUIPrivate {
-    umbrella header "SwiftUIPrivate.h"
-    export *
-    module * { export * }
-}

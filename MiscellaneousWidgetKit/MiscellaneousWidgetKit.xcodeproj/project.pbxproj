@@ -145,6 +145,13 @@
 			);
 			target = 4F60E87A2E1803BA00C896BB /* MiscellaneousWidgetKit_WidgetExtension_Private */;
 		};
+		4F8992AB2E19572200D0C59F /* Exceptions for "MiscellaneousWidgetKit_WidgetExtension" folder in "MiscellaneousWidgetKit_Watch_WidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FooObject.mm,
+			);
+			target = 4FE6519E2E176E39009A3DCF /* MiscellaneousWidgetKit_Watch_WidgetExtension */;
+		};
 		4F9EEA352E1672AC00602285 /* Exceptions for "MiscellaneousWidgetKit" folder in "MiscellaneousWidgetKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -204,6 +211,7 @@
 			exceptions = (
 				4F9EEACE2E16941800602285 /* Exceptions for "MiscellaneousWidgetKit_WidgetExtension" folder in "MiscellaneousWidgetKit_WidgetExtension" target */,
 				4F60E8852E1803BA00C896BB /* Exceptions for "MiscellaneousWidgetKit_WidgetExtension" folder in "MiscellaneousWidgetKit_WidgetExtension_Private" target */,
+				4F8992AB2E19572200D0C59F /* Exceptions for "MiscellaneousWidgetKit_WidgetExtension" folder in "MiscellaneousWidgetKit_Watch_WidgetExtension" target */,
 			);
 			path = MiscellaneousWidgetKit_WidgetExtension;
 			sourceTree = "<group>";

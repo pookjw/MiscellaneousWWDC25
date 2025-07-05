@@ -1,0 +1,12 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ arm64-ios, arm64e-ios ]
+install-name:    '/System/Library/Frameworks/WidgetKit.framework/WidgetKit'
+current-version: 642.0.1
+swift-abi-version: 7
+exports:
+  - targets:         [ arm64-ios, arm64e-ios ]
+    symbols:              [  ]
+    objc-classes:         [  ]
+    objc-ivars:           [  ]
+...

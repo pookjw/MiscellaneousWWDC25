@@ -7,6 +7,8 @@
 
 import WidgetKit
 import SwiftUI
+import RelevanceKit
+import AppIntents
 
 struct Provider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
@@ -32,13 +34,18 @@ struct Provider: AppIntentTimelineProvider {
     }
 
     func recommendations() -> [AppIntentRecommendation<ConfigurationAppIntent>] {
-        // Create an array with all the preconfigured widgets to show.
-        [AppIntentRecommendation(intent: ConfigurationAppIntent(), description: "Example Widget")]
+        [
+            AppIntentRecommendation(intent: ConfigurationAppIntent(), description: "Example Widget 1"),
+            AppIntentRecommendation(intent: ConfigurationAppIntent(), description: "Example Widget 2"),
+        ]
     }
 
-//    func relevances() async -> WidgetRelevances<ConfigurationAppIntent> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
+    func relevances() async -> WidgetRelevance<ConfigurationAppIntent> {
+        WidgetRelevance<ConfigurationAppIntent>([
+            WidgetRelevanceAttribute<ConfigurationAppIntent>(configuration: ConfigurationAppIntent(), group: WidgetRelevanceGroup.named("Group")),
+            WidgetRelevanceAttribute<ConfigurationAppIntent>(configuration: ConfigurationAppIntent(), group: WidgetRelevanceGroup.named("Group"))
+        ])
+    }
 }
 
 struct SimpleEntry: TimelineEntry {

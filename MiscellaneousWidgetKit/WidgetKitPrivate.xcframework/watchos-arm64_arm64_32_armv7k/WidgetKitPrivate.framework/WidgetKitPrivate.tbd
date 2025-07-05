@@ -1,0 +1,12 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ armv7k-watchos, arm64-watchos, arm64e-watchos, arm64_32-watchos ]
+install-name:    '/System/Library/Frameworks/WidgetKit.framework/WidgetKit'
+current-version: 642
+swift-abi-version: 7
+exports:
+  - targets:         [ armv7k-watchos, arm64-watchos, arm64e-watchos, arm64_32-watchos ]
+    symbols:              [  ]
+    objc-classes:         [  ]
+    objc-ivars:           [  ]
+...
