@@ -73,11 +73,23 @@
         for (id desc in widgetDescriptors) {
             id mutableDesc = [desc mutableCopy];
             
+            NSString *kind = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(mutableDesc, sel_registerName("kind"));
+            
+            if ([kind isEqualToString:@"Static"]) {
+                reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(mutableDesc, sel_registerName("setBackgroundRemovable:"), YES);
+                reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(mutableDesc, sel_registerName("setTransparent:"), YES);
+                reinterpret_cast<void (*)(id, SEL, NSUInteger)>(objc_msgSend)(mutableDesc, sel_registerName("setPreferredBackgroundStyle:"), 0x1);
+                reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(mutableDesc, sel_registerName("setSupportsAccentedContent:"), YES);
+            }
 //            BOOL wantsLiveScene = reinterpret_cast<BOOL (*)(id, SEL)>(objc_msgSend)(mutableDesc, sel_registerName("wantsLiveScene"));
 //            if (wantsLiveScene) {
 //                reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(mutableDesc, sel_registerName("setTargetLiveSceneBundleIdentifier:"), @"com.apple.mobilesafari");
 //            }
+//            if (wantsLiveScene) {
+//                reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(mutableDesc, sel_registerName("setSupportsInteraction:"), NO);
+//            }
             
+            NSLog(@"%@", mutableDesc);
             [mutableWidgetDescriptors addObject:mutableDesc];
             [mutableDesc release];
         }

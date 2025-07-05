@@ -6,6 +6,9 @@
 //
 
 #import "LiveWidgetSceneDelegate.h"
+
+#if TARGET_OS_VISION
+
 #import "VideoViewController.h"
 
 @implementation LiveWidgetSceneDelegate
@@ -26,3 +29,5 @@
 }
 
 @end
+
+#endif

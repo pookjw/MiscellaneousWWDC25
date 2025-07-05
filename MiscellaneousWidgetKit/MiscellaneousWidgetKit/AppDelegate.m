@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "SceneDelegate.h"
 #import "LiveWidgetSceneDelegate.h"
+#import <TargetConditionals.h>
 
 @interface AppDelegate ()
 @end
@@ -19,6 +20,7 @@
 }
 
 - (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
+#if TARGET_OS_VISION
     if ([connectingSceneSession.role isEqualToString:@"RWSSceneSessionRoleLiveSceneWidget"]) {
         UISceneConfiguration *configuration = [connectingSceneSession.configuration copy];
         configuration.delegateClass = [LiveWidgetSceneDelegate class];
@@ -28,6 +30,11 @@
         configuration.delegateClass = [SceneDelegate class];
         return [configuration autorelease];
     }
+#else
+    UISceneConfiguration *configuration = [connectingSceneSession.configuration copy];
+    configuration.delegateClass = [SceneDelegate class];
+    return [configuration autorelease];
+#endif
 }
 
 @end

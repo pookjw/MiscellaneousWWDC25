@@ -84,9 +84,9 @@ struct MiscellaneousWidgetKit_WidgetExtension: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
             MiscellaneousWidgetKit_WidgetExtensionEntryView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
-            
+                .containerBackground(.background, for: .widget)
         }
+        .supportedMountingStyles([.elevated, .recessed])
     }
 }
 
@@ -94,16 +94,22 @@ struct MiscellaneousWidgetKit_StaticWidgetExtension: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: "Static", provider: StaticProvider()) { entry in
             Text("Hello World!")
+                .containerBackground(.clear, for: .widget)
         }
+        .supportedMountingStyles([.elevated, .recessed])
     }
 }
 
 struct MiscellaneousWidgetKit_LiveWidgetExtension: Widget {
-    let kind: String = "Static"
+    let kind: String = "Live"
     
     var body: some WidgetConfiguration {
         LiveSceneWidgetConfiguration(kind)
             .configurationDisplayName(Text("Live"))
+#if os(visionOS)
+            .supportedMountingStyles([.elevated, .recessed])
+            .widgetTexture(.glass)
+#endif
     }
 }
 

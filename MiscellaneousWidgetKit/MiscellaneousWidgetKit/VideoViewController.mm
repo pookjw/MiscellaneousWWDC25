@@ -6,6 +6,9 @@
 //
 
 #import "VideoViewController.h"
+
+#if TARGET_OS_VISION
+
 #import <AVFoundation/AVFoundation.h>
 #import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
@@ -49,6 +52,22 @@
     ((AVPlayerLayer *)self.view.layer).videoGravity = AVLayerVideoGravityResizeAspectFill;
     [player play];
     [player release];
+    
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_gestureDidTrigger:)];
+    [self.view addGestureRecognizer:gesture];
+    [gesture release];
+}
+
+- (void)_gestureDidTrigger:(UITapGestureRecognizer *)sender {
+    AVPlayer *player = ((AVPlayerLayer *)self.view.layer).player;
+    
+    if (player.rate != 0.f) {
+        [player pause];
+    } else {
+        [player play];
+    }
 }
 
 @end
+
+#endif

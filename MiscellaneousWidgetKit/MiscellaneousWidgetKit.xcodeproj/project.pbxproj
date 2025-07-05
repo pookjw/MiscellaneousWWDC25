@@ -11,11 +11,12 @@
 		4F27A4A02E192E79001B784A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F27A49E2E192E75001B784A /* AVFoundation.framework */; };
 		4F27A4A82E192F03001B784A /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F27A4A72E192F03001B784A /* UniformTypeIdentifiers.framework */; };
 		4F27A4A92E192F07001B784A /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F27A4A72E192F03001B784A /* UniformTypeIdentifiers.framework */; };
-		4F27A4AA2E193331001B784A /* WidgetKitPrivate.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F28D1972E191F9C00DA3986 /* WidgetKitPrivate.xcframework */; };
 		4F28D1982E191F9C00DA3986 /* WidgetKitPrivate.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F28D1972E191F9C00DA3986 /* WidgetKitPrivate.xcframework */; };
 		4F60E87D2E1803BA00C896BB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9EEAB72E16941800602285 /* SwiftUI.framework */; };
 		4F60E87E2E1803BA00C896BB /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9EEAB52E16941700602285 /* WidgetKit.framework */; };
 		4F60E8862E18042900C896BB /* MiscellaneousWidgetKit_WidgetExtension_Private.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4F60E8832E1803BA00C896BB /* MiscellaneousWidgetKit_WidgetExtension_Private.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4F8992A12E19494900D0C59F /* WidgetKitPrivate.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F28D1972E191F9C00DA3986 /* WidgetKitPrivate.xcframework */; };
+		4F8992A42E194D6300D0C59F /* WidgetKitPrivate.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F28D1972E191F9C00DA3986 /* WidgetKitPrivate.xcframework */; };
 		4F9EEAB62E16941800602285 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9EEAB52E16941700602285 /* WidgetKit.framework */; };
 		4F9EEAB82E16941800602285 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9EEAB72E16941800602285 /* SwiftUI.framework */; };
 		4F9EEACA2E16941800602285 /* MiscellaneousWidgetKit_WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4F9EEAB32E16941700602285 /* MiscellaneousWidgetKit_WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -140,7 +141,6 @@
 		4F60E8852E1803BA00C896BB /* Exceptions for "MiscellaneousWidgetKit_WidgetExtension" folder in "MiscellaneousWidgetKit_WidgetExtension_Private" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Assets.xcassets,
 				Info.plist,
 			);
 			target = 4F60E87A2E1803BA00C896BB /* MiscellaneousWidgetKit_WidgetExtension_Private */;
@@ -179,10 +179,11 @@
 		4FE652112E17CFEB009A3DCF /* Exceptions for "MiscellaneousWidgetKit" folder in "MiscellaneousWidgetKit_Private" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"/Localized: LaunchScreen.storyboard",
-				Assets.xcassets,
 				Info.plist,
 			);
+			platformFiltersByRelativePath = {
+				"/Localized: LaunchScreen.storyboard" = (ios, );
+			};
 			target = 4FE652002E17CFEB009A3DCF /* MiscellaneousWidgetKit_Private */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -237,7 +238,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F27A4AA2E193331001B784A /* WidgetKitPrivate.xcframework in Frameworks */,
 				4F27A4A82E192F03001B784A /* UniformTypeIdentifiers.framework in Frameworks */,
 				4F27A4A02E192E79001B784A /* AVFoundation.framework in Frameworks */,
 			);
@@ -247,6 +247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8992A42E194D6300D0C59F /* WidgetKitPrivate.xcframework in Frameworks */,
 				4F9EEAB82E16941800602285 /* SwiftUI.framework in Frameworks */,
 				4F9EEAB62E16941800602285 /* WidgetKit.framework in Frameworks */,
 			);
@@ -256,6 +257,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8992A12E19494900D0C59F /* WidgetKitPrivate.xcframework in Frameworks */,
 				4FE651A12E176E39009A3DCF /* SwiftUI.framework in Frameworks */,
 				4FE651A02E176E39009A3DCF /* WidgetKit.framework in Frameworks */,
 			);
@@ -349,8 +351,8 @@
 				4F9EEA1A2E1672AB00602285 /* Sources */,
 				4F9EEA1B2E1672AB00602285 /* Frameworks */,
 				4F9EEA1C2E1672AB00602285 /* Resources */,
-				4F9EEAC92E16941800602285 /* Embed Foundation Extensions */,
 				4FF0E7C12E16E51C0015B206 /* Embed Watch Content */,
+				4F9EEAC92E16941800602285 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);

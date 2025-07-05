@@ -1,0 +1,12 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ i386-watchos-simulator, x86_64-watchos-simulator, arm64-watchos-simulator ]
+install-name:    '/System/Library/Frameworks/WidgetKit.framework/WidgetKit'
+current-version: 642
+swift-abi-version: 7
+exports:
+  - targets:         [ i386-watchos-simulator, x86_64-watchos-simulator, arm64-watchos-simulator ]
+    symbols:              [  ]
+    objc-classes:         [  ]
+    objc-ivars:           [  ]
+...
